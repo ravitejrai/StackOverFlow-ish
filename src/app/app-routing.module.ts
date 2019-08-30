@@ -10,6 +10,13 @@ const routes: Routes = [
         m => m.LandingModule
       )
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        m => m.DashboardModule
+      )
+  }
 ];
 
 @NgModule({
