@@ -4,6 +4,7 @@ import { LayoutComponent } from './container/layout/layout.component';
 import { RegistrationComponent } from './container/registration/registration.component';
 import { LoginComponent } from './container/login/login.component';
 import { HomeComponent } from './container/home/home.component';
+import { LearnrxjsComponent } from './container/learnrxjs/learnrxjs.component';
 
 
 export const routes: Routes = [
@@ -26,6 +27,10 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
 
+      },
+      {
+        path: 'learnrxjs',
+        component: LearnrxjsComponent,
       }
     ]
   }
