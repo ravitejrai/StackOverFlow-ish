@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-        <a [routerLink]="[ '/' ]">
-          <i class="fa fa-home" aria-hidden="true" style="color:#DDDDDD;"></i>
-        </a>
-        <span class="spacer"></span>
-        <a mat-button [routerLink]="[ '/login' ]">Log In</a>
-        <a mat-button [routerLink]="[ '/registration' ]">Registration</a>     
-    </mat-toolbar-row>
+  <mat-toolbar-row>
+      <a [routerLink]="[ '/' ]">
+        <i class="fa fa-home" aria-hidden="true" style="color:#DDDDDD;"></i>
+      </a>
+      <span class="spacer"></span>
+      <a mat-button (click)="openDialog()">Log In</a>
+      <!-- <a mat-button [routerLink]="[ '/login' ]">Log In</a> -->
+      <a mat-button [routerLink]="[ '/registration' ]">Registration</a>     
+  </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>   
