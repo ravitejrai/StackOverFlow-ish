@@ -6,6 +6,7 @@ import { throwError } from 'rxjs';
 import { LayoutComponent } from '../layout/layout.component';
 import { EventEmitter } from 'events';
 import { MatDialogRef } from '@angular/material';
+import { MessageService } from 'src/app/message.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   @Input() errorMessage: string;
 
   constructor(private router: Router, private loginPageService: LoginPageService, 
-              public dialogRef: MatDialogRef<LayoutComponent>) { }
+              public dialogRef: MatDialogRef<LayoutComponent>,
+              private messageService :MessageService) { }
 
   ngOnInit() {
   }
@@ -33,7 +35,10 @@ export class LoginComponent implements OnInit {
     //   console.log(this.users[0].email,"......5.....")
       for (var i = 0; i < this.users.length; i++) { 
         if((this.email == this.users[i].email) && (this.password == this.users[i].password))  {
-        console.log(this.users[i])
+        //console.log(this.users[i]," users[i]....")
+        this.messageService.sendMessage(this.users[i]);
+        this.router.navigate(['/dashboard']);
+        break;
         }
         else {
           this.errorMessage="invalid credentials"
