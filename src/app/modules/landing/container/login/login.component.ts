@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginPageService } from './login-page.service';
+import { LoginPageService, User } from './login-page.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { LayoutComponent } from '../layout/layout.component';
@@ -15,31 +15,52 @@ import { MatDialogRef } from '@angular/material';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
+  @Input() errorMessage: string;
 
   constructor(private router: Router, private loginPageService: LoginPageService, 
               public dialogRef: MatDialogRef<LayoutComponent>) { }
 
   ngOnInit() {
   }
+  users: User[] = [];
+  login() {
+    this.loginPageService.getUserDetails().subscribe((data) =>{
+      this.users = data;
+    //   console.log(data,"....1...")
+    //   console.log(data[0],"....2...")
+    //   console.log(this.users,".....3....")
+    //  console.log(this.users[0],"......4.....")
+    //   console.log(this.users[0].email,"......5.....")
+      for (var i = 0; i < this.users.length; i++) { 
+        if((this.email == this.users[i].email) && (this.password == this.users[i].password))  {
+        console.log(this.users[i])
+        }
+        else {
+          this.errorMessage="invalid credentials"
+        }
 
-  login(): void {
-    this.loginPageService.getUserDetails(this.email, this.password).subscribe((data: any) => {
-      // console.log(data, "service response");
-      // console.log(data.email1,"inside post");
-      // console.log(data.password2);
-      // console.log(data.id);
-      if (data.id === 4) {
-        // console.log(data.email1,"inside if");
-        this.dialogRef.close();
-        this.router.navigate(['/dashboard']);
-      } else {
-        alert('Invalid credentials');
       }
-    }, error => {
-      // console.log(error,'inside ......');
-      this.handleError(error);
-    } );
+    })
   }
+  
+  // login(): void {
+  //   this.loginPageService.getUserDetails(this.email, this.password).subscribe((data: any) => {
+  //     // console.log(data, "service response");
+  //     // console.log(data.email1,"inside post");
+  //     // console.log(data.password2);
+  //     // console.log(data.id);
+  //     if (data.id === 4) {
+  //       // console.log(data.email1,"inside if");
+  //       this.dialogRef.close();
+  //       this.router.navigate(['/dashboard']);
+  //     } else {
+  //       alert('Invalid credentials');
+  //     }
+  //   }, error => {
+  //     // console.log(error,'inside ......');
+  //     this.handleError(error);
+  //   } );
+  // }
   private handleError(errorResponse: HttpErrorResponse) {
     // client side or server error
     if (errorResponse.error instanceof ErrorEvent) {
