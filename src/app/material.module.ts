@@ -5,6 +5,9 @@ import {MatNativeDateModule,MatDatepickerModule,MatIconModule,
     MatFormFieldModule,MatInputModule,MatRadioModule,MatListModule} from  '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
  
  
@@ -14,7 +17,7 @@ imports: [MatButtonModule,MatToolbarModule,
     MatIconModule,MatButtonModule,MatCheckboxModule, 
     MatToolbarModule, MatCardModule,MatFormFieldModule,
     MatInputModule,MatRadioModule,MatListModule,FormsModule, 
-    ReactiveFormsModule],
+    ReactiveFormsModule,MatGridListModule,FlexLayoutModule],
 exports: [MatNativeDateModule,FormsModule,
     MatDatepickerModule,MatIconModule,MatButtonModule,
     MatCheckboxModule, MatToolbarModule, MatCardModule,
