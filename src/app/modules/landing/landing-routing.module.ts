@@ -23,6 +23,7 @@ export const routes: Routes = [
         component: RegistrationComponent,
 
       },
+    
       {
         path: 'login',
         component: LoginComponent,
