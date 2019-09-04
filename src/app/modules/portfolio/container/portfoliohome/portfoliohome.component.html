@@ -1,31 +1,21 @@
-
-    <div class="w3-row-padding">
-        <div class="w3-twothird" style="width:100%">
-            
-          <div class="w3-white w3-text-grey w3-card-4" style="height: 100%">
-            <div class="w3-display-container" style="align-content: center;">
-                <h2 >{{users[0].firstname}} {{users[0].lastname}}</h2>
-            </div>
-            <div class="w3-container">
-              <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-teal"> 
-                  <span>Email:</span>
-                  </i>{{users[0].email}}
-              </p>
-              <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-teal">
-                  <span>Phone:</span>
-                  </i>{{users[0].phonenumber}}
-              </p>
-              <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-teal">
-                  <span>SSN:</span>
-                  </i>{{users[0].ssn}}
-              </p>
-              <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-teal">
-                  <span>Password:</span>
-                  </i>{{users[0].password}}
-              </p>
-              <hr>
-            </div>
-          </div><br>
-  
-        </div>
+<div class="w3-content w3-margin-top" style="max-width:1400px;overflow: hidden;">
+  <div class="w3-row-padding">
+    <div class="w3-twothird">
+      <div class="height w3-container w3-card w3-white w3-margin-bottom">
+        <h4 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>{{users[0].firstname}} {{users[0].lastname}}</h4>
+        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-teal fa-2x">
+          </i>{{users[0].email}}
+        </p>
+        <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-teal fa-2x">
+          </i>{{users[0].phonenumber}}
+        </p>
+        <p><i class="fa fa-id-card w3-margin-right w3-text-teal fa-2x">
+          </i>{{users[0].ssn}}
+        </p>
+        <p><i class="fa fa-key f084 w3-margin-right w3-text-teal fa-2x">
+          </i>{{users[0].password}}
+        </p>
       </div>
+    </div>
+  </div>
+</div>
