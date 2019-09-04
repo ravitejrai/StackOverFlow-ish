@@ -38,9 +38,8 @@ export class RegistrationComponent implements OnInit {
 
    ).subscribe((data)=>{
        console.log("Entered reg function");
-      this.router.navigate(['/login']);
-
-      
+       alert("Registration Sucessful !!");
+      this.router.navigate(['/']);
     });
   };
 
