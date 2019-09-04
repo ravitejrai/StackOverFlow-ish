@@ -1,0 +1,17 @@
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-row-padding">
+      <div class="w3-twothird" style="width:100%">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Products List</h4>
+          <mat-accordion>
+              <mat-expansion-panel *ngFor="let stock of stocks">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>{{stock.productname}}</mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p>Number of Stocks: {{stock.numberofstocks}}</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
+      </div>
+    </div>
