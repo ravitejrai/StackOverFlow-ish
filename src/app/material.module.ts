@@ -6,6 +6,9 @@ import {MatNativeDateModule,MatDatepickerModule,MatIconModule,
     import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
  
  
@@ -15,7 +18,8 @@ imports: [MatButtonModule,MatToolbarModule,
     MatIconModule,MatButtonModule,MatCheckboxModule, 
     MatToolbarModule, MatCardModule,MatFormFieldModule,
     MatInputModule,MatRadioModule,MatListModule,FormsModule, 
-    ReactiveFormsModule,MatTooltipModule],
+    ReactiveFormsModule,MatGridListModule,FlexLayoutModule],
+    
 exports: [MatNativeDateModule,FormsModule,
     MatDatepickerModule,MatIconModule,MatButtonModule,
     MatCheckboxModule, MatToolbarModule, MatCardModule,

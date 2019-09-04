@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-portfoliolayout',
@@ -7,7 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortfoliolayoutComponent implements OnInit {
 
-  constructor() { }
+  navLinks: any[];
+  //activeLinkIndex = -1; 
+  constructor(private router: Router) {
+    this.navLinks = [
+        {
+            label: 'User Account',
+            link: 'userportfolio',
+            index: 0
+        }, {
+            label: 'Stock List',
+            link: 'stockList',
+            index: 1
+        }, 
+    ];
+  }
 
   ngOnInit() {
   }
