@@ -15,11 +15,6 @@ export const routes: Routes = [
         component: PortfoliohomeComponent,
 
       },
-      // {
-      //   path: 'login',
-      //   component: LoginComponent,
-
-      // }
     ]
   }
 ];
