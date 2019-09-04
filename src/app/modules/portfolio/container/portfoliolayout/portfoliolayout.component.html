@@ -1,1 +1,15 @@
-<p>portfoliolayout works!</p>
+<!-- <p>portfoliolayout works!</p> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<nav mat-tab-nav-bar >
+    <a mat-tab-link class="mat-tab-label"
+    *ngFor="let link of navLinks"
+    [routerLink]="link.link"
+    routerLinkActive #rla="routerLinkActive"
+    [routerLinkActiveOptions]="{exact: true}"
+    [active]="rla.isActive">
+    {{link.label}}
+    </a>
+</nav>
+<router-outlet></router-outlet>
+    
