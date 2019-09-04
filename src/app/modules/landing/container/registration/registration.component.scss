@@ -1,0 +1,32 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+  }
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+.panelText{
+  font-family:Apple Chancery, cursive;
+  color:#3F51B5;
+  display:flex;
+  justify-content: center
+}
+
+.namePadding
+{
+  padding-top : 20px;
+}
