@@ -13,11 +13,13 @@ export class LoginPageService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' ,
                                       'email': '',
                                       'password':'' });
+                                      
     return this.http.post( `https://my-json-server.typicode.com/techsithgit/json-faker-directory/profiles/`, postData,
                             { headers: new HttpHeaders({
                               'Content-Type': 'application/json' ,
-                                      'email': postData.email1,
-                                      'password':postData.password2     
-                            }) })
-                                    }
+                              'email': postData.email1,
+                              'password':postData.password2     
+                              }) 
+                            })
+                                }
 }
