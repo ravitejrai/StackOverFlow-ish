@@ -1,2 +1,69 @@
-<p>registration works!</p>
-<button (click)=onRegitration()>Register</button>
+<mat-card >
+    <mat-toolbar class= "panelText"><b>Sign Up</b></mat-toolbar>
+    <mat-card-content><br/><br/>
+        <form [formGroup] = 'regDetailsForm' (ngSubmit)="onRegitration()">
+
+            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                <div class = "namePadding" fxFlex = "50%">
+                    <mat-form-field class="full-width">
+                        <mat-label>  <i class="fas fa-file-signature"></i>
+                            Firstname
+                        </mat-label>
+                        <input matInput formControlName='firstname' placeholder="Firstname" minlength="3" required>
+                    </mat-form-field>
+                    </div>
+                    <div class = "namePadding" fxFlex = "50%">
+                            <mat-form-field class="full-width">
+                     <mat-label> <i class="fas fa-file-signature" minlength = "5"></i>
+                        Lastname
+                    </mat-label>
+                   
+                    <input matInput formControlName='lastname' placeholder="Lastname">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label> <i class="fas fa-envelope fa-1x"> </i>
+                        Email
+                    </mat-label>
+                    <input matInput formControlName='email' placeholder="Email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> 
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label> <i class="fas fa-key fa-1x"> </i>
+                        Password
+                    </mat-label>
+                    <input matInput matTooltip="Enter Password" formControlName='password' type='password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" placeholder="Password"  
+                        required>
+                </mat-form-field>
+            </p>
+            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+
+            <div fxFlex = "50%">
+                    <mat-form-field class="full-width">
+                    <mat-label> <i class="fas fa-mobile-alt"></i>
+                        PhoneNumber
+                    </mat-label>
+                    <input matInput formControlName='phonenumber' placeholder="PhoneNumber" required>
+                </mat-form-field>
+            </div>
+            <div fxFlex = "50%">
+                    <mat-form-field class="full-width">
+                    <mat-label> <i class="fas fa-envelope fa-1x"> </i>
+                        #SSN
+                    </mat-label>
+                    <input formControlName='ssn' matInput placeholder="SSN#" required>
+                </mat-form-field>
+            </div>
+        </div>
+
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button type = "submit" (click)="onRegitration()" color="primary" [disabled]="!regDetailsForm.valid">Register</button>
+    </mat-card-actions>
+</mat-card>
