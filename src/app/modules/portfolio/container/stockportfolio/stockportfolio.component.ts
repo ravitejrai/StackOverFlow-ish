@@ -14,7 +14,7 @@ export class StockportfolioComponent implements OnInit {
   ngOnInit() {
     this.DataService.getStockDetails().subscribe((data) => {
       this.stocks=data;
-      console.log(this.stocks[0].productname);
+      console.log(data);
     })
   }
 

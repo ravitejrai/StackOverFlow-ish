@@ -14,16 +14,15 @@ export class PortfolioAuthServiceService {
   }
 
   getStockDetails():Observable<Stock[]> {
-    return this.http.get<Stock[]>('http://localhost:3000/stocks')
+    return this.http.get<Stock[]>('http://localhost:3000/orders')
   }
 }
 
 
 /* Defines the product entity */
 export class User {
-  id: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   ssn: string;
@@ -31,7 +30,10 @@ export class User {
 }
 
 export class Stock {
-  productname: string;
-  numberofstock: string;
-  soldout: string;
+  email: string;
+  stockid: string;
+  name: string;
+  quantity: string;
+  price: string;
+  value: string;
 }
