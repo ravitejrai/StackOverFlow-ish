@@ -20,7 +20,10 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>onlinestock4</span>
+      <span>welcome</span>
+      <span>{{firstName}}</span>
+      <span>{{lastName}}</span>
+      <span>{{emailId}}</span>
       <button (click)="onLogOut()">log out</button>
     </mat-toolbar>
    <router-outlet></router-outlet>
