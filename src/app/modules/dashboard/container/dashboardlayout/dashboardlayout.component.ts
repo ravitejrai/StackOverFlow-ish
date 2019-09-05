@@ -12,10 +12,11 @@ import { MessageService } from 'src/app/message.service';
   styleUrls: ['./dashboardlayout.component.scss']
 })
 export class DashboardlayoutComponent implements OnInit{
-  userInfo;
-  @Input() firstName;
-  @Input() lastName;
-  @Input() emailId;
+  
+  userInfo: any;
+  firstName: any;
+  lastName: any;
+  emailId: any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -26,15 +27,15 @@ export class DashboardlayoutComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver,private router:Router,private messageService:MessageService) { }
 
   ngOnInit() {
-     this.messageService.getMessage().subscribe((data) => {
-       this.userInfo = data
-       this.firstName = data.tabledata.firstName
-       this.lastName = data.tabledata.lastName
-       this.emailId = data.tabledata.email
-       console.log(data, "dash.....")
-      console.log("this.u....",this.userInfo)
-      console.log(this.userInfo.tabledata)
-      console.log(data.tabledata.email)
+    this.messageService.getMessage().subscribe((data) => {
+    this.userInfo = data
+    this.firstName = data.tabledata.firstName
+    this.lastName = data.tabledata.lastName
+    this.emailId = data.tabledata.email
+    //console.log(data, "dash.....")
+    //console.log("this.u....",this.userInfo)
+    //console.log(this.userInfo.tabledata)
+    //console.log(data.tabledata.email)
 
      })
     
