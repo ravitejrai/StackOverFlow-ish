@@ -18,7 +18,8 @@ export class SearchstockComponent implements OnInit {
     this.StockList.getDisplayStocks().subscribe(response => {
       this.stockItems = response;
       console.log(response);
-      this.displayedColumns = ["id", "name", "age"];
+      //this.displayedColumns = ["id", "name", "age"];
+     this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
