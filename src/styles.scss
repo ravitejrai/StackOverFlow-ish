@@ -8,6 +8,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     mat-dialog-container {
         box-shadow: none;
         background: none;
+        display: flex;
         
     }
 }

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
 
         } else {
 
-          this.errorMessage="invalid credentials" 
+          this.errorMessage = 'Email id or Password is incorrect. Please try again.';
 
         }
       })
