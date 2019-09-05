@@ -52,7 +52,6 @@ export class PortfoliohomeComponent implements OnInit {
       
 
     this.userForm.disable();
-
     // this.userForm.patchValue({phone:'12345'});
     //this.userForm.setValue({phone : '12345'});
   }
