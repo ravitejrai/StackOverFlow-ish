@@ -1,8 +1,8 @@
-<mat-form-field>       
-    <mat-placeholder>
-    <mat-icon>search</mat-icon>
-    </mat-placeholder>
-    <input matInput (keyup)="applyFilter($event.target.value)"placeholder=" Search Stocks">
+<mat-form-field>   
+    <mat-label> <i class="fas fa-search fa-1x"> </i>  
+      Search Stocks
+  </mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)">
   </mat-form-field> 
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
