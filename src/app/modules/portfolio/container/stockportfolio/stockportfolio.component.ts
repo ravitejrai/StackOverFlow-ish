@@ -14,13 +14,13 @@ export class StockportfolioComponent implements OnInit {
 
   ngOnInit() {
     this.DataService.getStockDetails().subscribe((data) => {
-
-      data.forEach(element => {
-        if (element.email == "jsmith@virtusa.com") {
-          this.stocks.push(element);
-        }
-      });
+      this.stocks=data;
+      console.log(data);
     })
+  }
+
+  calculateTotal(price,quantity) {
+    return price*quantity;
   }
 
 }
