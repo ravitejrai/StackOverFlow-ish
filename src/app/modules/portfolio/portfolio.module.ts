@@ -9,6 +9,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [PortfoliolayoutComponent, PortfoliohomeComponent, StockportfolioComponent],
@@ -18,7 +20,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTableModule,
     MatExpansionModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    ReactiveFormsModule
   ]
 })
 export class PortfolioModule { }

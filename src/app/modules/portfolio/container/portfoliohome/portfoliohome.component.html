@@ -1,6 +1,79 @@
 <div class="w3-content w3-margin-top" style="max-width:1400px;overflow: hidden;">
   <div class="w3-row-padding">
-    <div class="w3-twothird">
+
+      <form novalidate (ngSubmit)="edit()" [formGroup]="userForm">
+
+        <div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label"
+           for="firstNameId">First Name</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="firstNameId"
+             type="text"
+             placeholder="First Name (required)"
+             formControlName="firstName" />
+  
+    </div>
+  </div>
+
+  <div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label"
+           for="lastNameId">Last Name</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="lastNameId"
+             type="text"
+             placeholder="Last Name (required)"
+             formControlName="lastName"/>
+    </div>
+  </div>
+
+  <!-- <div formGroupName="emailGroup">
+    <div class="form-group row mb-2">
+      <label class="col-md-2 col-form-label"
+             for="emailId">Email</label>
+      <div class="col-md-8">
+        <input class="form-control"
+               id="emailId"
+               type="email"
+               placeholder="Email (required)"
+               formControlName="email"
+               [ngClass]="{'is-invalid': emailMessage }" />
+        <span class="invalid-feedback">
+          {{ emailMessage }}
+        </span>
+      </div>
+    </div> -->
+
+    
+  <div class="form-group row mb-2">
+    <label class="col-md-2 col-form-label"
+           for="phoneId">Phone</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="phoneId"
+             type="tel"
+             placeholder="Phone"
+             formControlName="phone" />
+
+    </div>
+  </div>
+
+  <!-- </div> -->
+
+  <div class="form-group row mb-2">
+    <div class="offset-md-2 col-md-4">
+      <button class="btn btn-primary mr-3"
+              type="submit">
+              
+        Edit
+      </button>
+      
+    </div>
+  </div>
+</form>
+
+    <!-- <div class="w3-twothird">
       <div class="height w3-container w3-card w3-white w3-margin-bottom">
         <h4 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>{{users[0].firstName}} {{users[0].lastName}}</h4>
         <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-teal fa-2x">
@@ -16,6 +89,6 @@
           </i>{{users[0].password}}
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
