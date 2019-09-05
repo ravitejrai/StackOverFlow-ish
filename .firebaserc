@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "rest-7acb8": {
+      "hosting": {
+        "onlinestock": [
+          "rest-7acb8"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "online": "rest-7acb8"
+  }
+}

@@ -1,15 +1,41 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" },
-     { "id": 4, "title": "Post 4" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
+    "users": [
+      {
+        "email": "jsmith@virtusa.com",
+        "password": "password",
+        "firstName": "John",
+        "lastName": "Smith",
+        "phone": "123-456-7890",
+        "ssn": "123-45-6789",
+        "accountvalue":"100k"
+      }
+    ],
+    "stocks": [
+      {
+        "id": 1,
+        "name": "apple",
+        "postId": 1
+      },
+      {
+        "id": 2,
+        "name": "Google",
+        "postId": 1
+      }
+    ],
+    "orders":[ {
+      "email": "jsmith@virtusa.com",
+      "stockid":"1",
+      "name": "apple",
+      "quantity":"10",
+      "price":"100",
+      "value":"1000"
+    },
+    {
+      "email": "jsmith@virtusa.com",
+      "stockid":"2",
+      "name": "Google",
+      "quantity":"5",
+      "price":"150",
+      "value":"940"
+    }]
+   }
