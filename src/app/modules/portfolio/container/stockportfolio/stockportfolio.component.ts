@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioAuthServiceService , Stock } from '../portfolio-auth-service.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-stockportfolio',
@@ -13,8 +14,12 @@ export class StockportfolioComponent implements OnInit {
 
   ngOnInit() {
     this.DataService.getStockDetails().subscribe((data) => {
-      this.stocks=data;
-      console.log(data);
+
+      data.forEach(element => {
+        if (element.email == "jsmith@virtusa.com") {
+          this.stocks.push(element);
+        }
+      });
     })
   }
 
