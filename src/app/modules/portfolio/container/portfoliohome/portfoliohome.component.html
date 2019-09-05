@@ -1,34 +1,59 @@
 <div class="w3-content w3-margin-top" style="max-width:1400px;overflow: hidden;">
   <div class="w3-row-padding">
 
-      <form novalidate (ngSubmit)="edit()" [formGroup]="userForm">
+    <form novalidate (ngSubmit)="edit()" [formGroup]="userForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="firstNameId">First Name</label>
+        <div class="col-md-8">
+          <input class="form-control" id="firstNameId" type="text" placeholder="{{firstName}}"
+            formControlName="firstName" />
+
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
+        <div class="col-md-8">
+          <input class="form-control" id="lastNameId" type="text" placeholder="{{lastName}}"
+            formControlName="lastName" />
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="emailId">Email ID</label>
+          <div class="col-md-8">
+            <input class="form-control" id="emailId" type="email" placeholder="{{email}}"
+              formControlName="email" />
+          </div>
+        </div>
 
         <div class="form-group row mb-2">
-    <label class="col-md-2 col-form-label"
-           for="firstNameId">First Name</label>
-    <div class="col-md-8">
-      <input class="form-control"
-             id="firstNameId"
-             type="text"
-             placeholder="First Name (required)"
-             formControlName="firstName" />
-  
-    </div>
-  </div>
+            <label class="col-md-2 col-form-label" for="passwordId">Password</label>
+            <div class="col-md-8">
+              <input class="form-control" id="passwordId" type="text" placeholder="{{password}}"
+                formControlName="password" />
+            </div>
+          </div>
 
-  <div class="form-group row mb-2">
-    <label class="col-md-2 col-form-label"
-           for="lastNameId">Last Name</label>
-    <div class="col-md-8">
-      <input class="form-control"
-             id="lastNameId"
-             type="text"
-             placeholder="Last Name (required)"
-             formControlName="lastName"/>
-    </div>
-  </div>
+          <div class="form-group row mb-2">
+              <label class="col-md-2 col-form-label" for="ssnId">SSN</label>
+              <div class="col-md-8">
+                <input class="form-control" id="ssnId" type="text" placeholder="{{ssn}}"
+                  formControlName="ssn" />
+              </div>
+            </div>
 
-  <!-- <div formGroupName="emailGroup">
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="accountValueId">Account Value</label>
+                <div class="col-md-8">
+                  <input class="form-control" id="accountValueId" type="text" placeholder="{{accountValue}}"
+                    formControlName="accountValue" />
+                </div>
+              </div>
+
+
+      <!-- <div formGroupName="emailGroup">
     <div class="form-group row mb-2">
       <label class="col-md-2 col-form-label"
              for="emailId">Email</label>
@@ -45,33 +70,33 @@
       </div>
     </div> -->
 
-    
-  <div class="form-group row mb-2">
-    <label class="col-md-2 col-form-label"
-           for="phoneId">Phone</label>
-    <div class="col-md-8">
-      <input class="form-control"
-             id="phoneId"
-             type="tel"
-             placeholder="Phone"
-             formControlName="phone" />
 
-    </div>
-  </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="phoneId">Phone</label>
+        <div class="col-md-8">
+          <input class="form-control" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" />
 
-  <!-- </div> -->
+        </div>
+      </div>
 
-  <div class="form-group row mb-2">
-    <div class="offset-md-2 col-md-4">
-      <button class="btn btn-primary mr-3"
-              type="submit">
-              
-        Edit
-      </button>
       
-    </div>
-  </div>
-</form>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4" *ngIf="this.isButtonVisible" (click)="this.isButtonVisible = false">
+          <button class="btn btn-primary mr-3" type="submit" value="Edit">
+          </button>
+
+<!--           
+      <div class="form-group row mb-2">
+          <div class="offset-md-2 col-md-4" >
+            <button class="btn btn-primary mr-3" type="submit">
+  
+              Save
+            </button> -->
+
+        </div>
+      </div>
+    </form>
 
     <!-- <div class="w3-twothird">
       <div class="height w3-container w3-card w3-white w3-margin-bottom">
