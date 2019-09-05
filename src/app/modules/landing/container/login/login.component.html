@@ -1,5 +1,4 @@
-<div>
-    <a name="login"></a>
+<div style="overflow: hidden">
         <mat-card>
                 <mat-card-title>Login</mat-card-title>
                 <mat-card-content>
@@ -9,7 +8,7 @@
                         <mat-label> <i class="fas fa-envelope fa-1x"> </i>  
                             Email
                         </mat-label>
-                        <input  matInput  placeholder="Email" [(ngModel)]="email" name="email" required>
+                        <input  matInput  placeholder="Email" [(ngModel)]="email" name="email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                       </mat-form-field>
                       </p>
           
