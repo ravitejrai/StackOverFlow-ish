@@ -17,6 +17,7 @@ export class DashboardlayoutComponent implements OnInit{
   firstName: any;
   lastName: any;
   emailId: any;
+  availableBalance: any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,16 +29,21 @@ export class DashboardlayoutComponent implements OnInit{
 
   ngOnInit() {
     this.messageService.getMessage().subscribe((data) => {
-    this.userInfo = data
-    this.firstName = data.tabledata.firstName
-    this.lastName = data.tabledata.lastName
-    this.emailId = data.tabledata.email
+    this.userInfo = data;
+    this.firstName = data.tabledata.firstName;
+    this.lastName = data.tabledata.lastName;
+    this.emailId = data.tabledata.email;
+    this.availableBalance = '$10,000';
+
+
+
+
     //console.log(data, "dash.....")
     //console.log("this.u....",this.userInfo)
     //console.log(this.userInfo.tabledata)
     //console.log(data.tabledata.email)
 
-     })
+      })
     
   }
 

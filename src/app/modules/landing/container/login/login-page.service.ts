@@ -37,4 +37,5 @@ export class User {
   phone: string
   ssn: string;
   accountvalue: string;
+  id:number
 }
