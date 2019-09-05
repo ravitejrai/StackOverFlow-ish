@@ -20,6 +20,12 @@
                         <input  matInput  type = 'password' placeholder="Password" [(ngModel)]="password" name="password" required>
                       </mat-form-field>
                       </p> 
+                      
+                      <p>
+                        <mat-label style="color: red"> 
+                              {{errorMessage}}
+                          </mat-label>
+                        </p> 
 
                   </form>
                 </mat-card-content>
