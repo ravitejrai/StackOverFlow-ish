@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  getUserDetails(email, password, firstname, lastname, phonenumber, ssn ){
+  getUserDetails(email, password, firstname, lastname, phonenumber, ssn,creditCardNumber ){
     const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,9 +23,11 @@ export class AuthService {
       firstname: firstname,
       lastname: lastname,
       phonenumber: phonenumber,
-      ssn: ssn
+      ssn: ssn,
+      creditCardNumber: creditCardNumber
+
     };
-    return this.http.post(`http://localhost:3000/users`,postData)
+    return this.http.post(`http://localhost:2000/users`,postData)
   }
 }
 

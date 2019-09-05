@@ -53,14 +53,71 @@
             </div>
             <div fxFlex = "50%">
                     <mat-form-field class="full-width">
-                    <mat-label> <i class="fas fa-envelope fa-1x"> </i>
+                    <mat-label>
                         #SSN
                     </mat-label>
-                    <input formControlName='ssn' matInput placeholder="SSN#" required>
+                    <input formControlName='ssn' matInput placeholder="#ssn" id="ssn" (keyup)="ssnValidator()" required>
                 </mat-form-field>
             </div>
         </div>
-
+         <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Payment Information
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+              <div class = "creditCardPadding" flex = "50%">
+                    <mat-form-field appearance="outline">
+                            <mat-label>CreditCardNumber</mat-label>
+                            <input matInput placeholder="eg:2345-2345-2345" maxlength="16" style="margin-right:20px" required>
+                          </mat-form-field>
+              </div>
+              <div flex = "50%">
+                    <mat-form-field>
+                            <mat-label>Expiry</mat-label>
+                            <input matInput [matDatepicker]="dp" placeholder="MM/YYYY" [formControl]="date">
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp
+                                            startView="multi-year"
+                                            (yearSelected)="chosenYearHandler($event)"
+                                            (monthSelected)="chosenMonthHandler($event, dp)"
+                                            panelClass="example-month-picker">
+                            </mat-datepicker>
+                          </mat-form-field>
+              </div>
+              </div>
+              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                    <div class = "namePadding" fxFlex = "50%">
+                        <mat-form-field appearance="outline">
+                            <mat-label>CVV</mat-label>
+                            <input matInput placeholder="cvv" maxlength="4" style="margin-right:20px" required>
+                          </mat-form-field>
+              </div>
+              <div class = "namePadding" fxFlex = "50%">
+                    <mat-form-field appearance="outline">
+                        <mat-label>CVV</mat-label>
+                        <input matInput placeholder="cvv" maxlength="4" style="margin-right:20px" required>
+                      </mat-form-field>
+          </div>
+            </div>
+              
+              <!-- <div class = "cvvPadding" fxFlex = "50%">
+                    <mat-form-field appearance="outline">
+                            <mat-label>CVV</mat-label>
+                            <input matInput placeholder="cvv" style="margin-right:20px" maxlength="4" required>
+                    </mat-form-field>
+              </div> -->
+            <!-- <div>
+                <mat-form-field>
+                    <input matInput placeholder="Amount" type="number" class="example-right-align">
+                    <span matPrefix>$&nbsp;</span>
+                    <span matSuffix>.00</span>
+                </mat-form-field>
+            </div> -->
+            </mat-expansion-panel>
+          </mat-accordion>
         </form>
     </mat-card-content>
     <mat-card-actions>
