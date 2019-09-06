@@ -19,10 +19,10 @@ describe('SearchInfoComponent', () => {
     component = fixture.componentInstance;
   });
   it('checks if the stockItem is empty intially', () => {
-    expect(component.stockItems).toEqual([]);
+    expect(component.orderItems).toEqual([]);
   });
   it('checks if the displayedColumns is undefined intially', () => {
-    expect(component.displayedColumns).toBeUndefined();
+    expect(component.displayedOrderColumns).toBeUndefined();
   });
 });
 
@@ -43,16 +43,16 @@ describe('Check for the getProduct function', () => {
   });
 
   it('checks that the getproduct returns undefined if argument is not present in database', () => {
-    const result = component.getProduct(0);
+    const result = component.getOrder('Tesla');
     expect(result).toBe(undefined);
   });
   it('checks that the getproduct returns valid response for an id which is present in the database', () => {
-    component.getProduct(1);
-    expect(component.stockItems).not.toBe(undefined);
+    component.getOrder('Google');
+    expect(component.orderItems).not.toBe(undefined);
   });
   it('checks that the getproduct returns valid response for an id which is present in the database', () => {
-    component.getProduct(1);
-    expect(component.dataSourceJson).not.toBe([]);
+    component.getOrder('Google');
+    expect(component.displayedOrderColumns).not.toBe([]);
   });
 });
 

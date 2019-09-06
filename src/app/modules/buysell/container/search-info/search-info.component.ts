@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SearchstockService, Orders } from '../searchstock/searchstock.service';
 import { ActivatedRoute } from '@angular/router';
-import { DashboardlayoutComponent } from '../../../dashboard/container/dashboardlayout/dashboardlayout.component';
 
 @Component({
   selector: 'app-buy-sell-info',
@@ -38,6 +37,12 @@ export class SearchInfoComponent implements OnInit {
     }
   }
 
+ /**
+  * This functions maps the returned data to columns in our
+  * table and also calls the checkOrderResponse function which 
+  * checks for the name and emailid.
+  * @param name cannot be null
+  */
   getOrder(name: string) {
     this.StockList.getOrders().subscribe(response => {
       this.orderItems = response;
@@ -67,7 +72,7 @@ export class SearchInfoComponent implements OnInit {
           this.isDisabled = true;
         }
         return result;
-      } else {
+        } else {
         continue;
       }
     }
