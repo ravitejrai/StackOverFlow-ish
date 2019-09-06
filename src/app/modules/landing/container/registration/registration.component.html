@@ -1,114 +1,121 @@
-<div class="totalClass">
-<mat-card >
-    <mat-toolbar class= "panelText"><b>Sign Up</b></mat-toolbar>
-    <mat-card-content><br/><br/>
-        <form [formGroup] = 'regDetailsForm' (ngSubmit)="onRegitration()">
-
-            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-                <div class = "namePadding" fxFlex = "50%">
-                    <mat-form-field class="full-width">
-                        <mat-label>  <i class="fas fa-file-signature"></i>
-                            Firstname
-                        </mat-label>
-                        <input matInput formControlName='firstName' placeholder="Firstname" minlength="3" required>
-                    </mat-form-field>
-                    </div>
-                    <div class = "namePadding" fxFlex = "50%">
-                            <mat-form-field class="full-width">
-                     <mat-label> <i class="fas fa-file-signature" minlength = "5"></i>
-                        Lastname
-                    </mat-label>
-                   
-                    <input matInput formControlName='lastName' placeholder="Lastname">
-                    </mat-form-field>
+<div class="bg-img">
+        <div class="totalClass">
+                <mat-card >
+                    <mat-toolbar class= "panelText"><b>Sign Up</b></mat-toolbar>
+                    <mat-card-content><br/><br/>
+                        <form [formGroup] = 'regDetailsForm' (ngSubmit)="onRegitration()">
+                
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                                <div class = "namePadding" fxFlex = "50%">
+                                    <mat-form-field class="full-width">
+                                        <mat-label>  <i class="fas fa-file-signature"></i>
+                                            Firstname
+                                        </mat-label>
+                                        <input matInput formControlName='firstName' placeholder="Firstname" minlength="3" required>
+                                    </mat-form-field>
+                                    </div>
+                                    <div class = "namePadding" fxFlex = "50%">
+                                            <mat-form-field class="full-width">
+                                     <mat-label> <i class="fas fa-file-signature" minlength = "5"></i>
+                                        Lastname
+                                    </mat-label>
+                                   
+                                    <input matInput formControlName='lastName' placeholder="Lastname">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                
+                            <p>
+                                <mat-form-field class="full-width">
+                                    <mat-label> <i class="fas fa-envelope fa-1x"> </i>
+                                        Email
+                                    </mat-label>
+                                    <input matInput formControlName='email' placeholder="Email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> 
+                                </mat-form-field>
+                            </p>
+                
+                            <p>
+                                <mat-form-field class="full-width">
+                                    <mat-label> <i class="fas fa-key fa-1x"> </i>
+                                        Password
+                                    </mat-label>
+                                    <input matInput matTooltip= "Enter atleast 8 characters Uppercase,Lowercase and !@#$... " formControlName='password' type='password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,99}$" placeholder="Password"  
+                                        required>
+                                </mat-form-field>
+                            </p>
+                            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                
+                            <div fxFlex = "50%">
+                                    <mat-form-field class="full-width">
+                                    <mat-label> <i class="fas fa-mobile-alt"></i>
+                                        PhoneNumber
+                                    </mat-label>
+                                    <input matInput formControlName='phonenumber' placeholder="PhoneNumber" id='phone' (keyup)='phoneValidator()' required>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex = "50%">
+                                    <mat-form-field class="full-width">
+                                    <mat-label><i class="fas fa-user-lock"></i>
+                                        #SSN
+                                    </mat-label>
+                                    <input formControlName='ssn' matInput placeholder="#ssn" (keyup)="ssnValidator()" id="ssn" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                         <mat-accordion>
+                            <mat-expansion-panel>
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  Payment Information
+                                </mat-panel-title>
+                              </mat-expansion-panel-header>
+                              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                              <div flex = "50%">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label> <i class="fas fa-credit-card"></i>
+                                                CreditCardNumber
+                                            </mat-label>
+                                            <input formControlName='creditCardNumber' matInput placeholder="eg:2345-2345-2345" (keyup)="cardValidator()" id="card" style="margin-right:20px" required>
+                                          </mat-form-field>
+                              </div>
+                              <div flex = "50%">
+                                    <mat-form-field>
+                                            <mat-label>Expiration Date</mat-label>
+                                            <input matInput placeholder="MM-YYYY" formControlName="date" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required>
+                                            <!-- <mat-datepicker-toggle></mat-datepicker-toggle> -->
+                                            <!-- <mat-datepicker #dp
+                                                            startView="multi-year"
+                                                           
+                                                            panelClass="example-month-picker">
+                                            </mat-datepicker> -->
+                                          </mat-form-field>
+                              </div>
+                              </div>
+                              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
+                               <div class = "cvvPadding" fxFlex = "50%">
+                                    <mat-form-field appearance="outline">
+                                            <mat-label ><img src="../../assets/download.png" width="27px" height="23px">
+                                                CVV
+                                            </mat-label>
+                                            <input formControlName="cvv" matInput placeholder="cvv" (keyup)="cvvValidator()" style="margin-right:20px" id="cvv" required>
+                                    </mat-form-field>
+                              </div>
+                             <div fxFlex = "50%">
+                                <mat-form-field>
+                                    <input formControlName="amount" matInput placeholder="Amount" type="number" class="example-right-align" required>
+                                    <span matPrefix>$&nbsp;</span>
+                                    <!-- <span matSuffix>.00</span> -->
+                                </mat-form-field>
+                            </div>
+                            </div>
+                            </mat-expansion-panel>
+                          </mat-accordion>
+                        </form>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button type = "submit" (click)="onRegitration()" color="primary" [disabled]="!regDetailsForm.valid">Register</button>
+                    </mat-card-actions>
+                </mat-card>
                 </div>
-            </div>
-
-            <p>
-                <mat-form-field class="full-width">
-                    <mat-label> <i class="fas fa-envelope fa-1x"> </i>
-                        Email
-                    </mat-label>
-                    <input matInput formControlName='email' placeholder="Email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> 
-                </mat-form-field>
-            </p>
-
-            <p>
-                <mat-form-field class="full-width">
-                    <mat-label> <i class="fas fa-key fa-1x"> </i>
-                        Password
-                    </mat-label>
-                    <input matInput matTooltip="Enter Password" formControlName='password' type='password' pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" placeholder="Password"  
-                        required>
-                </mat-form-field>
-            </p>
-            <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-
-            <div fxFlex = "50%">
-                    <mat-form-field class="full-width">
-                    <mat-label> <i class="fas fa-mobile-alt"></i>
-                        PhoneNumber
-                    </mat-label>
-                    <input matInput formControlName='phonenumber' placeholder="PhoneNumber" id='phone' (keyup)='phoneValidator()' required>
-                </mat-form-field>
-            </div>
-            <div fxFlex = "50%">
-                    <mat-form-field class="full-width">
-                    <mat-label>
-                        #SSN
-                    </mat-label>
-                    <input formControlName='ssn' matInput placeholder="#ssn" id="ssn" (keyup)="ssnValidator()" required>
-                </mat-form-field>
-            </div>
-        </div>
-         <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Payment Information
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-              <div flex = "50%">
-                    <mat-form-field appearance="outline">
-                            <mat-label>CreditCardNumber</mat-label>
-                            <input formControlName='creditCardNumber' matInput placeholder="eg:2345-2345-2345" maxlength="16" style="margin-right:20px" required>
-                          </mat-form-field>
-              </div>
-              <div flex = "50%">
-                    <mat-form-field>
-                            <mat-label>Expiry</mat-label>
-                            <input matInput [matDatepicker]="dp" placeholder="MM/YYYY" formControlName="date">
-                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                            <mat-datepicker #dp
-                                            startView="multi-year"
-                                           
-                                            panelClass="example-month-picker">
-                            </mat-datepicker>
-                          </mat-form-field>
-              </div>
-              </div>
-              <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-               <div class = "cvvPadding" fxFlex = "50%">
-                    <mat-form-field appearance="outline">
-                            <mat-label>CVV</mat-label>
-                            <input formControlName="cvv" matInput placeholder="cvv" style="margin-right:20px" maxlength="4" required>
-                    </mat-form-field>
-              </div>
-             <div fxFlex = "50%">
-                <mat-form-field>
-                    <input formControlName="amount" matInput placeholder="Amount" type="number" class="example-right-align">
-                    <span matPrefix>$&nbsp;</span>
-                    <span matSuffix>.00</span>
-                </mat-form-field>
-            </div>
-            </div>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button type = "submit" (click)="onRegitration()" color="primary" [disabled]="!regDetailsForm.valid">Register</button>
-    </mat-card-actions>
-</mat-card>
+                
 </div>

@@ -1,11 +1,7 @@
-:host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
-  }
-
-  .totalClass {
+ .totalClass {
      padding-top: 30px;
+     display: flex;
+   justify-content: center;
   }
   .mat-form-field {
     width: 100%;
@@ -33,4 +29,12 @@
 .namePadding
 {
   padding-top : 20px;
+}
+
+::ng-deep .bg-img
+{
+    background-image: url('/assets/s5.png');
+    background-position: center;
+    background-repeat: repeat; 
+    height:auto; width: auto;
 }
