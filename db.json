@@ -24,18 +24,18 @@
     ],
     "orders":[ {
       "email": "jsmith@virtusa.com",
-      "stockid":"1",
+      "stockid":1,
       "name": "apple",
-      "quantity":"10",
-      "price":"100",
-      "value":"1000"
+      "quantity":0,
+      "price":100,
+      "value":1000
     },
     {
       "email": "jsmith@virtusa.com",
-      "stockid":"2",
+      "stockid":2,
       "name": "Google",
-      "quantity":"5",
-      "price":"150",
-      "value":"940"
+      "quantity":5,
+      "price":150,
+      "value":940
     }]
    }
