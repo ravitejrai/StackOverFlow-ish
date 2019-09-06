@@ -44,6 +44,9 @@ export class DashboardlayoutComponent implements OnInit{
           case "lastName":
               this.lastName = value
               break;
+          case "amount":
+            this.availableBalance = value
+            break;
         }
 
       });
