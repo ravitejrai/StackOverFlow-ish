@@ -78,8 +78,7 @@
               <div flex = "50%">
                     <mat-form-field>
                             <mat-label>Expiry</mat-label>
-                            <input matInput 
-                             placeholder="MM/YYYY" formControlName="date">
+                            <input matInput [matDatepicker]="dp" placeholder="MM/YYYY" formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp
                                             startView="multi-year"
