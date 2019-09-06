@@ -15,10 +15,10 @@ const routes: Routes = [
     path: 'home/:name/info', component: SearchInfoComponent
   },
   {
-    path: 'home/buy/id', component: BuyStockComponent
+    path: 'home/:name/info/buy', component: BuyStockComponent
   },
   {
-    path: 'home/sell/id', component: BuyStockComponent
+    path: 'home/:name/info/sell', component: BuyStockComponent
   }
 ];
 

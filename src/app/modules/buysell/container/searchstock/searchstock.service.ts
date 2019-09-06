@@ -9,6 +9,8 @@ import { tap } from 'rxjs/operators';
 export class SearchstockService {
   private stocksUrl ='http://localhost:3000/stocks';
   private ordersUrl ='http://localhost:3000/orders';
+  name: any;
+  id: any;
 
   /**
      * Parameterized constructor to fetch the backend data
@@ -44,13 +46,14 @@ export class SearchstockService {
       (this.stocksUrl);
   }
 
-  public buyStocks(userEmail, stockId, name, quantity, price, value) {
+  public buyStocks(userEmail, stockId, name, quantity, price, value,accountValue,id) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'my-auth-token'
       })
     };
+    this.id = id
     const postData = {
       email: userEmail,
       stockid: stockId,
@@ -59,7 +62,40 @@ export class SearchstockService {
       price: price,
       value: value,
     };
-    return this.http.post(`http://localhost:3000/orders`, postData)
+    return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
+  }
+
+  public updateAccount(accountValue,id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.id = id;
+    const putAccount = {
+      amount : accountValue,
+    };
+    return this.http.patch(`http://localhost:3000/users/${this.id}`, putAccount)
+  }
+
+  public sellStocks(userEmail, stockId, name, quantity, price, value,id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.id = id;
+    const patchData = {
+      email: userEmail,
+      stockid: stockId,
+      name: name,
+      quantity: quantity,
+      price: price,
+      value: value,
+    };
+    return this.http.patch(`http://localhost:3000/orders/${this.id}`, patchData,httpOptions)
   }
 }
 
