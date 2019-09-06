@@ -7,21 +7,37 @@ import { MessageService } from 'src/app/message.service';
   providedIn: 'root'
 })
 export class PortfolioAuthServiceService {
+  email = '';
 
-  constructor(private http:HttpClient, private user:MessageService) { }
-
-  getUserDetails():Observable<User[]>{ 
-    return this.http.get<User[]>('http://localhost:3000/users')
-  }
-
-  getStockDetails():Observable<Stock[]> {
-    var email = '';
+  constructor(private http:HttpClient, private user:MessageService) {
     this.user.getMessage().subscribe((data) => {
-      email = data.tabledata.email;
+      this.email = data.tabledata.email;
     });
-    //const email = "jsmith@virtusa.com"
-    return this.http.get<Stock[]>(`http://localhost:3000/orders?email=${email}`)
-  }
+   }
+
+
+
+  updateUserDetails(password, firstname, lastname, phonenumber, ssn ){
+    //   const httpOptions = {
+    //   headers : new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Authorization' : 'my-auth-token'
+    //   })
+    // };
+      const putData = { 
+        password:password,
+        firstname: firstname,
+        lastname: lastname,
+        phonenumber: phonenumber,
+        ssn: ssn
+      };
+      return this.http.put(`http://localhost:3000/users?email=${this.email}`,putData)
+    }
+
+    getStockDetails():Observable<Stock[]> {
+      //const email = "jsmith@virtusa.com"
+      return this.http.get<Stock[]>(`http://localhost:3000/orders?email=${this.email}`)
+    }
 }
 
 
