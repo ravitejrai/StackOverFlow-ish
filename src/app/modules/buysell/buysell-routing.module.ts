@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SearchstockComponent } from './container/searchstock/searchstock.component';
+import { BuyStockComponent } from './container/buy-stock/buy-stock.component';
 
 
 
@@ -14,6 +15,11 @@ const routes: Routes = [
       {
         path: 'home',
         component: SearchstockComponent,
+
+      },
+      {
+        path: 'home/buy/id',
+        component: BuyStockComponent,
 
       },
     ]
