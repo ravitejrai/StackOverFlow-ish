@@ -27,8 +27,8 @@ export class RegistrationComponent implements OnInit {
     ssn: new FormControl(''),
     creditCardNumber: new FormControl(''),
     date: new FormControl(''),
-    amount: new FormControl(''),
-    cvv: new FormControl('')
+    cvv: new FormControl(''),
+    amount: new FormControl('')
  })
 
  onRegitration(){
