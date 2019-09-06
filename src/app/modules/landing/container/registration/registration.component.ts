@@ -15,8 +15,9 @@ export class RegistrationComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
-    document.body.classList.add('bg-img');
+    
   }
+
   regDetailsForm = new FormGroup ({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -26,8 +27,8 @@ export class RegistrationComponent implements OnInit {
     ssn: new FormControl(''),
     creditCardNumber: new FormControl(''),
     date: new FormControl(''),
-    amount: new FormControl(''),
-    cvv: new FormControl('')
+    cvv: new FormControl(''),
+    amount: new FormControl('')
  })
 
  onRegitration(){
@@ -63,6 +64,30 @@ export class RegistrationComponent implements OnInit {
     }
  }
 
+ cardValidator() {
+  var patt = new RegExp("\d{4}[\-]\d{4}[\-]\d{4}[\-]\d{4}");
+  var x = (<HTMLInputElement>document.getElementById("card"));
+  var res = patt.test(x.value);
+  if(!res){
+   x.value = x.value
+       .match(/\d*/g).join('')
+       .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/).slice(1).join('-')
+       .replace(/-*$/g, '');
+  }
+}
+
+cvvValidator() {
+  var patt = new RegExp("\d{4}");
+  var x = (<HTMLInputElement>document.getElementById("cvv"));
+  var res = patt.test(x.value);
+  if(!res){
+   x.value = x.value
+       .match(/\d*/g).join('')
+       .match(/(\d{0,4})/).slice(1).join('-')
+       .replace(/-*$/g, '');
+  }
+}
+
  phoneValidator() {
   var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
   var x = (<HTMLInputElement>document.getElementById('phone'));
@@ -74,5 +99,4 @@ export class RegistrationComponent implements OnInit {
        .replace(/-*$/g, '');
   }
 }
- 
 }

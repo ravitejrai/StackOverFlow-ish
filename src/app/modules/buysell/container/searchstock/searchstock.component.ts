@@ -9,9 +9,12 @@ import { SearchstockService, Stock } from './searchstock.service';
 })
 export class SearchstockComponent implements OnInit {
 
+  static stockName: any;
+  static email: any;
   stockItems: Stock[] = [];
   displayedColumns: any ;
   dataSource: any ;
+
   constructor(private StockList: SearchstockService) {}
 
   ngOnInit() {
@@ -24,5 +27,5 @@ export class SearchstockComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-}
+  }
 }
