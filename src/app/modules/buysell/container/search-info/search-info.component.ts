@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SearchstockService, Orders } from '../searchstock/searchstock.service';
 import { ActivatedRoute } from '@angular/router';
+import { DashboardlayoutComponent } from '../../../dashboard/container/dashboardlayout/dashboardlayout.component';
 
 @Component({
   selector: 'app-buy-sell-info',
@@ -49,8 +50,8 @@ export class SearchInfoComponent implements OnInit {
   }
 
   /**
-   * Checks for the id to be present in the database, if present returns the info of that
-   * id else returns error msg to the console;
+   * Checks for the name to be present in the database, if present returns the info of that
+   * stock else returns error msg to the console;
    * @param dataResponse cannot be null
    * @param id cannot be null
    */
@@ -59,7 +60,8 @@ export class SearchInfoComponent implements OnInit {
       throw new Error('The response was empty or null');
     }
     for (const entry of dataResponse) {
-      if (entry.name === name ) {
+      const user = JSON.parse(localStorage.getItem('testObject'));
+      if (entry.name === name && entry.email === user.email) {
         const result = new Array(entry);
         if (entry.quantity === 0) {
           this.isDisabled = true;
