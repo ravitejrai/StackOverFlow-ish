@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { MessageService } from 'src/app/message.service';
 import { PortfolioAuthServiceService } from '../portfolio-auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-portfoliohome',
@@ -14,7 +15,7 @@ export class PortfoliohomeComponent implements OnInit {
   private isButtonVisible = true;
   enableFlag:Boolean;
 
-  constructor( private fb: FormBuilder, private updateuser:PortfolioAuthServiceService) { 
+  constructor( private fb: FormBuilder, private updateuser:PortfolioAuthServiceService, private router:Router) { 
     this.enableFlag= false;
   }
 
@@ -86,7 +87,6 @@ export class PortfoliohomeComponent implements OnInit {
   edit() {
    // console.log(this.userForm);
     this.userForm.enable();
-    this.enableFlag = true;
     document.getElementById('editButton').className = "disable";
     document.getElementById('saveButton').className = "enable";
     this.userForm.controls['accountValue'].disable();
@@ -107,9 +107,10 @@ export class PortfoliohomeComponent implements OnInit {
       this.userForm.get('accountValue').value,
       this.userForm.get('cvv').value,
    ).subscribe((data)=>{
+      this.userForm.disable();
        console.log("Entered save success function");
-       alert("Registration Sucessful !!");
-      //this.router.navigate(['/']);
+       alert("User Details Sucessfully updated");
+      this.router.navigateByUrl('/dashboard/portfolio/userportfolio');
     });
   }
 
