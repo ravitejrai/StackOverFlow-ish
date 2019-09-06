@@ -24,8 +24,12 @@ export class RegistrationComponent implements OnInit {
     email: new FormControl(''),
     phonenumber: new FormControl(''),
     password: new FormControl(''),
-    ssn: new FormControl('')
+    ssn: new FormControl(''),
+    creditCardNumber: new FormControl('')
+
   })
+
+  
 
   onRegitration(){
      this.auth.getUserDetails(
@@ -34,7 +38,10 @@ export class RegistrationComponent implements OnInit {
       this.regDetailsForm.get('firstname').value,
       this.regDetailsForm.get('lastname').value,
       this.regDetailsForm.get('phonenumber').value,
-      this.regDetailsForm.get('ssn').value
+      this.regDetailsForm.get('ssn').value,
+      this.regDetailsForm.get('creditCardNumber').value,
+
+
 
    ).subscribe((data)=>{
        console.log("Entered reg function");
@@ -44,6 +51,16 @@ export class RegistrationComponent implements OnInit {
   };
 
 
-
-
+   ssnValidator() {
+    var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
+    var x = (<HTMLInputElement>document.getElementById("ssn"));
+    var res = patt.test(x.value);
+    if(!res){
+     x.value = x.value
+         .match(/\d*/g).join('')
+         .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
+         .replace(/-*$/g, '');
+    }
+ }
+ 
 }
