@@ -38,12 +38,9 @@ export class RegistrationComponent implements OnInit {
 
 
  onRegitration(){
-  this.auth.getDetails().subscribe(data =>{
-    console.log(data,"..........data...");
+  this.auth.getDetails().subscribe((data : any[]) =>{
     for(var i = 0; i < data.length; i++) {
       var obj = data[i];
-      console.log(this.regDetailsForm.get('email').value,"...input..")
-      console.log(obj.email,"....db email...")
       if(obj.email !=  this.regDetailsForm.get('email').value ){
 
         this.auth.getUserDetails(
