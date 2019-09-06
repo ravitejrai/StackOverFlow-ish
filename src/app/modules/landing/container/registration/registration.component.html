@@ -1,3 +1,4 @@
+<div class="totalClass">
 <mat-card >
     <mat-toolbar class= "panelText"><b>Sign Up</b></mat-toolbar>
     <mat-card-content><br/><br/>
@@ -9,7 +10,7 @@
                         <mat-label>  <i class="fas fa-file-signature"></i>
                             Firstname
                         </mat-label>
-                        <input matInput formControlName='firstname' placeholder="Firstname" minlength="3" required>
+                        <input matInput formControlName='firstName' placeholder="Firstname" minlength="3" required>
                     </mat-form-field>
                     </div>
                     <div class = "namePadding" fxFlex = "50%">
@@ -18,7 +19,7 @@
                         Lastname
                     </mat-label>
                    
-                    <input matInput formControlName='lastname' placeholder="Lastname">
+                    <input matInput formControlName='lastName' placeholder="Lastname">
                     </mat-form-field>
                 </div>
             </div>
@@ -48,7 +49,7 @@
                     <mat-label> <i class="fas fa-mobile-alt"></i>
                         PhoneNumber
                     </mat-label>
-                    <input matInput formControlName='phonenumber' placeholder="PhoneNumber" required>
+                    <input matInput formControlName='phonenumber' placeholder="PhoneNumber" id='phone' (keyup)='phoneValidator()' required>
                 </mat-form-field>
             </div>
             <div fxFlex = "50%">
@@ -68,54 +69,40 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
               <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-              <div class = "creditCardPadding" flex = "50%">
+              <div flex = "50%">
                     <mat-form-field appearance="outline">
                             <mat-label>CreditCardNumber</mat-label>
-                            <input matInput placeholder="eg:2345-2345-2345" maxlength="16" style="margin-right:20px" required>
+                            <input formControlName='creditCardNumber' matInput placeholder="eg:2345-2345-2345" maxlength="16" style="margin-right:20px" required>
                           </mat-form-field>
               </div>
               <div flex = "50%">
                     <mat-form-field>
                             <mat-label>Expiry</mat-label>
-                            <input matInput [matDatepicker]="dp" placeholder="MM/YYYY" [formControl]="date">
+                            <input matInput [matDatepicker]="dp" placeholder="MM/YYYY" formControlName="date">
                             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp
                                             startView="multi-year"
-                                            (yearSelected)="chosenYearHandler($event)"
-                                            (monthSelected)="chosenMonthHandler($event, dp)"
+                                           
                                             panelClass="example-month-picker">
                             </mat-datepicker>
                           </mat-form-field>
               </div>
               </div>
               <div fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px" fxLayoutGap.xs="0">
-                    <div class = "namePadding" fxFlex = "50%">
-                        <mat-form-field appearance="outline">
-                            <mat-label>CVV</mat-label>
-                            <input matInput placeholder="cvv" maxlength="4" style="margin-right:20px" required>
-                          </mat-form-field>
-              </div>
-              <div class = "namePadding" fxFlex = "50%">
-                    <mat-form-field appearance="outline">
-                        <mat-label>CVV</mat-label>
-                        <input matInput placeholder="cvv" maxlength="4" style="margin-right:20px" required>
-                      </mat-form-field>
-          </div>
-            </div>
-              
-              <!-- <div class = "cvvPadding" fxFlex = "50%">
+               <div class = "cvvPadding" fxFlex = "50%">
                     <mat-form-field appearance="outline">
                             <mat-label>CVV</mat-label>
-                            <input matInput placeholder="cvv" style="margin-right:20px" maxlength="4" required>
+                            <input formControlName="cvv" matInput placeholder="cvv" style="margin-right:20px" maxlength="4" required>
                     </mat-form-field>
-              </div> -->
-            <!-- <div>
+              </div>
+             <div fxFlex = "50%">
                 <mat-form-field>
-                    <input matInput placeholder="Amount" type="number" class="example-right-align">
+                    <input formControlName="amount" matInput placeholder="Amount" type="number" class="example-right-align">
                     <span matPrefix>$&nbsp;</span>
                     <span matSuffix>.00</span>
                 </mat-form-field>
-            </div> -->
+            </div>
+            </div>
             </mat-expansion-panel>
           </mat-accordion>
         </form>
@@ -124,3 +111,4 @@
         <button mat-raised-button type = "submit" (click)="onRegitration()" color="primary" [disabled]="!regDetailsForm.valid">Register</button>
     </mat-card-actions>
 </mat-card>
+</div>
