@@ -40,7 +40,8 @@ export class SearchstockService {
 
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
-    (`http://localhost:3000/stocks`)
+    (this.stocksUrl);
+    //(`http://localhost:3000/stocks`)
     //(`https://my-json-server.typicode.com/techsithgit/json-faker-directory/profiles/`)
   }
 }
