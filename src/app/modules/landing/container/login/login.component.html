@@ -17,7 +17,7 @@
                         <mat-label> <i class="fas fa-key fa-1x"> </i> 
                             Password
                         </mat-label>
-                        <input  matInput  type = 'password' placeholder="Password" [(ngModel)]="password" name="password" required>
+                        <input  matInput  type = 'password' placeholder="Password" [(ngModel)]="password" name="password" (keyup.enter)="login()"required>
                       </mat-form-field>
                       </p> 
                       
