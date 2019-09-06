@@ -8,10 +8,10 @@ import { tap } from 'rxjs/operators';
 })
 export class SearchstockService {
   private stocksUrl =
-    'https://my-json-server.typicode.com/techsithgit/json-faker-directory/profiles/';
+    'http://localhost:3000/stocks';
 
-  private ordersUrl = 
-    'https://github.com/Web2Integrators/onlinestock/blob/master/db.json/orders/';
+  private ordersUrl =
+    'http://localhost:3000/orders';
 
   /**
    * Parameterized constructor to fetch the backend data
@@ -26,9 +26,15 @@ export class SearchstockService {
    */
   getProduct(): Observable<Stock[]> {
     const url = `${this.stocksUrl}`;
-    const test = this.StockService.get<Stock[]>(url);
     return this.StockService.get<Stock[]>(url).pipe(
       tap(data => console.log('getProduct: ' + JSON.stringify(data)))
+    );
+  }
+
+  getOrders(): Observable<Orders[]> {
+    const url = `${this.ordersUrl}`;
+    return this.StockService.get<Orders[]>(url).pipe(
+      tap(data => console.log('getOrders: ' + JSON.stringify(data)))
     );
   }
 
@@ -41,5 +47,14 @@ export class SearchstockService {
 export class Stock {
   id: number;
   name: string;
-  age: number;
+  postId: number;
+}
+
+export class Orders {
+  email: string;
+  stockid: number;
+  name: string;
+  quantity: number;
+  price: number;
+  value: number;
 }

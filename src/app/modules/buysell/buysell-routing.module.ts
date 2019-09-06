@@ -7,14 +7,17 @@ import { SearchInfoComponent } from './container/search-info/search-info.compone
 
 const routes: Routes = [
   {
-    path: '', component: SearchstockComponent,
-    children: [
-      { path: 'home/:id/info', component: SearchInfoComponent },
-      { path: 'home/buy/id', component: SearchInfoComponent },
-      { path: 'home/sell/id', component: SearchInfoComponent },
-    ]
+    path: '', component: SearchstockComponent
+  },
+  {
+    path: 'home/:name/info', component: SearchInfoComponent
+  },
+  {
+    path: 'home/buy/id', component: SearchInfoComponent
+  },
+  {
+    path: 'home/sell/id', component: SearchInfoComponent
   }
-
 ];
 
 @NgModule({

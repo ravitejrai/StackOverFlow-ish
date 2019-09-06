@@ -1,23 +1,38 @@
-<mat-table [dataSource]="dataSourceJson" class="mat-elevation-z8">
+<mat-table [dataSource]="ordersDataSourceJson" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
     </ng-container>
-  
+
+    <ng-container matColumnDef="stockid">
+      <mat-header-cell *matHeaderCellDef> StockId </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.stockid}} </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
-  
-    <ng-container matColumnDef="age">
-      <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.age}} </mat-cell>
+
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let element" quantity> {{element.quantity}} </mat-cell>
     </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedOrderColumns"></mat-header-row>
+    <mat-row matRipple *matRowDef="let row; columns: displayedOrderColumns;"></mat-row>
+</mat-table>
   
   <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
-  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','sell']">Sell</button>
+  <button md-raised-button class="btn-w-md ml-3" [disabled]= "quantity == 0" [routerLink]="['/products','sell']">Sell</button>

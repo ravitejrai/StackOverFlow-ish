@@ -17,12 +17,12 @@
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="age">
-    <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.age}} </mat-cell>
+  <ng-container matColumnDef="postId">
+    <mat-header-cell *matHeaderCellDef> PostId </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.postId}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['home', row.id, 'info']"></mat-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['home', row.name, 'info']"></mat-row>
 </mat-table>
 <router-outlet></router-outlet>

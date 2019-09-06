@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Stock, SearchstockService } from '../searchstock/searchstock.service';
+import { SearchstockService, Orders } from '../searchstock/searchstock.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-buy-sell-edit',
+  selector: 'app-buy-sell-info',
   templateUrl: './search-info.component.html',
   styleUrls: ['./search-info.component.scss']
 })
 export class SearchInfoComponent implements OnInit {
-  stockItems: Stock[] = [];
-  displayedColumns: any;
-  dataSourceJson: any;
+  orderItems: Orders[] = [];
+  displayedOrderColumns: any;
+  quantity;
+  ordersDataSourceJson: any;
 
   /**
    * @param StockList The service for connecting with backend data
@@ -30,23 +31,19 @@ export class SearchInfoComponent implements OnInit {
      * It is invoked only once when the directive is instantiated.
      */
   ngOnInit() {
-    const param = this.route.snapshot.paramMap.get('id');
+    const param = this.route.snapshot.paramMap.get('name');
     if (param) {
-      const id = +param;
-      this.getProduct(id);
+      this.getOrder(param);
     }
   }
 
-  /**
-   * Returns the product info based on the Id being passed from the view
-   * @param id cannot be null
-   */
-  getProduct(id: number) {
-    this.StockList.getProduct().subscribe(response => {
-      this.stockItems = response;
-      this.displayedColumns = ['id', 'name', 'age'];
-      this.dataSourceJson = new MatTableDataSource(
-        this.checkResponse(this.stockItems, id)
+  getOrder(name: string) {
+    this.StockList.getOrders().subscribe(response => {
+      this.orderItems = response;
+      console.log(this.orderItems);
+      this.displayedOrderColumns = ['email', 'stockid', 'name', 'quantity', 'price', 'value'];
+      this.ordersDataSourceJson = new MatTableDataSource(
+        this.checkOrderResponse(this.orderItems, name)
       );
     });
   }
@@ -57,12 +54,12 @@ export class SearchInfoComponent implements OnInit {
    * @param dataResponse cannot be null
    * @param id cannot be null
    */
-  checkResponse(dataResponse: any[], id: number) {
+  checkOrderResponse(dataResponse: any[], name: string) {
     if (dataResponse.length === 0 || dataResponse === null) {
       throw new Error('The response was empty or null');
     }
     for (const entry of dataResponse) {
-      if (entry.id === id) {
+      if (entry.name === name ) {
         const result = new Array(entry);
         return result;
       } else {
