@@ -1,123 +1,132 @@
-<div class="w3-content w3-margin-top" style="max-width:1400px;overflow: hidden;">
-  <div class="w3-row-padding">
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-row-padding">
+      <div class="w3-twothird" style="width:100%">
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h4 class="w3-margin-right w3-xxlarge w3-text-teal"></h4>
+          <form novalidate (ngSubmit)="save()" [formGroup]="userForm">
 
-    <form novalidate (ngSubmit)="edit()" [formGroup]="userForm">
-
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="firstNameId">First Name</label>
-        <div class="col-md-8">
-          <input class="form-control" id="firstNameId" type="text" placeholder="{{firstName}}"
-            formControlName="firstName" />
-
-        </div>
-      </div>
-
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
-        <div class="col-md-8">
-          <input class="form-control" id="lastNameId" type="text" placeholder="{{lastName}}"
-            formControlName="lastName" />
-        </div>
-      </div>
-
-      <div class="form-group row mb-2">
-          <label class="col-md-2 col-form-label" for="emailId">Email ID</label>
-          <div class="col-md-8">
-            <input class="form-control" id="emailId" type="email" placeholder="{{email}}"
-              formControlName="email" />
-          </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label" for="passwordId">Password</label>
-            <div class="col-md-8">
-              <input class="form-control" id="passwordId" type="text" placeholder="{{password}}"
-                formControlName="password" />
-            </div>
-          </div>
-
-          <div class="form-group row mb-2">
-              <label class="col-md-2 col-form-label" for="ssnId">SSN</label>
-              <div class="col-md-8">
-                <input class="form-control" id="ssnId" type="text" placeholder="{{ssn}}"
-                  formControlName="ssn" />
-              </div>
-            </div>
-
-            <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label" for="accountValueId">Account Value</label>
+              <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="firstNameId">First Name</label>
                 <div class="col-md-8">
-                  <input class="form-control" id="accountValueId" type="text" placeholder="{{accountValue}}"
-                    formControlName="accountValue" />
+                  <input class="form-control w3-input" id="firstNameId" type="text" placeholder="{{firstName}}"
+                    formControlName="firstName" />
+        
+                </div>
+              </div>
+        
+              <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
+                <div class="col-md-8">
+                  <input class="form-control w3-input" id="lastNameId" type="text" placeholder="{{lastName}}"
+                    formControlName="lastName" />
+                </div>
+              </div>
+        
+              <div class="form-group row mb-2">
+                  <label class="col-md-2 col-form-label" for="emailId">Email ID</label>
+                  <div class="col-md-8">
+                    <input class="form-control w3-input" id="emailId" type="email" placeholder="{{email}}"
+                      formControlName="email" />
+                  </div>
+                </div>
+        
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label" for="passwordId">Password</label>
+                    <div class="col-md-8">
+                      <input class="form-control w3-input" id="passwordId" type="text" placeholder="{{password}}"
+                        formControlName="password" />
+                    </div>
+                  </div>
+        
+                  <div class="form-group row mb-2">
+                      <label class="col-md-2 col-form-label" for="ssnId">SSN</label>
+                      <div class="col-md-8">
+                        <input class="form-control w3-input" id="ssnId" type="text" placeholder="{{ssn}}"
+                          formControlName="ssn" />
+                      </div>
+                    </div>
+        
+                    <div class="form-group row mb-2">
+                        <label class="col-md-2 col-form-label" for="accountValueId">Account Value</label>
+                        <div class="col-md-8">
+                          <input class="form-control w3-input" id="accountValueId" type="text" placeholder="{{accountValue}}"
+                            formControlName="accountValue" />
+                        </div>
+                      </div>
+        
+        
+              <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="phoneId">Phone</label>
+                <div class="col-md-8">
+                  <input class="form-control w3-input" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" />
+        
+                </div>
+              </div>
+        
+              <!-- Credit Card Details -->
+
+              
+                  <div class="form-group row mb-2">
+                      <label class="col-md-2 col-form-label" for="creditCardNoId">Credit Card Number</label>
+                      <div class="col-md-8">
+                        <input class="form-control w3-input" id="creditCardNoId" type="tel" placeholder="{{phone}}" formControlName="creditcardno" />
+              
+                      </div>
+                    </div>
+              
+
+
+              
+                  <div class="form-group row mb-2">
+                      <label class="col-md-2 col-form-label" for="cvvId">CVV</label>
+                      <div class="col-md-8">
+                        <input class="form-control w3-input" id="cvvId" type="tel" placeholder="{{phone}}" formControlName="cvv" />
+              
+                      </div>
+                    </div>
+              
+
+              
+                  <div class="form-group row mb-2">
+                      <label class="col-md-2 col-form-label" for="expiryDateId">Expiry Date</label>
+                      <div class="col-md-8">
+                        <input class="form-control w3-input" id="expiryDateId" type="tel" placeholder="{{phone}}" formControlName="expirydate" />
+              
+                      </div>
+                    </div>
+              
+
+              
+              <!-- Complete-Credit Card Details -->
+        
+              <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4 middle" >
+                  <button class="btn btn-primary mr-3" id="editButton" type="button" (click)="edit()" >
+        
+                    Edit
+                  </button>
+                  </div></div>
+                  
+                
+                  
+              <div class="form-group row mb-2">
+                  <div class="offset-md-2 col-md-4 middle" >
+                    <button class="btn btn-primary mr-3" id="saveButton" type="submit">
+          
+                      Save
+                    </button>
+        
                 </div>
               </div>
 
+               
 
-      <!-- <div formGroupName="emailGroup">
-    <div class="form-group row mb-2">
-      <label class="col-md-2 col-form-label"
-             for="emailId">Email</label>
-      <div class="col-md-8">
-        <input class="form-control"
-               id="emailId"
-               type="email"
-               placeholder="Email (required)"
-               formControlName="email"
-               [ngClass]="{'is-invalid': emailMessage }" />
-        <span class="invalid-feedback">
-          {{ emailMessage }}
-        </span>
-      </div>
-    </div> -->
-
-
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label" for="phoneId">Phone</label>
-        <div class="col-md-8">
-          <input class="form-control" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" />
-
+            </form>
+          </div>
         </div>
       </div>
+    </div>
 
-      
 
-      <div class="form-group row mb-2">
-        <div class="offset-md-2 col-md-4" *ngIf="this.isButtonVisible" (click)="this.isButtonVisible = false">
-          <button class="btn btn-primary mr-3" type="submit">
 
-            Edit
-          </button>
-          </div></div>
-          
 
-          
-      <div class="form-group row mb-2 saveButton">
-          <div class="offset-md-2 col-md-4" >
-            <button class="btn btn-primary mr-3" type="submit">
-  
-              Save
-            </button>
-
-        </div>
-      </div>
-    </form>
-
-    <!-- <div class="w3-twothird">
-      <div class="height w3-container w3-card w3-white w3-margin-bottom">
-        <h4 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>{{users[0].firstName}} {{users[0].lastName}}</h4>
-        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-text-teal fa-2x">
-          </i>{{users[0].email}}
-        </p>
-        <p><i class="fa fa-phone fa-fw w3-margin-right w3-text-teal fa-2x">
-          </i>{{users[0].phone}}
-        </p>
-        <p><i class="fa fa-id-card w3-margin-right w3-text-teal fa-2x">
-          </i>{{users[0].ssn}}
-        </p>
-        <p><i class="fa fa-key f084 w3-margin-right w3-text-teal fa-2x">
-          </i>{{users[0].password}}
-        </p>
-      </div>
-    </div> -->
-  </div>
-</div>

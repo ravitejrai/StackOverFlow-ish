@@ -12,6 +12,52 @@ h4 {
     //text-align: center;
     font-size: 2.0em;
 }
-.saveButton {
+.disable {
     display: none;
 }
+.enable {
+    display: block;
+}
+input[type=text] {
+    margin: 0 .25rem;
+    width:100%;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    transition: border-color .5s ease-out;
+  }
+  input[type=email] {
+    margin: 0 .25rem;
+    width:100%;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    transition: border-color .5s ease-out;
+  }
+  input[type=tel] {
+    margin: 0.25rem;
+    width:100%;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    transition: border-color .5s ease-out;
+  }
+
+  .middle {
+    margin-left: 50%;
+  }
+  button{
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color:#4eb5f1;
+    text-align:center;
+    transition: all 0.2s;
+    }
+
+    button:hover{
+    background-color:#4095c6;
+    }
