@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SearchstockService, Orders } from '../searchstock/searchstock.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-buy-sell-info',
@@ -21,7 +21,7 @@ export class SearchInfoComponent implements OnInit {
    */
   constructor(
     private StockList: SearchstockService,
-    private route: ActivatedRoute  ) {}
+    private route: ActivatedRoute, private router: Router  ) {}
 
     /**
      * A callback method that is invoked immediately after the
@@ -65,16 +65,11 @@ export class SearchInfoComponent implements OnInit {
       throw new Error('The response was empty or null');
     }
     for (const entry of dataResponse) {
-      const user = JSON.parse(localStorage.getItem('testObject'));
-      if (entry.name === name && entry.email === user.email) {
         const result = new Array(entry);
         if (entry.quantity === 0) {
           this.isDisabled = true;
         }
         return result;
-        } else {
-        continue;
-      }
     }
   }
 }

@@ -11,7 +11,7 @@ export class SearchstockService {
     'http://localhost:3000/stocks';
 
   private ordersUrl =
-    'http://localhost:3000/orders';
+    'http://localhost:3000/orders?name=apple&email=jsmith@virtusa.com';
 
   /**
    * Parameterized constructor to fetch the backend data
