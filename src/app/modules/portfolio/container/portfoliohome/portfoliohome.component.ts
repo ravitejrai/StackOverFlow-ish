@@ -45,10 +45,10 @@ export class PortfoliohomeComponent implements OnInit {
           case "email":
               this.userForm.patchValue({email:value})
               break;
-          case "firstname":
+          case "firstName":
             this.userForm.patchValue({firstName:value})
                 break;
-          case "lastname":
+          case "lastName":
             this.userForm.patchValue({lastName:value})
               break;
           case "password":
