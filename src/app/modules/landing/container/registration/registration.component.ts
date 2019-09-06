@@ -17,26 +17,33 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     document.body.classList.add('bg-img');
   }
-  
   regDetailsForm = new FormGroup ({
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
     email: new FormControl(''),
     phonenumber: new FormControl(''),
     password: new FormControl(''),
-    ssn: new FormControl('')
-  })
+    ssn: new FormControl(''),
+    creditCardNumber: new FormControl(''),
+    date: new FormControl(''),
+    amount: new FormControl(''),
+    cvv: new FormControl('')
+ })
 
-  onRegitration(){
-     this.auth.getUserDetails(
+ onRegitration(){
+      this.auth.getUserDetails(
       this.regDetailsForm.get('email').value,
       this.regDetailsForm.get('password').value,
-      this.regDetailsForm.get('firstname').value,
-      this.regDetailsForm.get('lastname').value,
+      this.regDetailsForm.get('firstName').value,
+      this.regDetailsForm.get('lastName').value,
       this.regDetailsForm.get('phonenumber').value,
-      this.regDetailsForm.get('ssn').value
+      this.regDetailsForm.get('ssn').value,
+      this.regDetailsForm.get('creditCardNumber').value,
+      this.regDetailsForm.get('date').value,
+      this.regDetailsForm.get('cvv').value,
+      this.regDetailsForm.get('amount').value
 
-   ).subscribe((data)=>{
+      ).subscribe((data)=>{
        console.log("Entered reg function");
        alert("Registration Sucessful !!");
       this.router.navigate(['/']);
@@ -44,6 +51,28 @@ export class RegistrationComponent implements OnInit {
   };
 
 
+   ssnValidator() {
+    var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
+    var x = (<HTMLInputElement>document.getElementById("ssn"));
+    var res = patt.test(x.value);
+    if(!res){
+     x.value = x.value
+         .match(/\d*/g).join('')
+         .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
+         .replace(/-*$/g, '');
+    }
+ }
 
-
+ phoneValidator() {
+  var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
+  var x = (<HTMLInputElement>document.getElementById('phone'));
+  var res = patt.test(x.value);
+  if(!res){
+   x.value = x.value
+       .match(/\d*/g).join('')
+       .match(/(\d{0,3})(\d{0,3})(\d{0,4})/).slice(1).join('-')
+       .replace(/-*$/g, '');
+  }
+}
+ 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginPageService, User } from './login-page.service';
+import { LoginPageService } from './login-page.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { LayoutComponent } from '../layout/layout.component';
@@ -19,15 +19,14 @@ export class LoginComponent implements OnInit {
   password: string;
 
   /** Storing http get response */
-  users: User[] = [];
+  users: any;
 
    /** display error message */
-  @Input() errorMessage: string;
+  errorMessage: string;
 
    /** Injecting services */
   constructor(private router: Router, private loginPageService: LoginPageService, 
-              public dialogRef: MatDialogRef<LayoutComponent>,
-              private messageService :MessageService) { }
+              public dialogRef: MatDialogRef<LayoutComponent>) { }
 
   ngOnInit() {
   }
@@ -46,14 +45,14 @@ export class LoginComponent implements OnInit {
         if( (this.email == element.email) && (this.password == element.password) )  {
 
           console.log('element...',element)
-          this.messageService.sendMessage(element);  //send response data to access globally
+          localStorage.setItem('testObject', JSON.stringify(element));
           this.dialogRef.close(); //closing login Dialog box
           this.router.navigate(['/dashboard']); //navigating to dashboard
           //break;
 
         } else {
 
-          this.errorMessage="invalid credentials" 
+          this.errorMessage = 'Email id or Password is incorrect. Please try again.';
 
         }
       })

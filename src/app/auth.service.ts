@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { expressionType } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
 providedIn: 'root'
@@ -10,22 +11,26 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  getUserDetails(email, password, firstname, lastname, phonenumber, ssn ){
+  getUserDetails(email, password, firstName, lastName, phonenumber, ssn, creditCardNumber, date, amount, cvv ) {
     const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization' : 'my-auth-token'
+      Authorization : 'my-auth-token'
     })
   };
-    const postData = { 
+    const postData = {
       email:email,
       password:password,
-      firstname: firstname,
-      lastname: lastname,
+      firstName: firstName,
+      lastName: lastName,
       phonenumber: phonenumber,
-      ssn: ssn
-    };
-    return this.http.post(`http://localhost:3000/users`,postData)
+      ssn: ssn,
+      creditCardNumber: creditCardNumber,
+      date: date,
+      amount: amount,
+      cvv: cvv
+  };
+    return this.http.post(`http://localhost:3000/users`, postData)
   }
 }
 

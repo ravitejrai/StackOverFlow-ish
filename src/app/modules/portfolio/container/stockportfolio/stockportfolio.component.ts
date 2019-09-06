@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioAuthServiceService , Stock } from '../portfolio-auth-service.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-stockportfolio',
@@ -16,6 +17,10 @@ export class StockportfolioComponent implements OnInit {
       this.stocks=data;
       console.log(data);
     })
+  }
+
+  calculateTotal(price,quantity) {
+    return price*quantity;
   }
 
 }

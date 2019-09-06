@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from "@angular/material/table";
-import { SearchstockService, Stock } from "./searchstock.service";
+import { MatTableDataSource } from '@angular/material/table';
+import { SearchstockService, Stock } from './searchstock.service';
 
 @Component({
   selector: 'app-searchstock',
@@ -10,8 +10,8 @@ import { SearchstockService, Stock } from "./searchstock.service";
 export class SearchstockComponent implements OnInit {
 
   stockItems: Stock[] = [];
-  displayedColumns: any
-  dataSource: any 
+  displayedColumns: any ;
+  dataSource: any ;
   constructor(private StockList: SearchstockService) {}
 
   ngOnInit() {
@@ -19,7 +19,9 @@ export class SearchstockComponent implements OnInit {
       this.stockItems = response;
       console.log(response);
       //this.displayedColumns = ["id", "name", "age"];
-     this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
+     //this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
+
+      this.displayedColumns = ['id', 'name', 'postId'];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
