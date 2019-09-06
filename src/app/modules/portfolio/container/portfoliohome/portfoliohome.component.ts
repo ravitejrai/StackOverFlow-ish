@@ -14,7 +14,7 @@ export class PortfoliohomeComponent implements OnInit {
   private isButtonVisible = true;
   enableFlag:Boolean;
 
-  constructor( private fb: FormBuilder, private DataService: MessageService, private updateuser:PortfolioAuthServiceService) { 
+  constructor( private fb: FormBuilder, private updateuser:PortfolioAuthServiceService) { 
     this.enableFlag= false;
   }
 
@@ -34,32 +34,47 @@ export class PortfoliohomeComponent implements OnInit {
       creditcardno: ['',  [Validators.required]],
       cvv: ['',  [Validators.required]],
       expirydate: ['',  [Validators.required]],
-
-      
     });
 
-    this.DataService.getMessage().subscribe((data)=> {
-      console.log(data.tabledata.ssn);
-      // this.userForm.patchValue({firstname:'abc'});
-      this.userForm.patchValue({firstName:data.tabledata.firstName});
-      this.userForm.patchValue({lastName:data.tabledata.lastName});
-      this.userForm.patchValue({email:data.tabledata.email});
-      this.userForm.patchValue({password:data.tabledata.password});
-      this.userForm.patchValue({ssn:data.tabledata.ssn});
-      this.userForm.patchValue({accountValue:data.tabledata.accountvalue});
-      this.userForm.patchValue({phone:data.tabledata.phone});
-      this.userForm.patchValue({creditcardno:data.tabledata.creditcardno});
-      this.userForm.patchValue({cvv:data.tabledata.cvv});
-      this.userForm.patchValue({expirydate:data.tabledata.expirydate});
-      //  this.firstName=data.tabledata.firstName;
-    });
-    // this.DataService.getUserDetails().subscribe((response) => {
-    //   this.users = response;
-    //   console.log(response);
-    // })
+    const user = JSON.parse(localStorage.getItem('testObject'))
+    //console.log(user,"**after**")
+    Object.entries(user).forEach(
+      ([key, value]) => {
+        switch(key) {
+          case "email":
+              this.userForm.patchValue({email:value})
+              break;
+          case "firstName":
+            this.userForm.patchValue({firstName:value})
+                break;
+          case "lastName":
+            this.userForm.patchValue({lastName:value})
+              break;
+          case "password":
+            this.userForm.patchValue({password:value})
+              break;
+          case "phonenumber":
+            this.userForm.patchValue({phone:value})
+              break;
+          case "ssn":
+            this.userForm.patchValue({ssn:value})
+              break;
+          case "creditCardNumber":
+              this.userForm.patchValue({creditcardno:value})
+                break;
+          case "date":
+              this.userForm.patchValue({expirydate:value});
+                break;
+          case "amount":
+              this.userForm.patchValue({accountValue:value});
+                break;
+          case "cvv":
+              this.userForm.patchValue({cvv:value});
+                break;
+        }
+
+      });
     
-      
-
     this.userForm.disable();
     this.enableFlag = false;
     document.getElementById('saveButton').className = "disable";
@@ -81,11 +96,16 @@ export class PortfoliohomeComponent implements OnInit {
   save() {
     console.log("entered save");
     this.updateuser.updateUserDetails(
+      this.userForm.get('email').value,
       this.userForm.get('password').value,
       this.userForm.get('firstName').value,
       this.userForm.get('lastName').value,
       this.userForm.get('phone').value,
-      this.userForm.get('ssn').value
+      this.userForm.get('ssn').value,
+      this.userForm.get('creditcardno').value,
+      this.userForm.get('expirydate').value,
+      this.userForm.get('accountValue').value,
+      this.userForm.get('cvv').value,
    ).subscribe((data)=>{
        console.log("Entered save success function");
        alert("Registration Sucessful !!");

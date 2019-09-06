@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MessageService } from 'src/app/message.service';
 
@@ -7,31 +7,47 @@ import { MessageService } from 'src/app/message.service';
   providedIn: 'root'
 })
 export class PortfolioAuthServiceService {
-  email = '';
+  email:any;
+  id:any;
 
-  constructor(private http:HttpClient, private user:MessageService) {
-    this.user.getMessage().subscribe((data) => {
-      this.email = data.tabledata.email;
-    });
+  constructor(private http:HttpClient) {
+    const user = JSON.parse(localStorage.getItem('testObject'))
+    //console.log(user,"**after**")
+    Object.entries(user).forEach(
+      ([key, value]) => {
+        switch(key) {
+          case "email":
+              this.email = value;
+              break;
+          case "id":
+              this.id = value;
+        }
+
+      });
    }
 
 
 
-  updateUserDetails(password, firstname, lastname, phonenumber, ssn ){
-    //   const httpOptions = {
-    //   headers : new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Authorization' : 'my-auth-token'
-    //   })
-    // };
+  updateUserDetails(email, password, firstname, lastname, phonenumber, ssn, creditcardnumber, date, amount, cvv ){
+      const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization' : 'my-auth-token'
+      })
+    };
       const putData = { 
+        email:email,
         password:password,
         firstname: firstname,
         lastname: lastname,
         phonenumber: phonenumber,
-        ssn: ssn
+        ssn: ssn,
+        creditCardNumber:creditcardnumber,
+        date:date,
+        amount:amount,
+        cvv:cvv
       };
-      return this.http.put(`http://localhost:3000/users?email=${this.email}`,putData)
+      return this.http.put(`http://localhost:3000/users/${this.id}`,putData,httpOptions)
     }
 
     getStockDetails():Observable<Stock[]> {
