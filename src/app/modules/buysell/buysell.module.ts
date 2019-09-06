@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { BuysellRoutingModule } from './buysell-routing.module';
 import { SearchstockComponent } from './container/searchstock/searchstock.component';
-
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
@@ -21,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatDialogModule} from '@angular/material';
+import { SearchInfoComponent } from './container/search-info/search-info.component';
 
 
 
@@ -29,7 +28,7 @@ import {MatDialogModule} from '@angular/material';
 
 
 @NgModule({
-  declarations: [SearchstockComponent, BuyStockComponent, ModalComponent],
+  declarations: [SearchstockComponent,SearchInfoComponent, BuyStockComponent, ModalComponent],
   imports: [
     CommonModule,
     BuysellRoutingModule,
@@ -41,6 +40,7 @@ import {MatDialogModule} from '@angular/material';
     HttpClientModule,
     FlexLayoutModule,
     MatGridListModule,
+
     MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -54,4 +54,4 @@ import {MatDialogModule} from '@angular/material';
     ModalComponent
   ],
 })
-export class BuysellModule { }
+export class BuysellModule {}
