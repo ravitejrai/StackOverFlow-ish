@@ -17,6 +17,7 @@ export class DashboardlayoutComponent implements OnInit{
   firstName: any;
   lastName: any;
   emailId: any;
+  availableBalance: any;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -43,6 +44,9 @@ export class DashboardlayoutComponent implements OnInit{
           case "lastName":
               this.lastName = value
               break;
+          case "amount":
+            this.availableBalance = value
+            break;
         }
 
       });
