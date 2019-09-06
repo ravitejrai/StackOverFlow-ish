@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -9,9 +9,8 @@ import { tap } from 'rxjs/operators';
 export class SearchstockService {
   private stocksUrl =
     'http://localhost:3000/stocks';
-
-  private ordersUrl =
-    'http://localhost:3000/orders';
+    
+  stockName: string;
 
   /**
    * Parameterized constructor to fetch the backend data
@@ -31,9 +30,10 @@ export class SearchstockService {
     );
   }
 
-  getOrders(): Observable<Orders[]> {
-    const url = `${this.ordersUrl}`;
-    return this.StockService.get<Orders[]>(url).pipe(
+  getOrders(name: string): Observable<Orders[]> {
+    const user = JSON.parse(localStorage.getItem('testObject'));
+    this.stockName = name;
+    return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
       tap(data => console.log('getOrders: ' + JSON.stringify(data)))
     );
   }
