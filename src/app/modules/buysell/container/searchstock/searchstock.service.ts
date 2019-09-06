@@ -41,26 +41,8 @@ export class SearchstockService {
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
     (this.stocksUrl);
-    //(`http://localhost:3000/stocks`)
-    //(`https://my-json-server.typicode.com/techsithgit/json-faker-directory/profiles/`)
   }
 }
-
-//export class Stock{
-  // id: number
-  // name: string
-  // age: number
-
-//   stockId: number
-//   stockName: string
-//   stockSymbol: string
-//   stockPrice: number
-//   weekHigh: number
-//   weekLow: number
-
-//     (this.stocksUrl);
-//   }
-// }
 
 export class Stock {
   id: number;
