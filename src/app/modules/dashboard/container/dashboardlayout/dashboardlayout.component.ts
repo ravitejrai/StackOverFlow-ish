@@ -24,20 +24,28 @@ export class DashboardlayoutComponent implements OnInit{
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private router:Router,private messageService:MessageService) { }
+  constructor(private breakpointObserver: BreakpointObserver,private router:Router) { }
 
   ngOnInit() {
-    this.messageService.getMessage().subscribe((data) => {
-    this.userInfo = data
-    this.firstName = data.tabledata.firstName
-    this.lastName = data.tabledata.lastName
-    this.emailId = data.tabledata.email
-    //console.log(data, "dash.....")
-    //console.log("this.u....",this.userInfo)
-    //console.log(this.userInfo.tabledata)
-    //console.log(data.tabledata.email)
+   
+    console.log("***before**")
+    const user = JSON.parse(localStorage.getItem('testObject'))
+    console.log(user,"**after**")
+    Object.entries(user).forEach(
+      ([key, value]) => {
+        switch(key) {
+          case "email":
+              this.emailId = value
+              break;
+          case "firstName":
+                this.firstName = value
+                break;
+          case "lastName":
+              this.lastName = value
+              break;
+        }
 
-     })
+      });
     
   }
 
