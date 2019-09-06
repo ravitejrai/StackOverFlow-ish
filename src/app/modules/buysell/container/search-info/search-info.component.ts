@@ -44,7 +44,7 @@ export class SearchInfoComponent implements OnInit {
   * @param name cannot be null
   */
   getOrder(name: string) {
-    this.StockList.getOrders().subscribe(response => {
+    this.StockList.getOrders(name).subscribe(response => {
       this.orderItems = response;
       console.log(this.orderItems);
       this.displayedOrderColumns = ['email', 'stockid', 'name', 'quantity', 'price', 'value'];
