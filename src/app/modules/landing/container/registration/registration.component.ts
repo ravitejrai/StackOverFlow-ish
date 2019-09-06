@@ -11,13 +11,17 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  user: any;
+  flag = 0;
+  users: any;
 
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
-    
-  }
+    document.body.classList.add('bg-img');
 
+
+  }
   regDetailsForm = new FormGroup ({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -31,25 +35,41 @@ export class RegistrationComponent implements OnInit {
     amount: new FormControl('')
  })
 
- onRegitration(){
-      this.auth.getUserDetails(
-      this.regDetailsForm.get('email').value,
-      this.regDetailsForm.get('password').value,
-      this.regDetailsForm.get('firstName').value,
-      this.regDetailsForm.get('lastName').value,
-      this.regDetailsForm.get('phonenumber').value,
-      this.regDetailsForm.get('ssn').value,
-      this.regDetailsForm.get('creditCardNumber').value,
-      this.regDetailsForm.get('date').value,
-      this.regDetailsForm.get('cvv').value,
-      this.regDetailsForm.get('amount').value
 
-      ).subscribe((data)=>{
-       console.log("Entered reg function");
-       alert("Registration Sucessful !!");
-      this.router.navigate(['/']);
-    });
-  };
+
+ onRegitration(){
+  this.auth.getDetails().subscribe((data : any[]) =>{
+    for(var i = 0; i < data.length; i++) {
+      var obj = data[i];
+      if(obj.email !=  this.regDetailsForm.get('email').value ){
+
+        this.auth.getUserDetails(
+          this.regDetailsForm.get('email').value,
+          this.regDetailsForm.get('password').value,
+          this.regDetailsForm.get('firstName').value,
+          this.regDetailsForm.get('lastName').value,
+          this.regDetailsForm.get('phonenumber').value,
+          this.regDetailsForm.get('ssn').value,
+          this.regDetailsForm.get('creditCardNumber').value,
+          this.regDetailsForm.get('date').value,
+          this.regDetailsForm.get('cvv').value,
+          this.regDetailsForm.get('amount').value
+
+          ).subscribe((data)=>{
+           console.log("Entered reg function");
+           alert("Registration Sucessful !!");
+          this.router.navigate(['/']);
+
+        });
+        break;
+      } else {
+        alert('email already exists');
+        break;
+      }
+
+    }
+  })
+};
 
 
    ssnValidator() {
@@ -64,35 +84,12 @@ export class RegistrationComponent implements OnInit {
     }
  }
 
- cardValidator() {
-  var patt = new RegExp("\d{4}[\-]\d{4}[\-]\d{4}[\-]\d{4}");
-  var x = (<HTMLInputElement>document.getElementById("card"));
-  var res = patt.test(x.value);
-  if(!res){
-   x.value = x.value
-       .match(/\d*/g).join('')
-       .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/).slice(1).join('-')
-       .replace(/-*$/g, '');
-  }
-}
-
-cvvValidator() {
-  var patt = new RegExp("\d{4}");
-  var x = (<HTMLInputElement>document.getElementById("cvv"));
-  var res = patt.test(x.value);
-  if(!res){
-   x.value = x.value
-       .match(/\d*/g).join('')
-       .match(/(\d{0,4})/).slice(1).join('-')
-       .replace(/-*$/g, '');
-  }
-}
-
  phoneValidator() {
+  // tslint:disable-next-line: prefer-const
   var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
   var x = (<HTMLInputElement>document.getElementById('phone'));
   var res = patt.test(x.value);
-  if(!res){
+  if (!res) {
    x.value = x.value
        .match(/\d*/g).join('')
        .match(/(\d{0,3})(\d{0,3})(\d{0,4})/).slice(1).join('-')
