@@ -23,7 +23,7 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['home', row.name, 'info']" [queryParams]="{ name: row.name}"></mat-row>
+  <mat-row matRipple *matRowDef="let row; columns: displayedColumns;" [routerLink]="['home', row.name, 'info']"></mat-row>
 </mat-table>
 <router-outlet></router-outlet>
 

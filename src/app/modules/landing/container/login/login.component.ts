@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
 
   /** function triggers on Submit */
   login() {
+    if(this.email == undefined || this.password == undefined){
+      this.errorMessage = 'Please enter Email Id/ password.'
+    }else {
 
     /**  calls the service which has http.get logic and subscribes to the response */
     this.loginPageService.getUserDetails().subscribe((data) =>{
@@ -62,6 +65,7 @@ export class LoginComponent implements OnInit {
          this.handleError(error); //handling error
 
         })
+      }
   }
   
   private handleError(errorResponse: HttpErrorResponse) {

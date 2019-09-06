@@ -27,11 +27,5 @@ export class SearchstockComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-}
-
-sendData(name: any) {
-  SearchstockComponent.stockName = name;
-  const user = JSON.parse(localStorage.getItem('testObject'));
-  SearchstockComponent.email = user.email;
-}
+  }
 }
