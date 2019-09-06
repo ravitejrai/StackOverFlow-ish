@@ -96,4 +96,4 @@ export class RegistrationComponent implements OnInit {
        .replace(/-*$/g, '');
   }
 }
- }
+}
