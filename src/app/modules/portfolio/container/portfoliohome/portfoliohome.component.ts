@@ -25,9 +25,9 @@ export class PortfoliohomeComponent implements OnInit {
 
 
     this.userForm= this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.maxLength(50)]],
-       email: ['', [Validators.required, Validators.email]],
+      firstName: [''],
+      lastName: [''],
+       email: [''],
        password: ['', [Validators.required]],
        ssn: ['', [Validators.required]],
        accountValue: ['', [Validators.required]],
@@ -45,10 +45,10 @@ export class PortfoliohomeComponent implements OnInit {
           case "email":
               this.userForm.patchValue({email:value})
               break;
-          case "firstName":
+          case "firstname":
             this.userForm.patchValue({firstName:value})
                 break;
-          case "lastName":
+          case "lastname":
             this.userForm.patchValue({lastName:value})
               break;
           case "password":
@@ -84,6 +84,8 @@ export class PortfoliohomeComponent implements OnInit {
     //this.userForm.setValue({phone : '12345'});
   }
 
+  
+
   edit() {
    // console.log(this.userForm);
     this.userForm.enable();
@@ -114,6 +116,29 @@ export class PortfoliohomeComponent implements OnInit {
     });
   }
 
+  phoneValidator() {
+    var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
+    var x = (<HTMLInputElement>document.getElementById('phone'));
+    var res = patt.test(x.value);
+    if(!res){
+     x.value = x.value
+         .match(/\d*/g).join('')
+         .match(/(\d{0,3})(\d{0,3})(\d{0,4})/).slice(1).join('-')
+         .replace(/-*$/g, '');
+    }
+  }
+
+  ssnValidator() {
+    var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
+    var x = (<HTMLInputElement>document.getElementById("ssn"));
+    var res = patt.test(x.value);
+    if(!res){
+     x.value = x.value
+         .match(/\d*/g).join('')
+         .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
+         .replace(/-*$/g, '');
+    }
+ }
   // isDisabled() : boolean {
   //   if(this.enableFlag) {
   //     document.getElementById('editButton').className = "disable";
