@@ -13,7 +13,7 @@ export class SearchstockComponent implements OnInit {
   static email: any;
   stockItems: Stock[] = [];
   displayedColumns: any ;
-  dataSource: any ;
+  dataSource: any;
 
   constructor(private StockList: SearchstockService) {}
 
@@ -28,7 +28,10 @@ export class SearchstockComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
+
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+ 
   }
-}
+} 
