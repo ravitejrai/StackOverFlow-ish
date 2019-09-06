@@ -1,4 +1,4 @@
-:host {
+.modalpopUp {
     display: flex;
     justify-content: center;
     margin: 100px 0px;
@@ -19,3 +19,7 @@
     display: flex;
     justify-content: flex-end;
   } 
+
+  .error-message{
+    color: red;
+  }
