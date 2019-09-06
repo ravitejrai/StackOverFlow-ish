@@ -35,4 +35,4 @@
 </mat-table>
   
   <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
-  <button md-raised-button class="btn-w-md ml-3" [disabled]= "quantity == 0" [routerLink]="['/products','sell']">Sell</button>
+  <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['/products','sell']">Sell</button>

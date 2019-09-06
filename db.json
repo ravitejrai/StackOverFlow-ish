@@ -26,7 +26,7 @@
       "email": "jsmith@virtusa.com",
       "stockid":1,
       "name": "apple",
-      "quantity":10,
+      "quantity":0,
       "price":100,
       "value":1000
     },

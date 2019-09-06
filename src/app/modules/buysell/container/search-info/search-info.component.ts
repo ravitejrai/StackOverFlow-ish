@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchInfoComponent implements OnInit {
   orderItems: Orders[] = [];
   displayedOrderColumns: any;
-  quantity;
+  isDisabled = false;
   ordersDataSourceJson: any;
 
   /**
@@ -61,6 +61,9 @@ export class SearchInfoComponent implements OnInit {
     for (const entry of dataResponse) {
       if (entry.name === name ) {
         const result = new Array(entry);
+        if (entry.quantity === 0) {
+          this.isDisabled = true;
+        }
         return result;
       } else {
         continue;
