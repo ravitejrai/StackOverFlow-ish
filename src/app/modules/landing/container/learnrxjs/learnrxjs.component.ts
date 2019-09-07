@@ -6,7 +6,7 @@ import {
   ElementRef,
   AfterViewInit
 } from "@angular/core";
-import { Observable, PartialObserver, fromEvent, from, of, concat } from "rxjs";
+import { Observable, PartialObserver, fromEvent, from, of, concat, interval } from "rxjs";
 import {
   map,
   filter,
@@ -17,7 +17,9 @@ import {
   delay,
   mergeAll,
   mergeMap,
-  switchAll
+  switchAll,
+  timeout,
+  bufferTime
 } from "rxjs/operators";
 
 @Component({
@@ -43,8 +45,7 @@ export class LearnrxjsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.textStream$ = fromEvent(this.inputTextStream.nativeElement, "keyup")
       .pipe(
-        // tap(val => console.log(val)),
-        debounceTime(500)
+        bufferTime(5000),mergeAll()
       )
       .subscribe(res => console.log(res));
   }
