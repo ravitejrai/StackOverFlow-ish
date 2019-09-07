@@ -98,15 +98,15 @@ export class BuyStockComponent implements OnInit {
       console.log('The dialog was closed');
       // checking whether user wants to buy or cancel the order
       if (result == 'true') {
-        let stockAdd$ ;
+        let stockAdd$;
         if (this.buy == true) {
-           stockAdd$ = this.StockAdd.buyStocks(this.emailId, this.stockId, this.param, this.stocksQuantity + this.buyForm.controls['quantity'].value,
+          stockAdd$ = this.StockAdd.buyStocks(this.emailId, this.stockId, this.param, this.stocksQuantity + this.buyForm.controls['quantity'].value,
             this.price, (this.stocksQuantity + this.buyForm.controls['quantity'].value) * this.price,
             this.orderid
           );
         } else {
           // code for buying a particular stock for the first time for the user
-           stockAdd$ = this.StockAdd.buyStocksFirstTime(this.emailId, this.stockId, this.param, this.buyForm.controls['quantity'].value,
+          stockAdd$ = this.StockAdd.buyStocksFirstTime(this.emailId, this.stockId, this.param, this.buyForm.controls['quantity'].value,
             this.price, this.buyForm.controls['quantity'].value * this.price
           );
         }
@@ -115,21 +115,10 @@ export class BuyStockComponent implements OnInit {
         stockAdd$.pipe(
           concatMap(result1 => updateAccount$)).subscribe((data) => {
             console.log(data);
-            alert("Stocks Sold and updated Sucessfully !!");
+            alert("Stocks Bought and updated Sucessfully !!");
             // route to portfolio
-          this.router.navigateByUrl('/dashboard/buysell');
-        });
-
-
-
-        
-        // const combinedStream$ = forkJoin(stockAdd$,updateAccount$).subscribe((data) => {
-        //   console.log(data);
-        //   alert("Stocks Sold and updated Sucessfully !!");
-        //   // route to portfolio
-        // this.router.navigateByUrl('/dashboard/buysell');
-    
-        // });
+            this.router.navigateByUrl('/dashboard/buysell');
+          });
       }
       console.log(result);
     });
@@ -137,25 +126,24 @@ export class BuyStockComponent implements OnInit {
   ;
   //logic for selling the Stocks and updating account value
   sellStock(): void {
-    this.Stocksell.sellStocks(this.emailId, this.stockId, this.param, this.stocksQuantity - this.buyForm.controls['quantity'].value,
-      this.price, (this.stocksQuantity - this.buyForm.controls['quantity'].value) * this.price, this.id
-      // this.email,this.stockId,this.name,
-      // this.buyForm.controls['quantity'].value,
-      // this.price,this.values
-
-    ).subscribe((data) => {
-      alert("Stocks Sold Sucessfully !!");
-
-
-    });
     // For updating Acoount value on selling stocks 
-    this.updateaccount.updateAccount(Number(this.accountValue) + Number( (this.buyForm.controls['quantity'].value * this.price)), this.id).subscribe((data) => {
+    const updateAccount$ = this.updateaccount.updateAccount(this.accountValue - (this.buyForm.controls['quantity'].value * this.price), this.id);
+    let stockSell$;
+    stockSell$ = this.Stocksell.sellStocks(this.emailId, this.stockId, this.param, this.stocksQuantity - this.buyForm.controls['quantity'].value,
+      this.price, (this.stocksQuantity - this.buyForm.controls['quantity'].value) * this.price, this.id
+    );
+    stockSell$.pipe(
+      concatMap(result1 => updateAccount$)).subscribe((data) => {
+        console.log(data);
+        alert("Stocks Sold and updated Sucessfully !!");
+        // route to portfolio
+        this.router.navigateByUrl('/dashboard/buysell');
+      });
 
-      alert("Account updated Sucessfully !!");
-    });
-    this.router.navigateByUrl('/dashboard/buysell')
+
+
   }
-   
+
   // getting stock and order details of that particular stock and user
   //caching the user data for account balance updation
   // created form for buy and selling stocks using form builder

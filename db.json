@@ -23,7 +23,7 @@
       "creditCardNumber": "1223-1231-2123-1321",
       "date": "08-2023",
       "cvv": "232",
-      "amount": 48000,
+      "amount": 49200,
       "id": 2
     }
   ],
@@ -50,22 +50,13 @@
       "id": 1
     },
     {
-      "email": "tom@gmail.com",
+      "email": "mahes@hgf.com",
       "stockid": 1,
       "name": "Apple",
       "quantity": 10,
       "price": 100,
       "value": 1000,
       "id": 2
-    },
-    {
-      "email": "tom@gmail.com",
-      "stockid": 1,
-      "name": "Apple",
-      "quantity": 10,
-      "price": 100,
-      "value": 1000,
-      "id": 3
     }
   ]
 }
