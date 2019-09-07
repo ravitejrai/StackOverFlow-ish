@@ -34,5 +34,28 @@
     <mat-row matRipple *matRowDef="let row; columns: displayedOrderColumns;"></mat-row>
 </mat-table>
   
-  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['buy']">Buy</button>
+<div class="BuySellButton">
+  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
   <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['sell']">Sell</button>
+</div>
+
+<mat-table [dataSource]="stockDataJson" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="postId">
+    <mat-header-cell *matHeaderCellDef> PostId </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.postId}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
