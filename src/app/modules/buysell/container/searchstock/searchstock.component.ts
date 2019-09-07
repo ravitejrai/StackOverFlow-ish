@@ -11,7 +11,7 @@ export class SearchstockComponent implements OnInit {
 
   stockItems: Stock[] = [];
   displayedColumns: any ;
-  dataSource: any ;
+  dataSource: any;
 
   constructor(private StockList: SearchstockService) {}
 
@@ -19,11 +19,17 @@ export class SearchstockComponent implements OnInit {
     this.StockList.getDisplayStocks().subscribe(response => {
       this.stockItems = response;
       console.log(response);
+      //this.displayedColumns = ["id", "name", "age"];
+     //this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
+
       this.displayedColumns = ['id', 'name', 'postId'];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
-}
+
+

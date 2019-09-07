@@ -28,7 +28,7 @@ export class PortfolioAuthServiceService {
 
 
 
-  updateUserDetails(email, password, firstname, lastname, phonenumber, ssn, creditcardnumber, date, amount, cvv ){
+  updateUserDetails(email, password, firstName, lastName, phonenumber, ssn, creditcardnumber, date, amount, cvv ){
       const httpOptions = {
       headers : new HttpHeaders({
         'Content-Type': 'application/json',
@@ -38,8 +38,8 @@ export class PortfolioAuthServiceService {
       const putData = { 
         email:email,
         password:password,
-        firstname: firstname,
-        lastname: lastname,
+        firstName: firstName,
+        lastName: lastName,
         phonenumber: phonenumber,
         ssn: ssn,
         creditCardNumber:creditcardnumber,
@@ -54,17 +54,26 @@ export class PortfolioAuthServiceService {
       //const email = "jsmith@virtusa.com"
       return this.http.get<Stock[]>(`http://localhost:3000/orders?email=${this.email}`)
     }
+
+    getUserDetails():Observable<User> {
+      return this.http.get<User>(`http://localhost:3000/users/${this.id}`)
+    }
 }
 
 
 /* Defines the product entity */
 export class User {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
-  ssn: string;
+  firstName: string;
+  lastName: string;
   phonenumber: string;
+  ssn: string;
+  creditCardNumber:string;
+  date:string;
+  amount:any;
+  cvv:string;
+  id:any
 }
 
 export class Stock {

@@ -8,8 +8,8 @@
               <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label" for="firstNameId">First Name</label>
                 <div class="col-md-8">
-                  <input class="form-control w3-input" id="firstNameId" type="text" placeholder="{{firstName}}"
-                    formControlName="firstName" />
+                  <input class="form-control w3-input" id="firstNameId" type="text" placeholder="{{firstname}}"
+                    formControlName="firstName" minlength="3" required/>
         
                 </div>
               </div>
@@ -18,7 +18,7 @@
                 <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
                 <div class="col-md-8">
                   <input class="form-control w3-input" id="lastNameId" type="text" placeholder="{{lastName}}"
-                    formControlName="lastName" />
+                    formControlName="lastName" minlength="5" required />
                 </div>
               </div>
         
@@ -26,7 +26,7 @@
                   <label class="col-md-2 col-form-label" for="emailId">Email ID</label>
                   <div class="col-md-8">
                     <input class="form-control w3-input" id="emailId" type="email" placeholder="{{email}}"
-                      formControlName="email" />
+                      formControlName="email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
                   </div>
                 </div>
         
@@ -34,7 +34,7 @@
                     <label class="col-md-2 col-form-label" for="passwordId">Password</label>
                     <div class="col-md-8">
                       <input class="form-control w3-input" id="passwordId" type="text" placeholder="{{password}}"
-                        formControlName="password" />
+                        formControlName="password"  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$" required/>
                     </div>
                   </div>
         
@@ -42,7 +42,7 @@
                       <label class="col-md-2 col-form-label" for="ssnId">SSN</label>
                       <div class="col-md-8">
                         <input class="form-control w3-input" id="ssnId" type="text" placeholder="{{ssn}}"
-                          formControlName="ssn" />
+                          formControlName="ssn" (keyup)="ssnValidator()" required/>
                       </div>
                     </div>
         
@@ -58,7 +58,7 @@
               <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label" for="phoneId">Phone</label>
                 <div class="col-md-8">
-                  <input class="form-control w3-input" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" />
+                  <input class="form-control w3-input" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" (keyup)='phoneValidator()' required />
         
                 </div>
               </div>
@@ -69,7 +69,7 @@
                   <div class="form-group row mb-2">
                       <label class="col-md-2 col-form-label" for="creditCardNoId">Credit Card Number</label>
                       <div class="col-md-8">
-                        <input class="form-control w3-input" id="creditCardNoId" type="tel" placeholder="{{phone}}" formControlName="creditcardno" />
+                        <input class="form-control w3-input" id="creditCardNoId" type="tel" placeholder="{{phone}}" formControlName="creditcardno" maxlength="16" required />
               
                       </div>
                     </div>
@@ -91,7 +91,13 @@
                       <label class="col-md-2 col-form-label" for="expiryDateId">Expiry Date</label>
                       <div class="col-md-8">
                         <input class="form-control w3-input" id="expiryDateId" type="tel" placeholder="{{phone}}" formControlName="expirydate" />
-              
+                        <!-- <input matInput [matDatepicker]="dp" placeholder="{{expirydate}}"  id="expiryDateId" formControlName="expirydate">
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp
+                                            startView="multi-year"
+                                           
+                                            panelClass="example-month-picker">
+                            </mat-datepicker> -->
                       </div>
                     </div>
               

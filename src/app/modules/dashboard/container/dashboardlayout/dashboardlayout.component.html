@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a  mat-list-item [routerLink]="[ 'portfolio']">portfolio</a>
@@ -11,20 +11,20 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="button-spacer">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>welcome</span>
-      <span>{{firstName}}</span>
-      <span>{{lastName}}</span>
-      <span>{{emailId}}</span>
-      <button (click)="onLogOut()">log out</button>
+      </button>  
+      <span class="text-spacer"></span>
+      <span class="text-spacer">Welcome, {{firstName}} {{lastName}}</span>
+      <div>
+          <span class="text-spacer">Balance: {{availableBalance}}</span>
+        <button mat-button style="text-align: right" (click)="onLogOut()">Log Out</button>
+      </div>
     </mat-toolbar>
    <router-outlet></router-outlet>
   </mat-sidenav-content>
