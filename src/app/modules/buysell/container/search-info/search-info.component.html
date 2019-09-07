@@ -1,4 +1,4 @@
-<mat-table [dataSource]="ordersDataSourceJson" matSort matSortActive="ID" matSortDirection="asc" class="mat-elevation-z8">
+<mat-table [dataSource]="ordersDataSourceJson" class="mat-elevation-z8">
 
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef> email </mat-header-cell>
@@ -36,7 +36,7 @@
   
 <div class="BuySellButton">
   <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
-  <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['/products','sell']">Sell</button>
+  <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['sell']">Sell</button>
 </div>
 
 <mat-table [dataSource]="stockDataJson" class="mat-elevation-z8">
