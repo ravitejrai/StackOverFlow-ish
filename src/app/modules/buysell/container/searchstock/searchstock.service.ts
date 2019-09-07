@@ -6,7 +6,9 @@ import { tap, count, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SearchstockService {
+
   private stocksUrl ='http://localhost:3000/stocks';
   private ordersUrl ='http://localhost:3000/orders';
   name: any;
@@ -15,21 +17,43 @@ export class SearchstockService {
   stockdata: Observable<Orders[]>;
 
   /**
-     * Parameterized constructor to fetch the backend data
-     * @param StockService The HttpClient to test the backend database
-     * @param http used for adding stocks
-     */
+   * Parameterized constructor to fetch the backend data
+   * @param StockService The HttpClient to test the backend database
+   * @param http used for adding stocks
+   */
+    constructor(private StockService: HttpClient, private http: HttpClient) {}
 
-  constructor(private StockService: HttpClient, private http: HttpClient) {}
+  /**
+   * This function returns the data from the fake json
+   * server. It uses the stocksUrl and makes a get Request
+   * to get the data which is then used to render on the view
+   */
+  getProduct(name: string): Observable<Stock[]> {
+    this.stockName = name;
+    return this.StockService.get<Stock[]>(`http://localhost:3000/stocks?name=${this.stockName}`).pipe(
+      tap(data => console.log('getProduct: ' + JSON.stringify(data)))
+    );
+  }
 
+ /**
+  * This function returns the data from the fake json
+  * server. It uses the stocksUrl and makes a get Request
+  * to get the data which is then used to render on the view
+  * @param name cannot be null
+  */
    getOrders(name: string): Observable<Orders[]> {
      const user = JSON.parse(localStorage.getItem('testObject'));
      this.stockName = name;
-    return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
+     return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
        tap(data => console.log('getOrders: ' + JSON.stringify(data)))
      );
    }
 
+  /**
+   * This function returns the data from the fake json
+   * server. It uses the stocksUrl and makes a get Request
+   * to get the data which is then used to render on the view
+   */
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
       (this.stocksUrl);
@@ -57,7 +81,7 @@ export class SearchstockService {
       price: price,
       value: value,
     };
-      return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
+    return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
   }
 
   public buyStocksFirstTime(userEmail, stockId, name, quantity, price, value) {
@@ -75,7 +99,7 @@ export class SearchstockService {
       price: price,
       value: value,
     };
-      return this.http.post(`http://localhost:3000/orders`, postData)
+    return this.http.post(`http://localhost:3000/orders`, postData)
   }
 
   public updateAccount(accountValue,id){
