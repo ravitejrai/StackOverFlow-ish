@@ -1,36 +1,53 @@
 {
-    "users": [
-      
-    ],
-    "stocks": [
-      {
-        "id": 1,
-        "name": "apple",
-        "postId": 1
-      },
-      {
-        "id": 2,
-        "name": "Google",
-        "postId": 1
-      }
-    ],
-    
-    "orders":[ {
-      "email": "jsmith@virtusa.com",
-      "stockid":1,
-      "name": "apple",
-      "quantity":0,
-      "price":100,
-      "value":1000
+  "users": [
+    {
+      "email": "tom@gmail.com",
+      "password": "Password@12",
+      "firstName": "tom",
+      "lastName": "hank",
+      "phonenumber": "678-688-78798",
+      "ssn": "678-67-8789789",
+      "creditCardNumber": "6786-7869-8778",
+      "date": "09-2018",
+      "cvv": "123",
+      "amount": 100000,
+      "id": 1
     },
     {
-      "email": "jsmith@virtusa.com",
-      "stockid":2,
+      "email": "mahes@hgf.com",
+      "password": "Password123$",
+      "firstName": "Maheshwar",
+      "lastName": "Reddy",
+      "phonenumber": "6824147616",
+      "ssn": "121-22-1211",
+      "creditCardNumber": "1223-1231-2123-1321",
+      "date": "08-2023",
+      "cvv": "232",
+      "amount": 48000,
+      "id": 2
+    }
+  ],
+  "stocks": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "price": 100
+    },
+    {
+      "id": 2,
       "name": "Google",
-      "quantity":5,
-      "price":150,
-      "value":940
-    }]
-  
-   
-   }
+      "price": 200
+    }
+  ],
+  "orders": [
+    {
+      "email": "mahes@hgf.com",
+      "stockid": 2,
+      "name": "Google",
+      "quantity": 40,
+      "price": 200,
+      "value": 8000,
+      "id": 1
+    }
+  ]
+}
