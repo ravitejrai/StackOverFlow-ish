@@ -22,7 +22,7 @@ export class SearchstockComponent implements OnInit {
       //this.displayedColumns = ["id", "name", "age"];
      //this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
 
-      this.displayedColumns = ['id', 'name', 'postId'];
+      this.displayedColumns = ['id', 'name', 'price'];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
