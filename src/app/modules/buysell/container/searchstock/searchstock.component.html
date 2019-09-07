@@ -6,9 +6,9 @@
   </mat-form-field>
 
 
-<div class="no-records" *ngIf="dataSource.filteredData.length == 0"> No records found !</div>
+<div class="no-records" *ngIf="dataSource?.filteredData.length == 0"> No records found !</div>
 
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource.filteredData.length !=0"> 
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource?.filteredData.length !=0"> 
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
