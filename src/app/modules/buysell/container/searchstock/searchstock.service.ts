@@ -21,20 +21,26 @@ export class SearchstockService {
 
   constructor(private StockService: HttpClient, private http: HttpClient) {}
 
-  getOrders(name: string): Observable<Orders[]> {
-    const user = JSON.parse(localStorage.getItem('testObject'));
-    this.stockName = name;
+   getOrders(name: string): Observable<Orders[]> {
+     const user = JSON.parse(localStorage.getItem('testObject'));
+     this.stockName = name;
     return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
-      tap(data => console.log('getOrders: ' + JSON.stringify(data)))
-    );
-  }
+       tap(data => console.log('getOrders: ' + JSON.stringify(data)))
+     );
+   }
 
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
       (this.stocksUrl);
   }
 
-  public buyStocks(userEmail, stockId, name, quantity, price, value,accountValue,id) {
+  public getStocks(name): Observable<Stock[]> {
+    this.stockName = name.replace(/"/g, '&quot;');;
+    return this.StockService.get<Stock[]>
+      (`http://localhost:3000/stocks?name= ${this.stockName}`);
+  }
+
+  public buyStocks(userEmail, stockId, name, quantity, price, value,id) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -50,7 +56,25 @@ export class SearchstockService {
       price: price,
       value: value,
     };
-    return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
+      return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
+  }
+
+  public buyStocksFirstTime(userEmail, stockId, name, quantity, price, value) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    const postData = {
+      email: userEmail,
+      stockid: stockId,
+      name: name,
+      quantity: quantity,
+      price: price,
+      value: value,
+    };
+      return this.http.post(`http://localhost:3000/orders`, postData)
   }
 
   public updateAccount(accountValue,id){

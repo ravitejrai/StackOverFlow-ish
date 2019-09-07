@@ -18,7 +18,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import {MatDialogModule} from '@angular/material';
+import {MatDialogModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 import { SearchInfoComponent } from './container/search-info/search-info.component';
 
 
@@ -40,7 +40,6 @@ import { SearchInfoComponent } from './container/search-info/search-info.compone
     HttpClientModule,
     FlexLayoutModule,
     MatGridListModule,
-
     MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -53,5 +52,8 @@ import { SearchInfoComponent } from './container/search-info/search-info.compone
   entryComponents: [
     ModalComponent
   ],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ]
 })
 export class BuysellModule {}

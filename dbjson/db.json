@@ -16,14 +16,56 @@
   "profile": {
     "name": "typicode"
   },
+  "users": [
+    {
+      "email": "mahes@hgf.com",
+      "password": "Password123$",
+      "firstName": "Maheshwar",
+      "lastName": "Reddy",
+      "phonenumber": "6824147616",
+      "ssn": "454-55-55555",
+      "creditCardNumber": "4454545454555555",
+      "date": "2021-02-09T05:00:00.000Z",
+      "amount": 6000,
+      "cvv": 300000,
+      "id": 1
+    }
+  ],
+  "stocks": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "postId": "01"
+    },
+    {
+      "id": "2",
+      "name": "Amazon",
+      "postId": "02"
+    },
+    {
+      "id": "3",
+      "name": "Google",
+      "postId": "03"
+    },
+    {
+      "id": "4",
+      "name": "Walt Disney",
+      "postId": "04"
+    },
+    {
+      "id": 5,
+      "name": "IBM",
+      "postId": "05"
+    }
+  ],
   "orders": [
     {
-      "email": "jsmith@virtusa.com",
+      "email": "mahes@hgf.com",
       "stockid": "1",
-      "name": "apple",
-      "quantity": "15",
+      "name": "Apple",
+      "quantity": 2,
       "price": "100",
-      "value": "1500",
+      "value": "500",
       "id": 1
     }
   ]

@@ -1,26 +1,34 @@
 <!-- <div fxLayout="column" class="mat-elevation-z24"  fxLayoutAlign="center center" > hey there</div> -->
 <div fxLayout="column" class="mat-elevation-z24 mt15" fxFlex="50" fxFlexOffset="30" fxLayoutAlign="center center">
-    <form class="form-container" [formGroup]="buyForm">
+        <mat-card *ngIf="hide" class="cardcss">Buy Stocks</mat-card>
+        <mat-card *ngIf="!hide"class="cardcss">Sell stocks</mat-card>
+    <form class="form-container" [formGroup]='buyForm' >
+            
         <mat-form-field class="" appearance="legacy">
             <mat-label>Enter Quantity</mat-label>
-            <input type="number" matInput placeholder="Enter Quantity" (keyup)="onKey($event)" formControlName="quantity" [(ngModel)]="quantitys">
+            <input type="number" matInput placeholder="Enter Quantity" (keyup)="onKey($event)" formControlName="quantity" [(ngModel)]="quantitys" required min="1">
             <!-- <mat-error *ngIf="quantity.hasError('required')">
                 Quantity is <strong>required</strong>
             </mat-error> -->
-            <mat-error>
-                {{errorMessage}}
-            </mat-error>
+            
         </mat-form-field>
+        <mat-error *ngIf = "!bdisable">
+            {{errorMessage}}
+        </mat-error>
+        <div fxLayout="row">
+            <mat-label>Stocks Bought :  </mat-label> 
+            <span>{{stocksQuantity}}</span>
+        </div>
 
             <div fxLayout="row">
                 <mat-label>Total Value: </mat-label>
                 <span matPrefix>$&nbsp;</span>
-                <span >{{quantitys * 206 || price}}</span>
+                <span >{{quantitys * price || price}}</span>
                 <span matSuffix>.00</span>
             </div>
             <br>
-        <button  *ngIf="hide" mat-raised-button ng-disabled="!contractTypeValid" (click)="openDialog()">Buy</button>
-        <button  *ngIf="!hide" mat-raised-button ng-disabled="!contractTypeValid" (click)="sellStock(quantiy)">sell</button>
+        <button  *ngIf="hide" mat-raised-button [disabled]="!bdisable" (click)="openDialog()">Buy</button>
+        <button  *ngIf="!hide" mat-raised-button [disabled]="!bdisable" (click)="sellStock()">sell</button>
         <br>
     </form>
 </div>
