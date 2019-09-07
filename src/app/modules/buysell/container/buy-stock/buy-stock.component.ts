@@ -27,16 +27,17 @@ export class BuyStockComponent implements OnInit {
   errorMessage: string;
   stockId: number;
   name: any;
-  price: any = 100;
+  price: any;
   param: string;
   emailId: unknown;
-  accountValue: unknown;
+  accountValue: any;
   id: unknown;
   orderid: any;
   bdisable: boolean;
-  stocksQuantity : unknown = 5;
+  stocksQuantity: number;
+  buy: boolean;
 
-  // logic for checking the url link whether it's a buy or sell
+  // logic for checking the url link whether it's a buy or sell along with declartaions of services instances
   constructor(private fb: FormBuilder, public dialog: MatDialog, private updateaccount: SearchstockService, private router: Router, private StockAdd: SearchstockService, private Stocksell: SearchstockService, private order: SearchstockService, private route: ActivatedRoute) {
     router.events.pipe(
       filter((event: any) => event instanceof NavigationEnd)
@@ -55,31 +56,31 @@ export class BuyStockComponent implements OnInit {
   onKey(event: any) { // without type info
     this.values = +event.target.value;
     if (this.presentUrl == `/dashboard/buysell/home/${this.param}/info/buy`) {
-      if((this.values*this.price) > this.accountValue){
-         this.errorMessage = "Value more than remaining Balance";
-         this.bdisable = false;
-       }else if(!Number.isInteger(this.values)){
+      if ((this.values * this.price) > this.accountValue) {
+        this.errorMessage = "Value more than remaining Balance";
+        this.bdisable = false;
+      } else if (!Number.isInteger(this.values)) {
         this.errorMessage = "Quantity should be an integer";
         this.bdisable = false;
-       }else if(this.values === Number.NaN){
+      } else if (this.values === Number.NaN) {
         this.errorMessage = "Quantity should be an integer";
         this.bdisable = false;
-       }
-       else{
-         this.bdisable = true;
-       }
+      }
+      else {
+        this.bdisable = true;
+      }
     } else if (this.presentUrl == `/dashboard/buysell/home/${this.param}/info/sell`) {
-      if((this.values > this.stocksQuantity)){
+      if ((this.values > this.stocksQuantity)) {
         this.errorMessage = "Quantity more than remaining Stocks";
         this.bdisable = false;
-      }else if(!Number.isInteger(this.values)){
-       this.errorMessage = "Quantity should be an integer";
-       this.bdisable = false;
-      }else if(this.values === Number.NaN){
-       this.errorMessage = "Quantity should be an integer";
-       this.bdisable = false;
+      } else if (!Number.isInteger(this.values)) {
+        this.errorMessage = "Quantity should be an integer";
+        this.bdisable = false;
+      } else if (this.values === Number.NaN) {
+        this.errorMessage = "Quantity should be an integer";
+        this.bdisable = false;
       }
-      else{
+      else {
         this.bdisable = true;
       }
     }
@@ -94,18 +95,28 @@ export class BuyStockComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      // checking whether user wants to buy or cancel the order
       if (result == 'true') {
-        this.StockAdd.buyStocks(this.emailId, '1', this.param, this.buyForm.controls['quantity'].value,
-         this.price, this.buyForm.controls['quantity'].value * this.price,
-          this.orderid
+        if (this.buy == true) {
+          this.StockAdd.buyStocks(this.emailId, this.stockId, this.param, this.stocksQuantity + this.buyForm.controls['quantity'].value,
+            this.price, (this.stocksQuantity + this.buyForm.controls['quantity'].value) * this.price,
+            this.orderid
+          ).subscribe((data) => {
+            alert("Stocks bought Sucessful !!");
+          });
+        } else {
+          // code for buying a particular stock for the first time for the user
+          this.StockAdd.buyStocksFirstTime(this.emailId, this.stockId, this.param, this.buyForm.controls['quantity'].value,
+            this.price, this.buyForm.controls['quantity'].value * this.price
+          ).subscribe((data) => {
 
-        ).subscribe((data) => {
+            alert("Stocks bought Sucessfully !!");
+          });
+        }
+        // For updating Acoount value on buying stocks 
+        this.updateaccount.updateAccount(this.accountValue - (this.buyForm.controls['quantity'].value * this.price), this.id).subscribe((data) => {
 
-          alert("Stocks bought Sucessful !!");
-        });
-        this.updateaccount.updateAccount(5000, this.id).subscribe((data) => {
-
-          alert("Account updated Sucessful !!");
+          alert("Account updated Sucessfully !!");
         });
 
         console.log('stocks are bought');
@@ -115,40 +126,55 @@ export class BuyStockComponent implements OnInit {
       console.log(result);
     });
   }
-;
+  ;
   //logic for selling the Stocks and updating account value
   sellStock(): void {
-    this.Stocksell.sellStocks(this.emailId, '1', this.param, this.buyForm.controls['quantity'].value,
-     '100', '500', this.id
+    this.Stocksell.sellStocks(this.emailId, this.stockId, this.param, this.stocksQuantity - this.buyForm.controls['quantity'].value,
+      this.price, (this.stocksQuantity - this.buyForm.controls['quantity'].value) * this.price, this.id
       // this.email,this.stockId,this.name,
       // this.buyForm.controls['quantity'].value,
       // this.price,this.values
 
     ).subscribe((data) => {
-      alert("Stocks Sold Sucessful !!");
-      
+      alert("Stocks Sold Sucessfully !!");
+
 
     });
-    this.updateaccount.updateAccount(6000, this.id).subscribe((data) => {
+    // For updating Acoount value on selling stocks 
+    this.updateaccount.updateAccount(Number(this.accountValue) + Number( (this.buyForm.controls['quantity'].value * this.price)), this.id).subscribe((data) => {
 
       alert("Account updated Sucessfully !!");
     });
     this.router.navigateByUrl('/dashboard/buysell')
   }
-
+   
+  // getting stock and order details of that particular stock and user
+  //caching the user data for account balance updation
+  // created form for buy and selling stocks using form builder
 
   ngOnInit() {
 
     this.param = this.route.snapshot.paramMap.get('name');
-    // this.order.getOrders(url
-    //   ).subscribe((data)=>{
-    // alert("Stocks found Sucessful !!");
+    this.order.getOrders(this.param
+    ).subscribe((data) => {
+      console.log(data[0].name);
+      length = data.length;
+      if (length != 0) {
+        this.buy = true;
+        this.stocksQuantity = data[0].quantity;
+        this.orderid = data[0].id;
 
-    // });
+      } else {
+        this.buy = false;
+      }
+
+    });
 
     this.order.getStocks(this.param
     ).subscribe((data) => {
-      alert("Stocks found Sucessful !!");
+      console.log(data);
+      this.price = data[0].price;
+      this.stockId = data[0].id;
 
     });
 
@@ -171,7 +197,7 @@ export class BuyStockComponent implements OnInit {
       });
 
     this.buyForm = this.fb.group({
-      quantity: ['', [Validators.required,Validators.min(1)]],
+      quantity: ['', [Validators.required, Validators.min(1)]],
       price: [''],
     });
 

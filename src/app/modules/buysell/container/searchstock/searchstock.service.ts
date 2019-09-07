@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders ,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, count, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class SearchstockService {
   name: any;
   id: any;
   stockName: string;
+  stockdata: Observable<Orders[]>;
 
   /**
      * Parameterized constructor to fetch the backend data
@@ -35,9 +36,9 @@ export class SearchstockService {
   }
 
   public getStocks(name): Observable<Stock[]> {
-    this.stockName = name.replace(/"/g, '&quot;');;
+    this.stockName = name.replace(/"/g, '&quot;');
     return this.StockService.get<Stock[]>
-      (`http://localhost:3000/stocks?name= ${this.stockName}`);
+      (`http://localhost:3000/stocks?name=${this.stockName}`);
   }
 
   public buyStocks(userEmail, stockId, name, quantity, price, value,id) {

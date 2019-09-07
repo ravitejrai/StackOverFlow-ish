@@ -26,7 +26,7 @@
       "ssn": "454-55-55555",
       "creditCardNumber": "4454545454555555",
       "date": "2021-02-09T05:00:00.000Z",
-      "amount": 6000,
+      "amount": 698,
       "cvv": 300000,
       "id": 1
     }
@@ -35,27 +35,27 @@
     {
       "id": "1",
       "name": "Apple",
-      "postId": "01"
+      "price": "100"
     },
     {
       "id": "2",
       "name": "Amazon",
-      "postId": "02"
+      "price": "200"
     },
     {
       "id": "3",
       "name": "Google",
-      "postId": "03"
+      "price": "300"
     },
     {
       "id": "4",
       "name": "Walt Disney",
-      "postId": "04"
+      "price": "400"
     },
     {
       "id": 5,
       "name": "IBM",
-      "postId": "05"
+      "price": "500"
     }
   ],
   "orders": [
@@ -63,10 +63,19 @@
       "email": "mahes@hgf.com",
       "stockid": "1",
       "name": "Apple",
-      "quantity": 2,
+      "quantity": 3,
       "price": "100",
-      "value": "500",
+      "value": 300,
       "id": 1
+    },
+    {
+      "email": "mahes@hgf.com",
+      "stockid": "2",
+      "name": "Amazon",
+      "quantity": 1,
+      "price": "200",
+      "value": 200,
+      "id": 2
     }
   ]
 }
