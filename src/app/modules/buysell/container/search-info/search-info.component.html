@@ -34,5 +34,5 @@
     <mat-row matRipple *matRowDef="let row; columns: displayedOrderColumns;"></mat-row>
 </mat-table>
   
-  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
-  <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['/products','sell']">Sell</button>
+  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['buy']">Buy</button>
+  <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['sell']">Sell</button>
