@@ -22,4 +22,11 @@ table {
       top: 0;             
   }
   
-     
+  .no-records {
+    text-align: center;
+    color: crimson;
+  }    
+
+  .table_empty {
+    display: none;
+  }

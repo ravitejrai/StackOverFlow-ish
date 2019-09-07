@@ -15,7 +15,13 @@ export class StockportfolioComponent implements OnInit {
   ngOnInit() {
     this.DataService.getStockDetails().subscribe((data) => {
       this.stocks=data;
-      console.log(data);
+      if(data.length ==0) {
+        document.getElementById('header').className="disable";
+        alert("No Stocks available");
+      } else {
+        document.getElementById('header').className="enable";
+      }
+      //console.log(data);
     })
   }
 
