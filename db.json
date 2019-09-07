@@ -1,14 +1,6 @@
 {
     "users": [
-      {
-        "email": "jsmith@virtusa.com",
-        "password": "password",
-        "firstName": "John",
-        "lastName": "Smith",
-        "phone": "123-456-7890",
-        "ssn": "123-45-6789",
-        "accountvalue":"100k"
-      }
+      
     ],
     "stocks": [
       {
@@ -39,4 +31,6 @@
       "price":150,
       "value":940
     }]
+  
+   
    }
