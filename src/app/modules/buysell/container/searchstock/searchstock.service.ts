@@ -6,10 +6,10 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SearchstockService {
   private stocksUrl =
     'http://localhost:3000/stocks';
-    
   stockName: string;
 
   /**
@@ -23,13 +23,19 @@ export class SearchstockService {
    * server. It uses the stocksUrl and makes a get Request
    * to get the data which is then used to render on the view
    */
-  getProduct(): Observable<Stock[]> {
-    const url = `${this.stocksUrl}`;
-    return this.StockService.get<Stock[]>(url).pipe(
+  getProduct(name: string): Observable<Stock[]> {
+    this.stockName = name;
+    return this.StockService.get<Stock[]>(`http://localhost:3000/stocks?name=${this.stockName}`).pipe(
       tap(data => console.log('getProduct: ' + JSON.stringify(data)))
     );
   }
 
+ /**
+  * This function returns the data from the fake json
+  * server. It uses the stocksUrl and makes a get Request
+  * to get the data which is then used to render on the view
+  * @param name cannot be null
+  */
   getOrders(name: string): Observable<Orders[]> {
     const user = JSON.parse(localStorage.getItem('testObject'));
     this.stockName = name;
@@ -38,6 +44,11 @@ export class SearchstockService {
     );
   }
 
+  /**
+   * This function returns the data from the fake json
+   * server. It uses the stocksUrl and makes a get Request
+   * to get the data which is then used to render on the view
+   */
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
     (this.stocksUrl);
