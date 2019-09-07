@@ -117,6 +117,7 @@ export class Stock {
   id: number;
   name: string;
   postId: number;
+  price: any;
 }
 
 export class Orders {
@@ -126,6 +127,7 @@ export class Orders {
   quantity: number;
   price: number;
   value: number;
+  id: any;
 }
 
 
