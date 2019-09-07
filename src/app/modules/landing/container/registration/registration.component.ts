@@ -35,35 +35,42 @@ export class RegistrationComponent implements OnInit {
  })
 
 
+oncheck(){
+  this.auth.getUserDetails(
+    this.regDetailsForm.get('email').value,
+    this.regDetailsForm.get('password').value,
+    this.regDetailsForm.get('firstName').value,
+    this.regDetailsForm.get('lastName').value,
+    this.regDetailsForm.get('phonenumber').value,
+    this.regDetailsForm.get('ssn').value,
+    this.regDetailsForm.get('creditCardNumber').value,
+    this.regDetailsForm.get('date').value,
+    this.regDetailsForm.get('cvv').value,
+    this.regDetailsForm.get('amount').value
 
+    ).subscribe((data)=>{
+     alert("Registration Sucessful !!");
+    this.router.navigate(['/']);
+
+  }, error => {
+    this.handleError(error); //handling error
+
+   }
+  );
+
+}
  onRegitration(){
   this.auth.getDetails().subscribe((data: any[]) => {
     // tslint:disable-next-line: prefer-for-of
+    if(data == [] || data.length == 0) {
+      this.oncheck();
+    }
+    else {
     for(var i = 0; i < data.length; i++) {
       var obj = data[i];
+      
       if (obj.email !==  this.regDetailsForm.get('email').value ) {
-
-        this.auth.getUserDetails(
-          this.regDetailsForm.get('email').value,
-          this.regDetailsForm.get('password').value,
-          this.regDetailsForm.get('firstName').value,
-          this.regDetailsForm.get('lastName').value,
-          this.regDetailsForm.get('phonenumber').value,
-          this.regDetailsForm.get('ssn').value,
-          this.regDetailsForm.get('creditCardNumber').value,
-          this.regDetailsForm.get('date').value,
-          this.regDetailsForm.get('cvv').value,
-          this.regDetailsForm.get('amount').value
-
-          ).subscribe((data)=>{
-           alert("Registration Sucessful !!");
-          this.router.navigate(['/']);
-
-        }, error => {
-          this.handleError(error); //handling error
- 
-         }
-        );
+        this.oncheck();
         break;
       } else {
         alert('email already exists');
@@ -71,6 +78,7 @@ export class RegistrationComponent implements OnInit {
       }
 
     }
+  }
   })
 };
 
