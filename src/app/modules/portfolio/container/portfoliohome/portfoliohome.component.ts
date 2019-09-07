@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { MessageService } from 'src/app/message.service';
-import { PortfolioAuthServiceService } from '../portfolio-auth-service.service';
+import { PortfolioAuthServiceService, User } from '../portfolio-auth-service.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./portfoliohome.component.scss']
 })
 export class PortfoliohomeComponent implements OnInit {
-
+  user:User;
   userForm : FormGroup;
   private isButtonVisible = true;
   enableFlag:Boolean;
 
-  constructor( private fb: FormBuilder, private updateuser:PortfolioAuthServiceService, private router:Router) { 
+  constructor( private fb: FormBuilder, private service:PortfolioAuthServiceService, private router:Router) { 
     this.enableFlag= false;
   }
 
@@ -37,44 +37,59 @@ export class PortfoliohomeComponent implements OnInit {
       expirydate: ['',  [Validators.required]],
     });
 
-    const user = JSON.parse(localStorage.getItem('testObject'))
-    //console.log(user,"**after**")
-    Object.entries(user).forEach(
-      ([key, value]) => {
-        switch(key) {
-          case "email":
-              this.userForm.patchValue({email:value})
-              break;
-          case "firstName":
-            this.userForm.patchValue({firstName:value})
-                break;
-          case "lastName":
-            this.userForm.patchValue({lastName:value})
-              break;
-          case "password":
-            this.userForm.patchValue({password:value})
-              break;
-          case "phonenumber":
-            this.userForm.patchValue({phone:value})
-              break;
-          case "ssn":
-            this.userForm.patchValue({ssn:value})
-              break;
-          case "creditCardNumber":
-              this.userForm.patchValue({creditcardno:value})
-                break;
-          case "date":
-              this.userForm.patchValue({expirydate:value});
-                break;
-          case "amount":
-              this.userForm.patchValue({accountValue:value});
-                break;
-          case "cvv":
-              this.userForm.patchValue({cvv:value});
-                break;
-        }
+    // const user = JSON.parse(localStorage.getItem('testObject'))
+    // //console.log(user,"**after**")
+    // Object.entries(user).forEach(
+    //   ([key, value]) => {
+    //     switch(key) {
+    //       case "email":
+    //           this.userForm.patchValue({email:value})
+    //           break;
+    //       case "firstName":
+    //         this.userForm.patchValue({firstName:value})
+    //             break;
+    //       case "lastName":
+    //         this.userForm.patchValue({lastName:value})
+    //           break;
+    //       case "password":
+    //         this.userForm.patchValue({password:value})
+    //           break;
+    //       case "phonenumber":
+    //         this.userForm.patchValue({phone:value})
+    //           break;
+    //       case "ssn":
+    //         this.userForm.patchValue({ssn:value})
+    //           break;
+    //       case "creditCardNumber":
+    //           this.userForm.patchValue({creditcardno:value})
+    //             break;
+    //       case "date":
+    //           this.userForm.patchValue({expirydate:value});
+    //             break;
+    //       case "amount":
+    //           this.userForm.patchValue({accountValue:value});
+    //             break;
+    //       case "cvv":
+    //           this.userForm.patchValue({cvv:value});
+    //             break;
+    //     }
 
-      });
+    //   });
+
+    this.service.getUserDetails().subscribe((data) => {
+      this.user = data;
+      console.log(data,'on launch');
+      this.userForm.patchValue({email:this.user.email});
+      this.userForm.patchValue({firstName:this.user.firstName});
+      this.userForm.patchValue({lastName:this.user.lastName});
+      this.userForm.patchValue({password:this.user.password});
+      this.userForm.patchValue({phone:this.user.phonenumber});
+      this.userForm.patchValue({ssn:this.user.ssn});
+      this.userForm.patchValue({creditcardno:this.user.creditCardNumber});
+      this.userForm.patchValue({expirydate:this.user.date});
+      this.userForm.patchValue({accountValue:this.user.amount});
+      this.userForm.patchValue({cvv:this.user.cvv});
+    });
     
     this.userForm.disable();
     this.enableFlag = false;
@@ -97,7 +112,7 @@ export class PortfoliohomeComponent implements OnInit {
 
   save() {
     console.log("entered save");
-    this.updateuser.updateUserDetails(
+    this.service.updateUserDetails(
       this.userForm.get('email').value,
       this.userForm.get('password').value,
       this.userForm.get('firstName').value,
@@ -110,9 +125,14 @@ export class PortfoliohomeComponent implements OnInit {
       this.userForm.get('cvv').value,
    ).subscribe((data)=>{
       this.userForm.disable();
-       console.log("Entered save success function");
-       alert("User Details Sucessfully updated");
-      this.router.navigateByUrl('/dashboard/portfolio/userportfolio');
+      // console.log("Entered save success function");
+      this.service.getUserDetails().subscribe((data)=> {
+        console.log(data, 'get calll');
+        localStorage.setItem('testObject',JSON.stringify(data));
+        alert("User Details Sucessfully updated");
+        this.router.navigateByUrl('/dashboard/portfolio/userportfolio');
+      });
+      
     });
   }
 
@@ -139,16 +159,6 @@ export class PortfoliohomeComponent implements OnInit {
          .replace(/-*$/g, '');
     }
  }
-  // isDisabled() : boolean {
-  //   if(this.enableFlag) {
-  //     document.getElementById('editButton').className = "disable";
-  //     document.getElementById('saveButton').className = "enable";
-  //   } else {
-  //     document.getElementById('saveButton').className = "disable";
-  //     document.getElementById('editButton').className = "enable";
-  //   }
-  //   return false;
-  //  }
 
 }
 
