@@ -9,8 +9,6 @@ import { SearchstockService, Stock } from './searchstock.service';
 })
 export class SearchstockComponent implements OnInit {
 
-  static stockName: any;
-  static email: any;
   stockItems: Stock[] = [];
   displayedColumns: any ;
   dataSource: any;
@@ -24,14 +22,14 @@ export class SearchstockComponent implements OnInit {
       //this.displayedColumns = ["id", "name", "age"];
      //this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
 
-      this.displayedColumns = ['id', 'name', 'postId'];
+      this.displayedColumns = ['id', 'name', 'price'];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
 
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
- 
   }
-} 
+}
+
+

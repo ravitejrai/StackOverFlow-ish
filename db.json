@@ -1,9 +1,62 @@
 {
-    "users": [
-      
-    ],
-  
-    "orders":[ 
-      
-    ]
-   }
+  "users": [
+    {
+      "email": "tom@gmail.com",
+      "password": "Password@12",
+      "firstName": "tom",
+      "lastName": "hank",
+      "phonenumber": "678-688-78798",
+      "ssn": "678-67-8789789",
+      "creditCardNumber": "6786-7869-8778",
+      "date": "09-2018",
+      "cvv": "123",
+      "amount": 100500,
+      "id": 1
+    },
+    {
+      "email": "mahes@hgf.com",
+      "password": "Password123$",
+      "firstName": "Maheshwar",
+      "lastName": "Reddy",
+      "phonenumber": "6824147616",
+      "ssn": "121-22-1211",
+      "creditCardNumber": "1223-1231-2123-1321",
+      "date": "08-2023",
+      "cvv": "232",
+      "amount": 49200,
+      "id": 2
+    }
+  ],
+  "stocks": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "name": "Google",
+      "price": 200
+    }
+  ],
+  "orders": [
+    {
+      "email": "tom@gmail.com",
+      "stockid": 1,
+      "name": "Apple",
+      "quantity": 5,
+      "price": 100,
+      "value": 500,
+      "id": 1
+    },
+    {
+      "email": "mahes@hgf.com",
+      "stockid": 1,
+      "name": "Apple",
+      "quantity": 10,
+      "price": 100,
+      "value": 1000,
+      "id": 2
+    }
+  ]
+}

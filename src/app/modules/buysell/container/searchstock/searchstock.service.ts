@@ -1,53 +1,147 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders ,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, count, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SearchstockService {
-  private stocksUrl =
-    'http://localhost:3000/stocks';
-    
+
+  private stocksUrl ='http://localhost:3000/stocks';
+  private ordersUrl ='http://localhost:3000/orders';
+  name: any;
+  id: any;
   stockName: string;
+  stockdata: Observable<Orders[]>;
 
   /**
    * Parameterized constructor to fetch the backend data
    * @param StockService The HttpClient to test the backend database
+   * @param http used for adding stocks
    */
-  constructor(private StockService: HttpClient) {}
+    constructor(private StockService: HttpClient, private http: HttpClient) {}
 
   /**
    * This function returns the data from the fake json
    * server. It uses the stocksUrl and makes a get Request
    * to get the data which is then used to render on the view
    */
-  getProduct(): Observable<Stock[]> {
-    const url = `${this.stocksUrl}`;
-    return this.StockService.get<Stock[]>(url).pipe(
+  getProduct(name: string): Observable<Stock[]> {
+    this.stockName = name;
+    return this.StockService.get<Stock[]>(`http://localhost:3000/stocks?name=${this.stockName}`).pipe(
       tap(data => console.log('getProduct: ' + JSON.stringify(data)))
     );
   }
 
-  getOrders(name: string): Observable<Orders[]> {
-    const user = JSON.parse(localStorage.getItem('testObject'));
-    this.stockName = name;
-    return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
-      tap(data => console.log('getOrders: ' + JSON.stringify(data)))
-    );
-  }
+ /**
+  * This function returns the data from the fake json
+  * server. It uses the stocksUrl and makes a get Request
+  * to get the data which is then used to render on the view
+  * @param name cannot be null
+  */
+   getOrders(name: string): Observable<Orders[]> {
+     const user = JSON.parse(localStorage.getItem('testObject'));
+     this.stockName = name;
+     return this.StockService.get<Orders[]>(`http://localhost:3000/orders?name=${this.stockName}&email=${user.email}`).pipe(
+       tap(data => console.log('getOrders: ' + JSON.stringify(data)))
+     );
+   }
 
+  /**
+   * This function returns the data from the fake json
+   * server. It uses the stocksUrl and makes a get Request
+   * to get the data which is then used to render on the view
+   */
   public getDisplayStocks(): Observable<Stock[]> {
     return this.StockService.get<Stock[]>
-    (this.stocksUrl);
+      (this.stocksUrl);
+  }
+
+  public getStocks(name): Observable<Stock[]> {
+    this.stockName = name.replace(/"/g, '&quot;');
+    return this.StockService.get<Stock[]>
+      (`http://localhost:3000/stocks?name=${this.stockName}`);
+  }
+
+  public buyStocks(userEmail, stockId, name, quantity, price, value,id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.id = id
+    const postData = {
+      email: userEmail,
+      stockid: stockId,
+      name: name,
+      quantity: quantity,
+      price: price,
+      value: value,
+    };
+    return this.http.put(`http://localhost:3000/orders/${this.id}`, postData)
+  }
+
+  public buyStocksFirstTime(userEmail, stockId, name, quantity, price, value) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    const postData = {
+      email: userEmail,
+      stockid: stockId,
+      name: name,
+      quantity: quantity,
+      price: price,
+      value: value,
+    };
+    return this.http.post(`http://localhost:3000/orders`, postData)
+  }
+
+  public updateAccount(accountValue,id){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.id = id;
+    const putAccount = {
+      amount : accountValue,
+    };
+    return this.http.patch(`http://localhost:3000/users/${this.id}`, putAccount)
+  }
+
+  public sellStocks(userEmail, stockId, name, quantity, price, value,id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.id = id;
+    const patchData = {
+      email: userEmail,
+      stockid: stockId,
+      name: name,
+      quantity: quantity,
+      price: price,
+      value: value,
+    };
+    return this.http.patch(`http://localhost:3000/orders/${this.id}`, patchData,httpOptions)
   }
 }
+
 
 export class Stock {
   id: number;
   name: string;
   postId: number;
+  price: any;
 }
 
 export class Orders {
@@ -57,6 +151,7 @@ export class Orders {
   quantity: number;
   price: number;
   value: number;
+  id: any;
 }
 
 
