@@ -5,7 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { LayoutComponent } from '../layout/layout.component';
 import { MatDialogRef } from '@angular/material';
-import { MessageService } from 'src/app/message.service';
+import { RouteGaurdService } from 'src/app/route-gaurd.service';
+
 
 @Component({
   selector: 'app-login',
@@ -23,16 +24,30 @@ export class LoginComponent implements OnInit {
 
    /** display error message */
   errorMessage: string;
+  loginLabel: string = 'Log in';
 
    /** Injecting services */
   constructor(private router: Router, private loginPageService: LoginPageService, 
-              public dialogRef: MatDialogRef<LayoutComponent>) { }
+              public dialogRef: MatDialogRef<LayoutComponent>,
+              private routerGaurd: RouteGaurdService) { }
 
   ngOnInit() {
   }
 
   /** function triggers on Submit */
   login() {
+    // if(this.loginLabel ==='Log in'){
+    //    this.routerGaurd.login();
+    //    this.loginLabel = 'Log out';
+      
+    //  } else {
+    //    this.routerGaurd.logout();
+      
+    //    this.loginLabel = 'Log in';
+    //    this.router.navigate(['/'])
+      
+    //  }
+    console.log(this.loginLabel, "login label")
     if(this.email == undefined || this.password == undefined){
       this.errorMessage = 'Please enter Email Id/ password.'
     }else {
@@ -46,17 +61,18 @@ export class LoginComponent implements OnInit {
       this.users.forEach((element) => {
       
         if( (this.email == element.email) && (this.password == element.password) )  {
-
+          this.routerGaurd.login();
           console.log('element...',element)
           localStorage.setItem('testObject', JSON.stringify(element));
           this.dialogRef.close(); //closing login Dialog box
+          
           this.router.navigate(['/dashboard']); //navigating to dashboard
           //break;
 
         } else {
-
+          
           this.errorMessage = 'Email id or Password is incorrect. Please try again.';
-
+          this.routerGaurd.logout();
         }
       })
     }, error => {
