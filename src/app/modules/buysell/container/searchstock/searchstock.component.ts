@@ -19,16 +19,22 @@ export class SearchstockComponent implements OnInit {
     this.StockList.getDisplayStocks().subscribe(response => {
       this.stockItems = response;
       console.log(response);
-      //this.displayedColumns = ["id", "name", "age"];
-     //this.displayedColumns = ["stockId", "stockName", "stockSymbol","stockPrice","weekHigh","weekLow"];
-
       this.displayedColumns = ['id', 'name', 'price'];
       this.dataSource = new MatTableDataSource(this.stockItems);
     });
   }
-
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  getStockDetails(name: string) {
+    this.StockList.getProduct(name).subscribe(response => {
+      this.stockItems = response;
+      console.log(response);
+      this.displayedColumns = ['id', 'name', 'price'];
+      this.dataSource = new MatTableDataSource(this.stockItems);
+    });
   }
 }
 
