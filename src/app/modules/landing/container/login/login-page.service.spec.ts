@@ -19,7 +19,7 @@ describe('LoginPageService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('testing http get', inject([HttpTestingController,LoginPageService],(httpMock: HttpTestingController, loginPageService: LoginPageService)=>{
+  it('testing http get', inject([HttpTestingController,LoginPageService],(httpMock: HttpTestingController, loginPageService: LoginPageService)=>{
     const mockData = [
       {
         "email": "manogna.madineni6@gmail.com",
