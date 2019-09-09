@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioAuthServiceService , Stock } from '../portfolio-auth-service.service';
 import { element } from 'protractor';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stockportfolio',
@@ -10,9 +11,11 @@ import { element } from 'protractor';
 export class StockportfolioComponent implements OnInit {
 
   stocks:Stock[]=[];
+  stocks$:Observable<Stock[]>;
   constructor(  private DataService:PortfolioAuthServiceService) { }
 
   ngOnInit() {
+    this.stocks$ = this.DataService.getStockDetails();
     this.DataService.getStockDetails().subscribe((data) => {
       this.stocks=data;
       if(data.length ==0) {
