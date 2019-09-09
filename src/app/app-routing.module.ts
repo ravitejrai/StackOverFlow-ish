@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RouteGaurdService } from './route-gaurd.service';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then(
         m => m.DashboardModule
-      )
+      ), canActivate:[RouteGaurdService]
   }
 ];
 

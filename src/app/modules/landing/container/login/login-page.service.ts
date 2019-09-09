@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class LoginPageService {
 
-  constructor(private http : HttpClient, private router : Router) { }
+  constructor(private http : HttpClient) { }
   getUserDetails(){ 
 
     const Headers = new HttpHeaders({ 'Content-Type': 'application/json'});
