@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { MessageService } from 'src/app/message.service';
+
 
 
 @Component({
@@ -31,6 +31,11 @@ export class DashboardlayoutComponent implements OnInit{
    
     console.log("***before**")
     const user = JSON.parse(localStorage.getItem('testObject'))
+    if(user == undefined){
+      
+     alert(" Access Denied, User not defined")
+     this.onLogOut();
+     } else {
     console.log(user,"**after**")
     Object.entries(user).forEach(
       ([key, value]) => {
@@ -50,11 +55,13 @@ export class DashboardlayoutComponent implements OnInit{
         }
 
       });
-    
+     }
   }
 
   onLogOut()
   {
+    localStorage.removeItem('testObject');
+    //console.log(JSON.parse(localStorage.getItem('testObject')))
     this.router.navigate(['/'])
   }
 

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouteGaurdService } from './route-gaurd.service';
 
 
 
@@ -19,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MyMaterialModule,
   ],
-  providers: [],
+  providers: [RouteGaurdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

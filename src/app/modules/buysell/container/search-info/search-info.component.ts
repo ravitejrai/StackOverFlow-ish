@@ -52,7 +52,7 @@ export class SearchInfoComponent implements OnInit {
     this.StockList.getProduct(name).subscribe(response => {
       this.secondStockItems = response;
       console.log(response);
-      this.displayedColumns = ['id', 'name', 'postId'];
+      this.displayedColumns = ['id', 'name', 'price'];
       this.stockDataJson = new MatTableDataSource(this.secondStockItems);
     });
   }

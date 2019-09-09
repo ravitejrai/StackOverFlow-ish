@@ -35,7 +35,7 @@
 </mat-table>
   
 <div class="BuySellButton">
-  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['/products','buy']">Buy</button>
+  <button md-raised-button class="btn-w-md ml-3" [routerLink]="['buy']">Buy</button>
   <button md-raised-button class="btn-w-md ml-3" [disabled]= "isDisabled" [routerLink]="['sell']">Sell</button>
 </div>
 
@@ -51,9 +51,9 @@
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="postId">
-    <mat-header-cell *matHeaderCellDef> PostId </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.postId}} </mat-cell>
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
