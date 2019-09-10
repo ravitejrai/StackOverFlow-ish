@@ -5,21 +5,141 @@
           <h4 class="w3-margin-right w3-xxlarge w3-text-teal"></h4>
           <form novalidate (ngSubmit)="save()" [formGroup]="userForm">
 
-              <div class="form-group row mb-2">
+              
+                  <p>
+                  <mat-form-field class="full-width expand">
+                      <mat-label>   <i class="fas fa-file-signature"></i>
+                          Firstname
+                      </mat-label>
+                      <input matInput formControlName='firstName' id="firstNameId" placeholder="{{firstname}}" minlength="3" required>
+                  </mat-form-field>
+                  </p> 
+
+                  <p>
+                  <mat-form-field class="full-width expand">
+                      <mat-label>  <i class="fas fa-file-signature"></i>
+                          Lastname
+                      </mat-label>
+                      <input matInput formControlName='lastName' id="lastNameId" placeholder="{{lastName}}" minlength="5" required>
+                  </mat-form-field>
+                  </p>
+
+                  <p>
+                      <mat-form-field class="full-width expand">
+                          <mat-label> <i class="fas fa-envelope fa-1x"> </i>
+                              Email
+                          </mat-label>
+                          <input matInput formControlName='email'  id="emailId" placeholder="Email" pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required> 
+                      </mat-form-field>
+                  </p>
+
+                  <p>
+                      <mat-form-field class="full-width expand">
+                          <mat-label> <i class="fas fa-key fa-1x"> </i>
+                              Password
+                          </mat-label>
+                          <input matInput matTooltip= "Enter atleast 8 characters Uppercase,Lowercase and !@#$..." id="passwordId"  formControlName='password'  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,99}$" placeholder="password"  
+                              required>
+                      </mat-form-field>
+                  </p>
+                  
+                  <p>
+                      <mat-form-field class="full-width expand">
+                          <mat-label><i class="fas fa-user-lock"></i>
+                              SSN
+                          </mat-label>
+                          <input formControlName='ssn' matInput placeholder="ssn" (keyup)="ssnValidator()" id="ssnId" required>
+                      </mat-form-field>
+                  </p>
+
+                  <p>
+                      <mat-form-field class="full-width expand">
+                            
+                          <input id="accountValueId" formControlName="accountValue" matInput placeholder="AccountValue" type="number"  required>
+                          <span matPrefix>$&nbsp;</span>
+                          
+                      </mat-form-field>
+                  </p>  
+
+                  <p>
+                      <mat-form-field class="full-width expand">
+                          <mat-label> <i class="fas fa-mobile-alt"></i>
+                              Phone Number
+                          </mat-label>
+                          <input matInput formControlName="phone" id="phoneId" placeholder="{{phone}}"  (keyup)='phoneValidator()' minlength="12" required>
+                      </mat-form-field>
+                  </p>
+                  
+                  
+                     
+                        <p>
+                      <mat-form-field  class="full-width expand" appearance="outline">
+                          <mat-label> <i class="fas fa-credit-card"></i>
+                              Credit Card Number
+                          </mat-label>
+                          <input formControlName='creditcardno' matInput placeholder="creditcardno" (keyup)="cardValidator()" id="creditCardNoId"  maxlength="17" required>
+                        </mat-form-field>
+                      </p>
+                        
+                        <div>
+                      
+                                <mat-form-field class="full-width spacing" appearance="outline">
+                              <mat-label >
+                                  CVV
+                              </mat-label>
+                              <input matInput formControlName="cvv" id="cvvId"  placeholder="{{cvv}}" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
+                            </mat-form-field>
+                      
+                      
+                      
+                          <mat-form-field class="full-width spacing">
+                              <mat-label>Expiry Date</mat-label>
+                              <input matInput placeholder="MM-YYYY" formControlName="expirydate" id="expiryDateId" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required>
+                              
+                            </mat-form-field>
+                            
+                      </div>
+
+                   
+
+                  <!-- <p>
+                      <mat-form-field appearance="outline">
+                          <mat-label >
+                              CVV
+                          </mat-label>
+                          <input matInput formControlName="cvv" id="cvvId"  placeholder="cvv" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
+                  </mat-form-field>
+                  </p>
+
+                  <p>
+                      <mat-form-field class="full-width expand">
+                          <mat-label>Expiry Date</mat-label>
+                          <input matInput placeholder="MM-YYYY" formControlName="expirydate" id="expiryDateId" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required>
+                          
+                        </mat-form-field>
+                  </p>  -->
+
+                  <!-- Edit Code -->
+
+              <!-- <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label" for="firstNameId">First Name</label>
                 <div class="col-md-8">
-                  <input class="form-control w3-input" id="firstNameId" type="text" placeholder="{{firstname}}"
-                    formControlName="firstName" minlength="3" required/>
-        
-                </div>
+                  <input  class="form-control w3-input" id="firstNameId" type="text"  placeholder="{{firstname}}"
+                    formControlName="firstName" minlength="3" required /> -->
+                    
+                    <!-- <input matInput formControlName='firstName' placeholder="{{firstName}}" minlength="3" required> -->
+                <!-- </div>
               </div>
+
+              
         
               <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label" for="lastNameId">Last Name</label>
                 <div class="col-md-8">
                   <input class="form-control w3-input" id="lastNameId" type="text" placeholder="{{lastName}}"
-                    formControlName="lastName" minlength="5" required />
-                </div>
+                    formControlName="lastName" minlength="5" required /> -->
+                    <!-- <input matInput formControlName='lastName' placeholder="{{lastName}}" minlength="3" required>  -->
+                <!-- </div>
               </div>
         
               <div class="form-group row mb-2">
@@ -42,7 +162,7 @@
                       <label class="col-md-2 col-form-label" for="ssnId">SSN</label>
                       <div class="col-md-8">
                         <input class="form-control w3-input" id="ssnId" type="text" placeholder="{{ssn}}"
-                          formControlName="ssn" (keyup)="ssnValidator()" required/>
+                          formControlName="ssn"  (keyup)="ssnValidator()" required/>
                       </div>
                     </div>
         
@@ -58,18 +178,18 @@
               <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label" for="phoneId">Phone</label>
                 <div class="col-md-8">
-                  <input class="form-control w3-input" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" (keyup)='phoneValidator()' required />
+                  <input class="form-control w3-input" id="phoneId" type="tel" placeholder="{{phone}}" formControlName="phone" (keyup)="phoneValidator()"  required />
         
                 </div>
-              </div>
+              </div> -->
         
               <!-- Credit Card Details -->
 
               
-                  <div class="form-group row mb-2">
+                  <!-- <div class="form-group row mb-2">
                       <label class="col-md-2 col-form-label" for="creditCardNoId">Credit Card Number</label>
                       <div class="col-md-8">
-                        <input class="form-control w3-input" id="creditCardNoId" type="tel" placeholder="{{phone}}" formControlName="creditcardno" maxlength="16" required />
+                        <input class="form-control w3-input" id="creditCardNoId" type="tel" placeholder="{{phone}}" formControlName="creditcardno"  (keyup)="cardValidator()" required />
               
                       </div>
                     </div>
@@ -80,7 +200,7 @@
                   <div class="form-group row mb-2">
                       <label class="col-md-2 col-form-label" for="cvvId">CVV</label>
                       <div class="col-md-8">
-                        <input class="form-control w3-input" id="cvvId" type="tel" placeholder="{{phone}}" formControlName="cvv" />
+                        <input class="form-control w3-input" id="cvvId" type="tel" placeholder="{{phone}}" formControlName="cvv" (keyup)="cvvValidator()" required />
               
                       </div>
                     </div>
@@ -90,16 +210,10 @@
                   <div class="form-group row mb-2">
                       <label class="col-md-2 col-form-label" for="expiryDateId">Expiry Date</label>
                       <div class="col-md-8">
-                        <input class="form-control w3-input" id="expiryDateId" type="tel" placeholder="{{phone}}" formControlName="expirydate" />
-                        <!-- <input matInput [matDatepicker]="dp" placeholder="{{expirydate}}"  id="expiryDateId" formControlName="expirydate">
-                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                            <mat-datepicker #dp
-                                            startView="multi-year"
-                                           
-                                            panelClass="example-month-picker">
-                            </mat-datepicker> -->
+                        <input class="form-control w3-input" id="expiryDateId" type="tel" placeholder="{{phone}}" formControlName="expirydate" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required />
+                        
                       </div>
-                    </div>
+                    </div> -->
               
 
               
@@ -117,10 +231,14 @@
                   
               <div class="form-group row mb-2">
                   <div class="offset-md-2 col-md-4 middle" >
-                    <button class="btn btn-primary mr-3" id="saveButton" type="submit">
+                      
+                    <button class="btn btn-primary mr-3" id="saveButton"  type="submit" [disabled]="!userForm.valid">
+                        
           
                       Save
                     </button>
+                    
+                  
         
                 </div>
               </div>

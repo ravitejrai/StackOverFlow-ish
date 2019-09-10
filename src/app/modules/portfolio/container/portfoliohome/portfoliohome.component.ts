@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, MinLengthValidator, AbstractControl, ValidatorFn} from '@angular/forms';
 import { MessageService } from 'src/app/message.service';
 import { PortfolioAuthServiceService, User } from '../portfolio-auth-service.service';
 import { Router } from '@angular/router';
@@ -28,13 +28,13 @@ export class PortfoliohomeComponent implements OnInit {
       firstName: [''],
       lastName: [''],
        email: [''],
-       password: ['', [Validators.required]],
-       ssn: ['', [Validators.required]],
-       accountValue: ['', [Validators.required]],
-      phone: ['',  [Validators.required, Validators.maxLength(10)]],
-      creditcardno: ['',  [Validators.required]],
-      cvv: ['',  [Validators.required]],
-      expirydate: ['',  [Validators.required]],
+       password: [''],
+       ssn: [''],
+       accountValue: [''],
+      phone: [''],
+      creditcardno: [''],
+      cvv: [''],
+      expirydate: [''],
     });
 
     // const user = JSON.parse(localStorage.getItem('testObject'))
@@ -76,6 +76,8 @@ export class PortfoliohomeComponent implements OnInit {
 
     //   });
 
+    
+
     this.service.getUserDetails().subscribe((data) => {
       this.user = data;
       console.log(data,'on launch');
@@ -111,7 +113,14 @@ export class PortfoliohomeComponent implements OnInit {
   }
 
   save() {
-    console.log("entered save");
+
+    // if (this.userForm.invalid) {
+    //   document.getElementById('saveButton').className = "disable";
+    //  return;
+    // }
+    
+    
+    
     this.service.updateUserDetails(
       this.userForm.get('email').value,
       this.userForm.get('password').value,
@@ -138,7 +147,7 @@ export class PortfoliohomeComponent implements OnInit {
 
   phoneValidator() {
     var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
-    var x = (<HTMLInputElement>document.getElementById('phone'));
+    var x = (<HTMLInputElement>document.getElementById('phoneId'));
     var res = patt.test(x.value);
     if(!res){
      x.value = x.value
@@ -150,7 +159,7 @@ export class PortfoliohomeComponent implements OnInit {
 
   ssnValidator() {
     var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
-    var x = (<HTMLInputElement>document.getElementById("ssn"));
+    var x = (<HTMLInputElement>document.getElementById("ssnId"));
     var res = patt.test(x.value);
     if(!res){
      x.value = x.value
@@ -159,6 +168,32 @@ export class PortfoliohomeComponent implements OnInit {
          .replace(/-*$/g, '');
     }
  }
+
+
+ cardValidator() {
+  var patt = new RegExp("\d{4}[\-]\d{4}[\-]\d{4}[\-]\d{4}");
+  var x = (<HTMLInputElement>document.getElementById("creditCardNoId"));
+  var res = patt.test(x.value);
+  if(!res){
+   x.value = x.value
+       .match(/\d*/g).join('')
+       .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/).slice(1).join('-')
+       .replace(/-*$/g, '');
+  }
+}
+
+cvvValidator() {
+  var patt = new RegExp("\d{4}");
+  var x = (<HTMLInputElement>document.getElementById("cvvId"));
+  var res = patt.test(x.value);
+  if(!res){
+   x.value = x.value
+       .match(/\d*/g).join('')
+       .match(/(\d{0,4})/).slice(1).join('-')
+       .replace(/-*$/g, '');
+  }
+}
+
 
 }
 
