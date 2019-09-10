@@ -7,7 +7,7 @@
 
               
                   <p>
-                  <mat-form-field class="full-width">
+                  <mat-form-field class="full-width expand">
                       <mat-label>  
                           Firstname
                       </mat-label>
@@ -16,7 +16,7 @@
                   </p> 
 
                   <p>
-                  <mat-form-field class="full-width">
+                  <mat-form-field class="full-width expand">
                       <mat-label>  
                           Lastname
                       </mat-label>
@@ -25,7 +25,7 @@
                   </p>
 
                   <p>
-                      <mat-form-field class="full-width">
+                      <mat-form-field class="full-width expand">
                           <mat-label> <i class="fas fa-envelope fa-1x"> </i>
                               Email
                           </mat-label>
@@ -34,7 +34,7 @@
                   </p>
 
                   <p>
-                      <mat-form-field class="full-width">
+                      <mat-form-field class="full-width expand">
                           <mat-label> <i class="fas fa-key fa-1x"> </i>
                               Password
                           </mat-label>
@@ -44,7 +44,7 @@
                   </p>
                   
                   <p>
-                      <mat-form-field class="full-width">
+                      <mat-form-field class="full-width expand">
                           <mat-label><i class="fas fa-user-lock"></i>
                               SSN
                           </mat-label>
@@ -53,7 +53,7 @@
                   </p>
 
                   <p>
-                      <mat-form-field>
+                      <mat-form-field class="full-width expand">
                             
                           <input id="accountValueId" formControlName="accountValue" matInput placeholder="accountValue" type="number"  required>
                           <span matPrefix>$&nbsp;</span>
@@ -62,7 +62,7 @@
                   </p>  
 
                   <p>
-                      <mat-form-field class="full-width">
+                      <mat-form-field class="full-width expand">
                           <mat-label> <i class="fas fa-mobile-alt"></i>
                               PhoneNumber
                           </mat-label>
@@ -70,31 +70,54 @@
                       </mat-form-field>
                   </p>
                   
-                  <p>
-                      <mat-form-field appearance="outline">
+                  
+                     
+                        <p>
+                      <mat-form-field  class="full-width expand" appearance="outline">
                           <mat-label> <i class="fas fa-credit-card"></i>
                               CreditCardNumber
                           </mat-label>
                           <input formControlName='creditcardno' matInput placeholder="creditcardno" (keyup)="cardValidator()" id="creditCardNoId"  minlength="19" required>
                         </mat-form-field>
-                  </p> 
+                      </p>
+                        
+                        <div>
+                      
+                                <mat-form-field class="full-width spacing" appearance="outline">
+                              <mat-label >
+                                  CVV
+                              </mat-label>
+                              <input matInput formControlName="cvv" id="cvvId"  placeholder="cvv" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
+                            </mat-form-field>
+                      
+                      
+                      
+                          <mat-form-field class="full-width spacing">
+                              <mat-label>Expiry Date</mat-label>
+                              <input matInput placeholder="MM-YYYY" formControlName="expirydate" id="expiryDateId" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required>
+                              
+                            </mat-form-field>
+                            
+                      </div>
 
-                  <p>
+                   
+
+                  <!-- <p>
                       <mat-form-field appearance="outline">
                           <mat-label >
                               CVV
                           </mat-label>
-                          <input matInput formControlName="cvv" id="cvvId"  placeholder="cvv" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
+                          <input matInput formControlName="cvv" id="cvvId"  placeholder="cvv" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
                   </mat-form-field>
                   </p>
 
                   <p>
-                      <mat-form-field>
+                      <mat-form-field class="full-width expand">
                           <mat-label>Expiry Date</mat-label>
                           <input matInput placeholder="MM-YYYY" formControlName="expirydate" id="expiryDateId" pattern = "^((0|1)\d{1})-((19|20)\d{2})" required>
                           
                         </mat-form-field>
-                  </p> 
+                  </p>  -->
 
                   <!-- Edit Code -->
 
