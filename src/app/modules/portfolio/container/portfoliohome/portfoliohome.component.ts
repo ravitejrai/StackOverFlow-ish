@@ -82,15 +82,6 @@ export class PortfoliohomeComponent implements OnInit {
 
       });
 
-    // const user = JSON.parse(localStorage.getItem('testObject'));
-    // Object.entries(user).forEach(
-    //     ([key, value]) => {
-    //       switch(key) {
-    //         case "id":
-    //             this.myid = value;
-    //             break;
-    //       }
-    //     });
 
     // this.service.getUserDetails(this.myid).subscribe((data) => {
     //   this.user = data;
