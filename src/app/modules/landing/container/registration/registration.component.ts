@@ -62,7 +62,7 @@ oncheck(){
  onRegitration(){
   this.auth.getDetails().subscribe((data: any[]) => {
     // tslint:disable-next-line: prefer-for-of
-    if(data == [] || data.length == 0) {
+    if(!data.length) {
       this.oncheck();
     }
     else {
