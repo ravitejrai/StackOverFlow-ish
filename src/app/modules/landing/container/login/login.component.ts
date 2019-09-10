@@ -24,10 +24,9 @@ export class LoginComponent implements OnInit {
 
    /** display error message */
   errorMessage: string;
-  loginLabel: string = 'Log in';
 
    /** Injecting services */
-  constructor(private router: Router, private loginPageService: LoginPageService, 
+  constructor(private router: Router, private loginPageService: LoginPageService,
               public dialogRef: MatDialogRef<LayoutComponent>,
               private routerGaurd: RouteGaurdService) { }
 
@@ -36,54 +35,39 @@ export class LoginComponent implements OnInit {
 
   /** function triggers on Submit */
   login() {
-    // if(this.loginLabel ==='Log in'){
-    //    this.routerGaurd.login();
-    //    this.loginLabel = 'Log out';
-      
-    //  } else {
-    //    this.routerGaurd.logout();
-      
-    //    this.loginLabel = 'Log in';
-    //    this.router.navigate(['/'])
-      
-    //  }
-    console.log(this.loginLabel, "login label")
-    if(this.email == undefined || this.password == undefined){
-      this.errorMessage = 'Please enter Email Id/ password.'
-    }else {
+    if (this.email === undefined || this.password === undefined) {
+      this.errorMessage = 'Please enter Email Id/ password.';
+    } else {
 
     /**  calls the service which has http.get logic and subscribes to the response */
-    this.loginPageService.getUserDetails().subscribe((data) =>{
+    this.loginPageService.getUserDetails().subscribe((data) => {
 
       this.users = data;
-
-      /**loops through the Json object untill matched record is found */
+      /* *loops through the Json object untill matched record is found */
       this.users.forEach((element) => {
-      
-        if( (this.email == element.email) && (this.password == element.password) )  {
+        console.log(element);
+        if ( (this.email === element.email) && (this.password === element.password) )  {
           this.routerGaurd.login();
-          console.log('element...',element)
+          console.log('element...', element);
           localStorage.setItem('testObject', JSON.stringify(element));
-          this.dialogRef.close(); //closing login Dialog box
-          
-          this.router.navigate(['/dashboard']); //navigating to dashboard
-          //break;
+          this.dialogRef.close(); // closing login Dialog box
+
+          this.router.navigate(['/dashboard']); // navigating to dashboard
 
         } else {
-          
+
           this.errorMessage = 'Email id or Password is incorrect. Please try again.';
-          this.routerGaurd.logout();
+          // this.routerGaurd.logout();
         }
-      })
+      });
     }, error => {
 
-         console.log(error,'inside ......');
-         this.handleError(error); //handling error
+         console.log(error, 'inside ......');
+         this.handleError(error); // handling error
 
-        })
+        });
       }
   }
-  
   private handleError(errorResponse: HttpErrorResponse) {
     // client side or server error
     if (errorResponse.error instanceof ErrorEvent) {
