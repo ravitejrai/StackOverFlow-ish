@@ -8,7 +8,7 @@
               
                   <p>
                   <mat-form-field class="full-width expand">
-                      <mat-label>  
+                      <mat-label>   <i class="fas fa-file-signature"></i>
                           Firstname
                       </mat-label>
                       <input matInput formControlName='firstName' id="firstNameId" placeholder="{{firstname}}" minlength="3" required>
@@ -17,7 +17,7 @@
 
                   <p>
                   <mat-form-field class="full-width expand">
-                      <mat-label>  
+                      <mat-label>  <i class="fas fa-file-signature"></i>
                           Lastname
                       </mat-label>
                       <input matInput formControlName='lastName' id="lastNameId" placeholder="{{lastName}}" minlength="5" required>
@@ -55,7 +55,7 @@
                   <p>
                       <mat-form-field class="full-width expand">
                             
-                          <input id="accountValueId" formControlName="accountValue" matInput placeholder="accountValue" type="number"  required>
+                          <input id="accountValueId" formControlName="accountValue" matInput placeholder="AccountValue" type="number"  required>
                           <span matPrefix>$&nbsp;</span>
                           
                       </mat-form-field>
@@ -64,7 +64,7 @@
                   <p>
                       <mat-form-field class="full-width expand">
                           <mat-label> <i class="fas fa-mobile-alt"></i>
-                              PhoneNumber
+                              Phone Number
                           </mat-label>
                           <input matInput formControlName="phone" id="phoneId" placeholder="{{phone}}"  (keyup)='phoneValidator()' minlength="12" required>
                       </mat-form-field>
@@ -75,9 +75,9 @@
                         <p>
                       <mat-form-field  class="full-width expand" appearance="outline">
                           <mat-label> <i class="fas fa-credit-card"></i>
-                              CreditCardNumber
+                              Credit Card Number
                           </mat-label>
-                          <input formControlName='creditcardno' matInput placeholder="creditcardno" (keyup)="cardValidator()" id="creditCardNoId"  minlength="19" required>
+                          <input formControlName='creditcardno' matInput placeholder="creditcardno" (keyup)="cardValidator()" id="creditCardNoId"  maxlength="17" required>
                         </mat-form-field>
                       </p>
                         
@@ -87,7 +87,7 @@
                               <mat-label >
                                   CVV
                               </mat-label>
-                              <input matInput formControlName="cvv" id="cvvId"  placeholder="cvv" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
+                              <input matInput formControlName="cvv" id="cvvId"  placeholder="{{cvv}}" class="example-right-align" (keyup)="cvvValidator()" style="margin-right:20px" minlength="3"  required>
                             </mat-form-field>
                       
                       
