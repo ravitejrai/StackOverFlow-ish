@@ -10,6 +10,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatTooltipModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @NgModule({
@@ -21,7 +24,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatExpansionModule,
     MatToolbarModule,
     MatTabsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    FlexLayoutModule
+    
   ]
 })
 export class PortfolioModule { }

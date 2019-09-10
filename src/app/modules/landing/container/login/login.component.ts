@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
     this.loginPageService.getUserDetails().subscribe((data) => {
 
       this.users = data;
+      console.log(data,"....data...")
+
       /* *loops through the Json object untill matched record is found */
       this.users.forEach((element) => {
         console.log(element);

@@ -28,7 +28,7 @@ export class PortfolioAuthServiceService {
 
 
 
-  updateUserDetails(email, password, firstName, lastName, phonenumber, ssn, creditcardnumber, date, amount, cvv ){
+  updateUserDetails(password, firstName, lastName, phonenumber, ssn, creditcardnumber, date, cvv ){
       const httpOptions = {
       headers : new HttpHeaders({
         'Content-Type': 'application/json',
@@ -36,7 +36,6 @@ export class PortfolioAuthServiceService {
       })
     };
       const putData = { 
-        email:email,
         password:password,
         firstName: firstName,
         lastName: lastName,
@@ -44,10 +43,9 @@ export class PortfolioAuthServiceService {
         ssn: ssn,
         creditCardNumber:creditcardnumber,
         date:date,
-        amount:amount,
         cvv:cvv
       };
-      return this.http.put(`http://localhost:3000/users/${this.id}`,putData,httpOptions)
+      return this.http.patch(`http://localhost:3000/users/${this.id}`,putData,httpOptions)
     }
 
     getStockDetails():Observable<Stock[]> {
@@ -55,8 +53,8 @@ export class PortfolioAuthServiceService {
       return this.http.get<Stock[]>(`http://localhost:3000/orders?email=${this.email}`)
     }
 
-    getUserDetails():Observable<User> {
-      return this.http.get<User>(`http://localhost:3000/users/${this.id}`)
+    getUserDetails(myid):Observable<User> {
+      return this.http.get<User>(`http://localhost:3000/users/${myid}`)
     }
 }
 
