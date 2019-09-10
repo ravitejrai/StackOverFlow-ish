@@ -23,7 +23,7 @@ imports: [HttpClientTestingModule]
 it('testing http get for registration details', inject([HttpTestingController,AuthService],(httpMock: HttpTestingController, service: AuthService)=>{
     const mockData = [
       {
-        "email": "manogna.madineni6@gmail.com",
+        "email": "kudani@virtua.com",
         "password": "Passwoerrcdf12",
         "firstName": "arg",
         "lastName": "madineni",
@@ -35,24 +35,12 @@ it('testing http get for registration details', inject([HttpTestingController,Au
         "amount": 123,
         "id": 1
       },
-      {
-        "email": "xzcvxcv@gmail.com",
-        "password": "Password@123",
-        "firstName": "zcvcxz",
-        "lastName": "xvcxb",
-        "phonenumber": "432-353-44567",
-        "ssn": "214-23-54357",
-        "creditCardNumber": "3223-5656-4565-46656",
-        "date": "09-2019",
-        "cvv": "23244",
-        "amount": 34535,
-        "id": 2
-      }
+     
     ];
     
     service.getDetails().subscribe(mockData => {
      
-      expect(mockData[1].email).toBe("xzcvxcv@gmail.com");
+      expect(mockData[0].email).toBe("kudani@virtua.com");
 
     });
 // We set the expectations for the HttpClient mock
@@ -69,19 +57,7 @@ req.flush(mockData);
 
   it('testing http get for registration', inject([HttpTestingController,AuthService],(httpMock: HttpTestingController, service: AuthService)=>{
     const mockData = [
-      {
-        "email": "manogna.madineni6@gmail.com",
-        "password": "Passwoerrcdf12",
-        "firstName": "arg",
-        "lastName": "madineni",
-        "phonenumber": "5182568300",
-        "ssn": "232-43-24322",
-        "creditCardNumber": "4324-3543-5465-476568",
-        "date": "09-2019",
-        "cvv": "234334",
-        "amount": 123,
-        "id": 1
-      },
+    
       {
         "email": "xzcvxcv@gmail.com",
         "password": "Password@123",
@@ -93,13 +69,13 @@ req.flush(mockData);
         "date": "09-2019",
         "cvv": "23244",
         "amount": 34535,
-        "id": 2
+        "id": 1
       }
     ];
     
     service.getUserDetails("xzcvxcv@gmail.com", "Password@123", "zcvcxz", "xvcxb", "432-353-44567", "214-23-54357","3223-5656-4565-46656", "09-2019", "23244" , 34535 ).subscribe(mockData => {
      
-      expect(mockData[1].email).toBe("xzcvxcv@gmail.com");
+      expect(mockData[0].email).toBe("xzcvxcv@gmail.com");
 
     });
 // We set the expectations for the HttpClient mock
