@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchstockComponent } from './searchstock.component';
+import { BuysellModule } from '../../buysell.module';
+import { AppModule } from 'src/app/app.module';
+
 
 describe('SearchstockComponent', () => {
   let component: SearchstockComponent;
@@ -8,7 +10,9 @@ describe('SearchstockComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchstockComponent ]
+      declarations: [ SearchstockComponent ],
+      imports: [AppModule, BuysellModule],
+      providers: []
     })
     .compileComponents();
   }));
@@ -22,4 +26,5 @@ describe('SearchstockComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

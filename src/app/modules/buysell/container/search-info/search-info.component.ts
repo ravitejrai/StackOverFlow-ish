@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { SearchstockService, Orders } from '../searchstock/searchstock.service';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { SearchstockService, Orders, Stock } from '../searchstock/searchstock.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SearchstockComponent } from '../searchstock/searchstock.component';
 
 @Component({
   selector: 'app-buy-sell-info',
@@ -10,9 +11,12 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 })
 export class SearchInfoComponent implements OnInit {
   orderItems: Orders[] = [];
+  secondStockItems: Stock[] = [];
   displayedOrderColumns: any;
   isDisabled = false;
   ordersDataSourceJson: any;
+  stockDataJson: any;
+  displayedColumns: any;
 
   /**
    * @param StockList The service for connecting with backend data
@@ -34,9 +38,24 @@ export class SearchInfoComponent implements OnInit {
     const param = this.route.snapshot.paramMap.get('name');
     if (param) {
       this.getOrder(param);
+      this.getStockDetails(param);
     }
   }
 
+/**
+ * This functions maps the returned data to columns in our
+ * table and also calls the checkOrderResponse function which
+ * checks for the name and emailid.
+ * @param name cannot be null
+ */
+  getStockDetails(name: string) {
+    this.StockList.getProduct(name).subscribe(response => {
+      this.secondStockItems = response;
+      console.log(response);
+      this.displayedColumns = ['id', 'name', 'price'];
+      this.stockDataJson = new MatTableDataSource(this.secondStockItems);
+    });
+  }
  /**
   * This functions maps the returned data to columns in our
   * table and also calls the checkOrderResponse function which 
@@ -62,7 +81,8 @@ export class SearchInfoComponent implements OnInit {
    */
   checkOrderResponse(dataResponse: any[], name: string) {
     if (dataResponse.length === 0 || dataResponse === null) {
-      throw new Error('The response was empty or null');
+      this.isDisabled = true;
+      alert('There is no data to be shown');
     }
     for (const entry of dataResponse) {
         const result = new Array(entry);
