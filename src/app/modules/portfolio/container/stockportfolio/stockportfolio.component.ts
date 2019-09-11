@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioAuthServiceService , Stock } from '../portfolio-auth-service.service';
+import { PortfolioAuthServiceService , Stock, User } from '../portfolio-auth-service.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs';
 
@@ -11,12 +11,14 @@ import { Observable } from 'rxjs';
 export class StockportfolioComponent implements OnInit {
   stocks$:Observable<Stock[]>;
   email:any;
+  user:User;
   constructor(  private DataService:PortfolioAuthServiceService) { }
 
   ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('testObject'))
+    console.log(JSON.parse(localStorage.getItem('testObject')));
+    this.user = JSON.parse(localStorage.getItem('testObject'))
     //console.log(user,"**after**")
-    Object.entries(user).forEach(
+    Object.entries(this.user).forEach(
       ([key, value]) => {
         switch(key) {
           case "email":

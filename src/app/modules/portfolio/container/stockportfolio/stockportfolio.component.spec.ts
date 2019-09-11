@@ -20,7 +20,7 @@ const fakeStock =
 }
 
 class fakePortfolioService {
-  getStockDetails(): Observable<Stock[]> {
+  getStockDetails(email): Observable<Stock[]> {
     return of([fakeStock]);
   }
 }
@@ -30,6 +30,16 @@ describe('StockportfolioComponent', () => {
   let fixture: ComponentFixture<StockportfolioComponent>;
 
   beforeEach(async(() => {
+    var store = {};
+
+    spyOn(localStorage, 'getItem').and.callFake( (key:string):string => {
+     return store[key] || null;
+    });
+
+    spyOn(localStorage, 'setItem').and.callFake((key:string, value:string):string =>  {
+      return store[key] = <string>value;
+    });
+
     TestBed.configureTestingModule({
       declarations: [ StockportfolioComponent ],
       imports:[MatExpansionModule,RouterTestingModule,HttpClientTestingModule,AppModule],
@@ -43,16 +53,32 @@ describe('StockportfolioComponent', () => {
     .compileComponents();
   }));
 
+  const testObject = {
+    email: "tom@gmail.com",
+    password: "Password@12",
+    firstName: "tom",
+    lastName: "holleren",
+    phonenumber: "678-688-78798",
+    ssn: "678-67-8789789",
+    creditCardNumber: "6786-7869-8778",
+    date: "09-2018",
+    cvv: "123",
+    amount: 100500,
+    id: 1
+  }
+  
+
   beforeEach(() => {
     fixture = TestBed.createComponent(StockportfolioComponent);
     component = fixture.componentInstance;
+    localStorage.setItem('testObject',JSON.stringify(testObject));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Get data through service', () => {
+  fit('Get data through service', () => {
     fixture.detectChanges();
     component.stocks$.subscribe((data) => {
       console.log(data[0]);
