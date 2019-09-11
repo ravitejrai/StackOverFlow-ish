@@ -105,7 +105,7 @@ describe('RegistrationComponent', () => {
     
 // });
 
-fit('should check the post call data', () => {
+it('should check the post call data', () => {
   //spyOn(component,'onRegistration').and.callThrough();
   var spy = spyOn(component,'oncheck').and.callThrough();
   component.onRegitration();
@@ -113,7 +113,7 @@ fit('should check the post call data', () => {
   expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
 });
 
-fit('should check the post call data', () => {
+it('should check the post call data', () => {
     spyOn(component,'handleError').and.callThrough();
   const mockedservice= fixture.debugElement.injector.get(dummyService);
 const usergetdetailsMockedcall = spyOn(mockedservice,'getUserDetails').and.returnValue(throwError({status: 'some error'}));
