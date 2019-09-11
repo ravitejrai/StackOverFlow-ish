@@ -10,10 +10,23 @@ import { Observable } from 'rxjs';
 })
 export class StockportfolioComponent implements OnInit {
   stocks$:Observable<Stock[]>;
+  email:any;
   constructor(  private DataService:PortfolioAuthServiceService) { }
 
   ngOnInit() {
-    this.stocks$ = this.DataService.getStockDetails();
+    const user = JSON.parse(localStorage.getItem('testObject'))
+    //console.log(user,"**after**")
+    Object.entries(user).forEach(
+      ([key, value]) => {
+        switch(key) {
+          case "email":
+              this.email = value;
+              break;
+        }
+
+      });
+
+    this.stocks$ = this.DataService.getStockDetails(this.email);
     this.stocks$.subscribe((data) => {
       if(data.length ==0) {
         document.getElementById('header').className="disable";

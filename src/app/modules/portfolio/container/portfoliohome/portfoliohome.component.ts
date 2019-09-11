@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class PortfoliohomeComponent implements OnInit {
   users:User[]=[];
   userForm : FormGroup;
-  myid:any;
+  id:any;
 
 
   constructor( private fb: FormBuilder, private service:PortfolioAuthServiceService, private router:Router) { 
@@ -73,7 +73,7 @@ export class PortfoliohomeComponent implements OnInit {
               this.userForm.patchValue({cvv:value});
                 break;
           case "id":
-              this.myid = value;
+              this.id = value;
                 break;
         }
 
@@ -106,7 +106,8 @@ export class PortfoliohomeComponent implements OnInit {
     this.userForm.get('ssn').value,
     this.userForm.get('creditcardno').value,
     this.userForm.get('expirydate').value,
-    this.userForm.get('cvv').value
+    this.userForm.get('cvv').value,
+    this.id
     );
 
     updateUser$.subscribe((data) => {
