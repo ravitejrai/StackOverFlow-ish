@@ -9,15 +9,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./stockportfolio.component.scss']
 })
 export class StockportfolioComponent implements OnInit {
-
-  stocks:Stock[]=[];
   stocks$:Observable<Stock[]>;
   constructor(  private DataService:PortfolioAuthServiceService) { }
 
   ngOnInit() {
     this.stocks$ = this.DataService.getStockDetails();
-    this.DataService.getStockDetails().subscribe((data) => {
-      this.stocks=data;
+    this.stocks$.subscribe((data) => {
       if(data.length ==0) {
         document.getElementById('header').className="disable";
         alert("No Stocks available");
