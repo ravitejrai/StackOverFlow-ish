@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, MinLengthValidator, AbstractControl, ValidatorFn} from '@angular/forms';
-import { MessageService } from 'src/app/message.service';
 import { PortfolioAuthServiceService, User } from '../portfolio-auth-service.service';
 import { Router } from '@angular/router';
-import { concatMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,10 +10,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./portfoliohome.component.scss']
 })
 export class PortfoliohomeComponent implements OnInit {
-  user:User;
+  users:User[]=[];
   userForm : FormGroup;
-  myid:any;
-  private isButtonVisible = true;
+  id:any;
 
 
   constructor( private fb: FormBuilder, private service:PortfolioAuthServiceService, private router:Router) { 
@@ -76,34 +73,17 @@ export class PortfoliohomeComponent implements OnInit {
               this.userForm.patchValue({cvv:value});
                 break;
           case "id":
-              this.myid = value;
+              this.id = value;
                 break;
         }
 
       });
 
-
-    // this.service.getUserDetails(this.myid).subscribe((data) => {
-    //   this.user = data;
-    //   console.log(data,'on launch');
-    //   this.userForm.patchValue({email:this.user.email});
-    //   this.userForm.patchValue({firstName:this.user.firstName});
-    //   this.userForm.patchValue({lastName:this.user.lastName});
-    //   this.userForm.patchValue({password:this.user.password});
-    //   this.userForm.patchValue({phone:this.user.phonenumber});
-    //   this.userForm.patchValue({ssn:this.user.ssn});
-    //   this.userForm.patchValue({creditcardno:this.user.creditCardNumber});
-    //   this.userForm.patchValue({expirydate:this.user.date});
-    //   this.userForm.patchValue({accountValue:this.user.amount});
-    //   this.userForm.patchValue({cvv:this.user.cvv});
-    // });
     
     this.userForm.disable();
     
     document.getElementById('saveButton').className = "disable";
     document.getElementById('editButton').className = "enable";
-    // this.userForm.patchValue({phone:'12345'});
-    //this.userForm.setValue({phone : '12345'});
   }
 
   
@@ -126,46 +106,18 @@ export class PortfoliohomeComponent implements OnInit {
     this.userForm.get('ssn').value,
     this.userForm.get('creditcardno').value,
     this.userForm.get('expirydate').value,
-    this.userForm.get('cvv').value
+    this.userForm.get('cvv').value,
+    this.id
     );
 
-    //const getUser = (data) => this.service.getUserDetails(data);
-
-    updateUser$.pipe(
-      concatMap((data) => this.service.getUserDetails(data.id))
-    ).subscribe((finalVal) => {
+    updateUser$.subscribe((data) => {
         this.userForm.disable();
-        console.log(finalVal, 'get calll');
-        localStorage.setItem('testObject',JSON.stringify(finalVal));
+        console.log(data, 'get calll');
+        localStorage.setItem('testObject',JSON.stringify(data));
         alert("User Details Sucessfully updated");
         this.router.navigateByUrl('/dashboard/portfolio/userportfolio');
         window.location.reload();
     });
-
-    
-  //   this.service.updateUserDetails(
-  //     this.userForm.get('password').value,
-  //     this.userForm.get('firstName').value,
-  //     this.userForm.get('lastName').value,
-  //     this.userForm.get('phone').value,
-  //     this.userForm.get('ssn').value,
-  //     this.userForm.get('creditcardno').value,
-  //     this.userForm.get('expirydate').value,
-  //     this.userForm.get('cvv').value,
-  //  ).subscribe((data)=>{
-  //     this.userForm.disable();
-  //     // console.log("Entered save success function");
-  //     this.service.getUserDetails().subscribe((data)=> {
-  //       console.log(data, 'get calll');
-  //       localStorage.setItem('testObject',JSON.stringify(data));
-  //       console.log(JSON.parse(localStorage.getItem('testObject')),'local');
-  //       alert("User Details Sucessfully updated");
-  //       //this.router.navigateByUrl('/dashboard/home');
-  //       this.router.navigateByUrl('/dashboard/portfolio/userportfolio');
-  //       window.location.reload();
-  //     });
-      
-  //   });
   }
 
   phoneValidator() {
