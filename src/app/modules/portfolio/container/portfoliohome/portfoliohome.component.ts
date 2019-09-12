@@ -25,16 +25,16 @@ export class PortfoliohomeComponent implements OnInit {
 
 
     this.userForm= this.fb.group({
-      firstName: [''],
-      lastName: [''],
-       email: [''],
-       password: [''],
-       ssn: [''],
+      firstName: ['',[Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required]],
+       email: ['', [Validators.required,Validators.maxLength(10),Validators.pattern("[0-9]+")]],
+       password: ['', [Validators.required]],
+       ssn: ['', [Validators.required,Validators.pattern("^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-9]{4}$")]],
        accountValue: [''],
-      phone: [''],
-      creditcardno: [''],
-      cvv: [''],
-      expirydate: [''],
+      phone: ['', [Validators.required,Validators.maxLength(10),Validators.pattern("[0-9]+")]],
+      creditcardno: ['', [Validators.required,Validators.pattern("^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$")]],
+      cvv: ['', [Validators.required,Validators.pattern("^([0-9]{3,4})$")]],
+      expirydate: ['', [Validators.required]],
     });
 
     const user = JSON.parse(localStorage.getItem('testObject'))
@@ -120,54 +120,54 @@ export class PortfoliohomeComponent implements OnInit {
     });
   }
 
-  phoneValidator() {
-    var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
-    var x = (<HTMLInputElement>document.getElementById('phoneId'));
-    var res = patt.test(x.value);
-    if(!res){
-     x.value = x.value
-         .match(/\d*/g).join('')
-         .match(/(\d{0,3})(\d{0,3})(\d{0,4})/).slice(1).join('-')
-         .replace(/-*$/g, '');
-    }
-  }
+//   phoneValidator() {
+//     var patt = new RegExp("\d{3}[\-]\d{3}[\-]\d{4}");
+//     var x = (<HTMLInputElement>document.getElementById('phoneId'));
+//     var res = patt.test(x.value);
+//     if(!res){
+//      x.value = x.value
+//          .match(/\d*/g).join('')
+//          .match(/(\d{0,3})(\d{0,3})(\d{0,4})/).slice(1).join('-')
+//          .replace(/-*$/g, '');
+//     }
+//   }
 
-  ssnValidator() {
-    var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
-    var x = (<HTMLInputElement>document.getElementById("ssnId"));
-    var res = patt.test(x.value);
-    if(!res){
-     x.value = x.value
-         .match(/\d*/g).join('')
-         .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
-         .replace(/-*$/g, '');
-    }
- }
+//   ssnValidator() {
+//     var patt = new RegExp("\d{3}[\-]\d{2}[\-]\d{4}");
+//     var x = (<HTMLInputElement>document.getElementById("ssnId"));
+//     var res = patt.test(x.value);
+//     if(!res){
+//      x.value = x.value
+//          .match(/\d*/g).join('')
+//          .match(/(\d{0,3})(\d{0,2})(\d{0,4})/).slice(1).join('-')
+//          .replace(/-*$/g, '');
+//     }
+//  }
 
 
- cardValidator() {
-  var patt = new RegExp("\d{4}[\-]\d{4}[\-]\d{4}[\-]\d{4}");
-  var x = (<HTMLInputElement>document.getElementById("creditCardNoId"));
-  var res = patt.test(x.value);
-  if(!res){
-   x.value = x.value
-       .match(/\d*/g).join('')
-       .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/).slice(1).join('-')
-       .replace(/-*$/g, '');
-  }
-}
+//  cardValidator() {
+//   var patt = new RegExp("\d{4}[\-]\d{4}[\-]\d{4}[\-]\d{4}");
+//   var x = (<HTMLInputElement>document.getElementById("creditCardNoId"));
+//   var res = patt.test(x.value);
+//   if(!res){
+//    x.value = x.value
+//        .match(/\d*/g).join('')
+//        .match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/).slice(1).join('-')
+//        .replace(/-*$/g, '');
+//   }
+// }
 
-cvvValidator() {
-  var patt = new RegExp("\d{4}");
-  var x = (<HTMLInputElement>document.getElementById("cvvId"));
-  var res = patt.test(x.value);
-  if(!res){
-   x.value = x.value
-       .match(/\d*/g).join('')
-       .match(/(\d{0,4})/).slice(1).join('-')
-       .replace(/-*$/g, '');
-  }
-}
+// cvvValidator() {
+//   var patt = new RegExp("\d{4}");
+//   var x = (<HTMLInputElement>document.getElementById("cvvId"));
+//   var res = patt.test(x.value);
+//   if(!res){
+//    x.value = x.value
+//        .match(/\d*/g).join('')
+//        .match(/(\d{0,4})/).slice(1).join('-')
+//        .replace(/-*$/g, '');
+//   }
+// }
 
 
 }
