@@ -13,7 +13,7 @@ export class PortfoliohomeComponent implements OnInit {
   users:User[]=[];
   userForm : FormGroup;
   id:any;
-
+  updateUser$:Observable<any>;
 
   constructor( private fb: FormBuilder, private service:PortfolioAuthServiceService, private router:Router) { 
 
@@ -98,7 +98,7 @@ export class PortfoliohomeComponent implements OnInit {
   }
 
   save() {   
-    const updateUser$:Observable<any> = this.service.updateUserDetails(
+    this.updateUser$= this.service.updateUserDetails(
     this.userForm.get('password').value,
     this.userForm.get('firstName').value,
     this.userForm.get('lastName').value,
@@ -110,7 +110,7 @@ export class PortfoliohomeComponent implements OnInit {
     this.id
     );
 
-    updateUser$.subscribe((data) => {
+    this.updateUser$.subscribe((data) => {
         this.userForm.disable();
         console.log(data, 'get calll');
         localStorage.setItem('testObject',JSON.stringify(data));
