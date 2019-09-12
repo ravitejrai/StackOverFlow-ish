@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testi
 import { LoginComponent } from './login.component';
 import { LoginPageService } from './login-page.service';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { MatDialogRef } from '@angular/material';
 import { RouteGaurdService } from 'src/app/route-gaurd.service';
 import { LayoutComponent } from '../layout/layout.component';
@@ -136,5 +136,21 @@ describe('LoginComponent', () => {
     expect(cmp.email).toBeFalsy();
     expect(cmp.password).toBeFalsy();
   });
+
+  it('Form should throw new exception', async() => {
+    // arrange
+    fixture.detectChanges();
+    // set form model
+    cmp.email = fakeUserData[0].email;
+    cmp.password = fakeUserData[0].password;
+    spyOn(logInPageSvc,'getUserDetails').and.returnValue(throwError({status: 404}));
+    var spy = spyOn(cmp,'handleError').and.callThrough();
+    // act
+    cmp.login();
+    fixture.detectChanges();
+    // assert
+    expect(spy).toHaveBeenCalled();
+  });
+
 });
 

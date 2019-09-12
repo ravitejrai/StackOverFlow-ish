@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTooltipModule,
     MatExpansionModule,
     MatDatepickerModule,
-    BrowserAnimationsModule
+   
   ]
 })
 export class LandingModule { }

@@ -14,12 +14,12 @@ describe('LoginPageService', () => {
   });
 });
 
-  it('should be created', () => {
+  fit('should be created', () => {
     const service: LoginPageService = TestBed.get(LoginPageService);
     expect(service).toBeTruthy();
   });
 
-  it('testing http get', inject([HttpTestingController,LoginPageService],(httpMock: HttpTestingController, loginPageService: LoginPageService)=>{
+  fit('testing http get', inject([HttpTestingController,LoginPageService],(httpMock: HttpTestingController, loginPageService: LoginPageService)=>{
     const mockData = [
       {
         "email": "manogna.madineni6@gmail.com",
