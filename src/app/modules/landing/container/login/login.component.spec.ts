@@ -78,12 +78,12 @@ describe('LoginComponent', () => {
   });
 
   // Test for creating the component
-  it('Should Create the component', async () => {
+  fit('Should Create the component', async () => {
     // assert
     expect(cmp).toBeTruthy();
   });
   // Test for initial form validation
-  it('Form should be invaliod onInit', async () => {
+  fit('Form should be invaliod onInit', async () => {
     // arrange
     fixture.detectChanges();
     // assert
@@ -91,7 +91,7 @@ describe('LoginComponent', () => {
     expect(cmp.password).toBe(undefined);
   });
   // Test for router navigation to Dashboard after successful login
-  it('Form should navigate to dashboard on successful login', async () => {
+  fit('Form should navigate to dashboard on successful login', async () => {
     // arrange
     fixture.detectChanges();
     // set form model
@@ -107,7 +107,7 @@ describe('LoginComponent', () => {
 
   });
   // Test for invalid user Email/ passeord
-  it('Form should display error message saying EmailId/ Password is not entered.', async() => {
+  fit('Form should display error message saying EmailId/ Password is not entered.', async() => {
     // arrange
     fixture.detectChanges();
     // set form modal
@@ -122,7 +122,7 @@ describe('LoginComponent', () => {
     expect(cmp.password).toBeFalsy();
   });
   // Throw exception on error
-  it('Form should throw new exception', async() => {
+  fit('Form should throw new exception', async() => {
     // arrange
     fixture.detectChanges();
     // set form model
@@ -137,7 +137,7 @@ describe('LoginComponent', () => {
     expect(cmp.password).toBeFalsy();
   });
 
-  it('Form should throw new exception', async() => {
+  fit('Form should throw new exception', async() => {
     // arrange
     fixture.detectChanges();
     // set form model
@@ -153,4 +153,3 @@ describe('LoginComponent', () => {
   });
 
 });
-

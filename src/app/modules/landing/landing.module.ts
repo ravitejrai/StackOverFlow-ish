@@ -12,7 +12,6 @@ import { LearnrxjsComponent } from './container/learnrxjs/learnrxjs.component';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FlexLayoutModule,
     MatTooltipModule,
     MatExpansionModule,
-    MatDatepickerModule,
-   
+    MatDatepickerModule
   ]
 })
 export class LandingModule { }
