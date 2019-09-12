@@ -78,7 +78,7 @@ describe('StockportfolioComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('Get data through service', () => {
+  it('Get data through service', () => {
     fixture.detectChanges();
     component.stocks$.subscribe((data) => {
       console.log(data[0]);
