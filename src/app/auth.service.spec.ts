@@ -78,14 +78,14 @@ req.flush(mockData);
       expect(mockData[0].email).toBe("xzcvxcv@gmail.com");
 
     });
-// We set the expectations for the HttpClient mock
-const req = httpMock.expectOne('http://localhost:3000/users');
-expect(req.request.method).toEqual('POST');
+    // We set the expectations for the HttpClient mock
+    const req = httpMock.expectOne('http://localhost:3000/users');
+    expect(req.request.method).toEqual('POST');
 
-// Then we set the fake data to be returned by the mock
-req.flush(mockData);
+    // Then we set the fake data to be returned by the mock
+    req.flush(mockData);
 
-  })
-  
+      })
+      
   );
 });
