@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders ,HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap, count, map } from 'rxjs/operators';
 
 @Injectable({
@@ -8,14 +8,37 @@ import { tap, count, map } from 'rxjs/operators';
 })
 
 export class SearchstockService {
+  static findOne(arg0: string): any {
+    throw new Error("Method not implemented.");
+  }
+  static all(): any {
+    throw new Error("Method not implemented.");
+  }
 
   private stocksUrl ='http://localhost:3000/stocks';
   private ordersUrl ='http://localhost:3000/orders';
   name: any;
   id: any;
   stockName: string;
+<<<<<<< HEAD
   userEmail: string;
   stockdata: Observable<Orders[]>;
+=======
+
+  // Tried mocking data for getting stock list
+  StockList: Array<object> = [ 
+    {
+      id: 1,
+      name: 'Appple',
+      price: 2508,
+    },
+    {
+      id: 2,
+      name: 'Amazon',
+      price:1907,
+    }
+  ];
+>>>>>>> origin/master
 
   /**
    * Parameterized constructor to fetch the backend data
@@ -23,6 +46,17 @@ export class SearchstockService {
    * @param http used for adding stocks
    */
     constructor(private StockService: HttpClient, private http: HttpClient) {}
+
+// Trying to select all stocks by mocking 
+    all(): Observable<Array<object>> {
+      return of(this.StockList);
+    }
+    findOne(id: string): Observable<object> {
+      const stock = this.StockList.find((s: any) => {
+        return s.id === id;
+      });
+      return of(stock);
+    }
 
   /**
    * This function returns the data from the fake json
@@ -137,11 +171,9 @@ export class SearchstockService {
   }
 }
 
-
 export class Stock {
   id: number;
   name: string;
-  postId: number;
   price: any;
 }
 
