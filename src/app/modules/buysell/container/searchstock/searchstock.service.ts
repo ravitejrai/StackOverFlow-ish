@@ -20,10 +20,7 @@ export class SearchstockService {
   name: any;
   id: any;
   stockName: string;
-<<<<<<< HEAD
   userEmail: string;
-  stockdata: Observable<Orders[]>;
-=======
 
   // Tried mocking data for getting stock list
   StockList: Array<object> = [ 
@@ -38,7 +35,6 @@ export class SearchstockService {
       price:1907,
     }
   ];
->>>>>>> origin/master
 
   /**
    * Parameterized constructor to fetch the backend data

@@ -7,12 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppModule } from 'src/app/app.module';
 
-<<<<<<< HEAD
-xdescribe('StockportfolioComponent', () => {
-  let component: StockportfolioComponent;
-  let fixture: ComponentFixture<StockportfolioComponent>;
-});
-=======
 
 const fakeStock = 
 {
@@ -93,4 +87,3 @@ describe('StockportfolioComponent', () => {
   });
 
 });
->>>>>>> origin/master

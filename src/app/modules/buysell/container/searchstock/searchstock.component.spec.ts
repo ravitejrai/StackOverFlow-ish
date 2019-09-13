@@ -8,12 +8,7 @@ import { RouterModule } from "@angular/router";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { browser, element, by } from "protractor";
 
-<<<<<<< HEAD
-
-xdescribe('SearchstockComponent', () => {
-=======
 describe("SearchstockComponent", () => {
->>>>>>> origin/master
   let component: SearchstockComponent;
   let fixture: ComponentFixture<SearchstockComponent>;
   const testStockList: Stock[] = [
@@ -47,8 +42,6 @@ describe("SearchstockComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
-<<<<<<< HEAD
-=======
 
   // creating test for table
   it("should test the table ", done => {
@@ -155,5 +148,4 @@ describe("findOne", () => {
 
     expect(response).toEqual(StockList);
   });
->>>>>>> origin/master
 });

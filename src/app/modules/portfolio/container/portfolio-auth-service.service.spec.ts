@@ -3,10 +3,6 @@ import { TestBed, inject } from '@angular/core/testing';
 import { PortfolioAuthServiceService } from './portfolio-auth-service.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-<<<<<<< HEAD
-xdescribe('PortfolioAuthServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-=======
 describe('PortfolioAuthServiceService', () => {
 
   beforeEach(() => {
@@ -17,7 +13,6 @@ describe('PortfolioAuthServiceService', () => {
     ]
   });
 });
->>>>>>> origin/master
 
   it('should be created', () => {
     const service: PortfolioAuthServiceService = TestBed.get(PortfolioAuthServiceService);
