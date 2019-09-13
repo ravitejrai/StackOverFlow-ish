@@ -70,16 +70,11 @@ const mockpatchData = {
 };
 
 describe('SearchstockService', () => {
-  beforeEach(() =>
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [SearchstockService]
-    })
-  );
-
-  it('should be created', () => {
-    const service: SearchstockService = TestBed.get(SearchstockService);
-    expect(service).toBeTruthy();
+    });
   });
 
   it('testing http get for display stocks', inject(
@@ -193,7 +188,7 @@ describe('SearchstockService getProduct test', () => {
     });
   });
 
-  it('should be created', () => {
+  it('service should be created', () => {
     const service: SearchstockService = TestBed.get(SearchstockService);
     expect(service).toBeTruthy();
   });
