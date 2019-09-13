@@ -4,7 +4,7 @@ import { BuysellModule } from '../../buysell.module';
 import { AppModule } from 'src/app/app.module';
 
 
-describe('SearchstockComponent', () => {
+xdescribe('SearchstockComponent', () => {
   let component: SearchstockComponent;
   let fixture: ComponentFixture<SearchstockComponent>;
 
@@ -26,5 +26,4 @@ describe('SearchstockComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
 });
