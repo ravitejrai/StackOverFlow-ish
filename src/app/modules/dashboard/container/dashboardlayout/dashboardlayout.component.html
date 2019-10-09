@@ -2,8 +2,12 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="false">
-    <mat-toolbar>Menu</mat-toolbar>
+      [opened]="true">
+    <mat-toolbar>
+        <a class="-logo js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+          <span class="-img _glyph">Stack Overflow</span>
+        </a>
+    </mat-toolbar>
     <mat-nav-list>
       <a  mat-list-item [routerLink]="[ 'portfolio']" routerLinkActive="is-active">Portfolio</a>
       <a mat-list-item [routerLink]="[ 'buysell']" routerLinkActive="is-active">Buy/Sell</a>
@@ -18,10 +22,7 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>  
-      <span class="text-spacer"></span>
-      <span class="text-spacer">Welcome, {{firstName}} {{lastName}}</span>
       <div>
-          <span class="text-spacer">Balance: {{availableBalance}}</span>
         <button mat-button style="text-align: right" (click)="onLogOut()">Log Out</button>
       </div>
     </mat-toolbar>

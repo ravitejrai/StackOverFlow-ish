@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardlayoutComponent } from './container/dashboardlayout/dashboardlayout.component';
 import { HomeComponent } from './container/home/home.component';
+import { QuestionInfoComponent } from './container/question-info/question-info.component';
+import { AskquestionsComponent } from './container/askquestions/askquestions.component';
 
 export const routes: Routes = [
   {
@@ -12,6 +14,14 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'home/:id/info',
+        component: QuestionInfoComponent
+      },
+      {
+        path: 'home/AskQuestions',
+        component: AskquestionsComponent
       },
       {
         path: 'portfolio',
@@ -28,7 +38,7 @@ export const routes: Routes = [
           )
       }
     ]
-  }
+  },
 ];
 
 @NgModule({

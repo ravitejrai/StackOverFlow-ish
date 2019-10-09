@@ -5,6 +5,7 @@ import { RegistrationComponent } from './container/registration/registration.com
 import { LoginComponent } from './container/login/login.component';
 import { HomeComponent } from './container/home/home.component';
 import { LearnrxjsComponent } from './container/learnrxjs/learnrxjs.component';
+import { QuestionInfoComponent } from '../dashboard/container/question-info/question-info.component';
 
 
 export const routes: Routes = [
@@ -23,15 +24,10 @@ export const routes: Routes = [
         component: RegistrationComponent,
 
       },
-    
       {
         path: 'login',
         component: LoginComponent,
 
-      },
-      {
-        path: 'learnrxjs',
-        component: LearnrxjsComponent,
       }
     ]
   }

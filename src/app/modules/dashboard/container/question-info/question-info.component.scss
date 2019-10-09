@@ -1,0 +1,91 @@
+#container {
+    display: flex;
+  }
+  
+#left,
+#right {
+    flex-grow: 1;
+}
+
+  .votebox {
+    height: 100px;
+    width: 120px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    font-size: 1.75em;
+    margin-top: 8%;
+
+    .vote {
+      cursor: pointer;
+      &:hover {
+        color: orange;
+      }
+    }
+  }
+
+  .questionvotebox {
+    height: 100px;
+    width: 120px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    font-size: 1.75em;
+    margin-top: 2%;
+    margin-left: 1%;
+
+    .vote {
+      cursor: pointer;
+      &:hover {
+        color: orange;
+      }
+    }
+  }
+
+  .askQuestions {
+    margin-top: 10%;
+    margin-left: 25%;
+    background: rgb(0, 102, 255);
+    font-size: 20px;
+    position: relative;
+}
+
+.answerlength {
+  margin-left: 2%;
+}
+ 
+.fieldwrapper { 
+  position: relative;
+  width: 90%; 
+}
+ 
+  div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #b3b3b3;
+    width: 70%;
+    display: flex;
+}
+
+.submit-button {
+  float: right;
+  width: 50px; 
+}
+
+.Answer {
+  background-color: rgb(220, 228, 228);
+  height: 100px;
+  width: 90%;
+}
+
+.Comment {
+  height: 100px;
+  width: 90%;
+}
+
+.Edit {
+  display: inline-block;
+  :hover {
+    color : green;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SearchstockService, Tag } from 'src/app/modules/buysell/container/searchstock/searchstock.service';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +8,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private http : HttpClient) { }
+  stockItems: Tag[] = [];
+  constructor(private StockList: SearchstockService) { }
 
   ngOnInit() {
-    // const Headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-    // this.http.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo',{ headers: Headers }).subscribe(
-    //   (data)=>{
-    //     console.log(data)
-    //   }
-    // ) 
-
+    this.StockList.getQuestions().subscribe(response => {
+      this.stockItems = response;
+    });
   }
 
 }

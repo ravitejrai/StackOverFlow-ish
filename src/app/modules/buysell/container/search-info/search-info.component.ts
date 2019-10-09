@@ -81,7 +81,7 @@ export class SearchInfoComponent implements OnInit {
       'value'
     ];
     this.ordersDataSourceJson = new MatTableDataSource(
-      this.checkOrderResponse(this.orderItems, name)
+      this.checkOrderResponse(this.orderItems)
     );
   }
 
@@ -89,9 +89,8 @@ export class SearchInfoComponent implements OnInit {
    * Checks for the name to be present in the database, if present returns the info of that
    * stock else returns error msg to the console;
    * @param dataResponse cannot be null
-   * @param id cannot be null
    */
-  checkOrderResponse(dataResponse: any[], name: string) {
+  checkOrderResponse(dataResponse: any[]) {
     if (dataResponse === null) {
       this.isDisabled = true;
       alert('There is no data to be shown');

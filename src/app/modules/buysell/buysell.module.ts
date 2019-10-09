@@ -23,7 +23,7 @@ import { SearchInfoComponent } from './container/search-info/search-info.compone
 
 
 @NgModule({
-  declarations: [SearchstockComponent,SearchInfoComponent, BuyStockComponent, ModalComponent],
+  declarations: [SearchstockComponent, SearchInfoComponent, BuyStockComponent, ModalComponent],
   imports: [
     CommonModule,
     BuysellRoutingModule,

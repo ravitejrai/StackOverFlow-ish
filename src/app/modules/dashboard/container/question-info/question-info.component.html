@@ -1,0 +1,66 @@
+<div *ngFor="let item of this.stockItems; let i = index">
+    <div id="container" class="example z-depth-5">
+        <div class="questionvotebox">
+            <span class="fa fa-arrow-up vote up" (click)="upvote(item.questionId)"></span>
+            <span class="vote-count">{{ item.votes }}</span>
+            <span class="fa fa-arrow-down vote down" (click)="downvote(item.questionId)"></span>
+        </div>
+        <div id="right">
+            <div fxLayout="row">
+                <div fxLayout="column">
+                    <h2>{{ item.questions }}</h2>
+                </div>
+                <div fxLayout="column">
+                    <button class="askQuestions">Ask Questions</button>
+                </div>
+            </div>
+            <div class="fieldwrapper">
+                <div contenteditable="true" class="editable" data-placeholder="add answer"></div>
+                <br />
+                <button class="submit-button" (click)="addAnswer(item.questionId)">
+                    submit
+                </button>
+            </div>
+            <br />
+        </div>
+    </div>
+    <hr />
+    <h2 class="answerlength">{{ item.Answers.length }} Answers</h2>
+    <hr />
+    <div id="container" class="example z-depth-5" *ngFor="let obj of item.Answers">
+        <div class="votebox">
+            <span class="fa fa-arrow-up vote up" (click)="upvoteAnswers(item.questionId, obj.votes, obj.answer)">
+            </span>
+            <span class="vote-count">{{ obj.votes }}</span>
+            <span class="fa fa-arrow-down vote down" (click)="downvoteAnswers(item.questionId, obj.votes, obj.answer)">
+            </span>
+        </div>
+        <div id="right">
+            <h3 class="Answer">{{ obj.answer }}</h3>
+            <div class="Edit">
+                <span (click)="EditAnswer(item.questionId, obj.answer)">Edit&nbsp;&nbsp;</span>
+                <span>&nbsp;Flag</span>
+            </div>
+            <br />
+            <br />
+            <h4>Comments</h4>
+            <hr />
+            <div class="Comment" *ngFor="let comment of obj.Comments">
+                <p>{{ comment.value }}</p>
+                <br />
+                <br />
+                <hr />
+            </div>
+            <div class="fieldwrapper">
+                <div contenteditable="true" class="commenteditable" data-placeholder="add a comment"></div>
+                <br />
+                <button class="submit-button" (click)="addComment(item.questionId, obj.answer)">
+                    submit
+                </button>
+            </div>
+            <br />
+            <br />
+            <hr />
+        </div>
+    </div>
+</div>

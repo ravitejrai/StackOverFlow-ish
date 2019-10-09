@@ -1,1 +1,27 @@
-<h3>Welcome to Dashboard !!</h3>
+<div fxLayout="row">
+    <div fxLayout="column">
+        <h1>Top Questions</h1>
+    </div>
+    <div fxLayout="column">
+        <button [routerLink]="['AskQuestions']" class="askQuestions">Ask Questions </button>
+    </div>
+</div>
+<hr />
+<div *ngFor="let item of this.stockItems; let i = index">
+    <div class="Body">
+        <h3>{{this.stockItems[i].votes}}</h3>
+        <span>votes</span>
+        <hr />
+    </div>
+    <div class="Body">
+        <h3>{{this.stockItems[i].Answers.length}}</h3>
+        <span>answers</span>
+        <hr />
+    </div>
+    <div class="Body">
+        <h3><a [routerLink]="[this.stockItems[i].questionId,'info']">{{this.stockItems[i].questions}}</a></h3>
+        <br />
+        <hr />
+    </div>
+</div>
+<router-outlet></router-outlet>
