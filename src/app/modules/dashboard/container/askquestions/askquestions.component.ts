@@ -9,6 +9,10 @@ export class AskquestionsComponent implements OnInit {
 
   constructor() { }
 
+  submitted = false;
+
+  onSubmit() { this.submitted = true; }
+
   ngOnInit() {
   }
 

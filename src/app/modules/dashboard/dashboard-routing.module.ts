@@ -20,6 +20,10 @@ export const routes: Routes = [
         component: QuestionInfoComponent
       },
       {
+        path: 'home/:id/info/AskQuestions',
+        component: AskquestionsComponent
+      },
+      {
         path: 'home/AskQuestions',
         component: AskquestionsComponent
       },

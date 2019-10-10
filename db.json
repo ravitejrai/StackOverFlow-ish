@@ -18,11 +18,11 @@
     {
       "questions": "what is Database ?",
       "questionId": "123",
-      "votes": 4,
+      "votes": 3,
       "Answers": [
         {
           "answer": "It is used to show relations and to keep things updated.",
-          "votes": 4,
+          "votes": 2,
           "Comments": [
             {
               "name": "ravi",

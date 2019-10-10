@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { HomeComponent } from './container/home/home.component';
 import { DashboardlayoutComponent } from './container/dashboardlayout/dashboardlayout.component';
@@ -24,6 +24,7 @@ import { AskquestionsComponent } from './container/askquestions/askquestions.com
     DashboardRoutingModule,
     LayoutModule,
     MatToolbarModule,
+    FormsModule,
     MatButtonModule,
     MatSidenavModule,
     FlexLayoutModule,
