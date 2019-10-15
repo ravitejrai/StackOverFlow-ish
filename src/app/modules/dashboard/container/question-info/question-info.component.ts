@@ -3,7 +3,7 @@ import {
   Tag,
   SearchstockService,
   Comments
-} from 'src/app/modules/buysell/container/searchstock/searchstock.service';
+} from 'src/app/modules/dashboard/container/searchstock.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class QuestionInfoComponent implements OnInit {
     this.questionId = param;
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === this.questionId) {
+        if (response[i].id === parseInt(this.questionId, 10)) {
           this.stockItems.push(response[i]);
         }
       }
@@ -39,7 +39,7 @@ export class QuestionInfoComponent implements OnInit {
   updateUI(questionId: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           this.stockItems.push(response[i]);
         }
       }
@@ -68,7 +68,7 @@ export class QuestionInfoComponent implements OnInit {
   upvoteAnswers(questionId: string, votes: number, answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
               response[i].Answers[j].votes = votes + 1;
@@ -89,7 +89,7 @@ export class QuestionInfoComponent implements OnInit {
   downvoteAnswers(questionId: string, votes: number, answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
               response[i].Answers[j].votes = votes - 1;
@@ -110,7 +110,7 @@ export class QuestionInfoComponent implements OnInit {
   showUpdatedQuestionsVotes(questionId: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           this.stockItems[0].votes = response[i].votes;
         }
       }
@@ -120,7 +120,7 @@ export class QuestionInfoComponent implements OnInit {
   showUpdatedAnswersVotes(questionId: string , answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
               this.stockItems[0].Answers[j].votes = response[i].Answers[j].votes + 1;
@@ -134,7 +134,7 @@ export class QuestionInfoComponent implements OnInit {
   showDownvotedAnswersVotes(questionId: string , answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
               this.stockItems[0].Answers[j].votes = response[i].Answers[j].votes - 1;
@@ -150,12 +150,12 @@ export class QuestionInfoComponent implements OnInit {
     const text = contenteditable.textContent;
     const answerData = {
       answer: text,
-      votes: 4,
+      votes: 0,
       Comments: this.comments
     };
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           response[i].Answers.push(answerData);
           this.StockList.postAnswers(questionId, response[i].Answers).subscribe(
             newResponse => {
@@ -182,14 +182,11 @@ export class QuestionInfoComponent implements OnInit {
     };
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answer) {
               response[i].Answers[j].Comments.push(commentData);
-              this.StockList.postAnswers(
-                questionId,
-                response[i].Answers
-              ).subscribe(newResponse => {
+              this.StockList.postAnswers(questionId, response[i].Answers).subscribe(newResponse => {
                 console.log(newResponse);
               });
             }
@@ -230,7 +227,7 @@ export class QuestionInfoComponent implements OnInit {
     const text = editedAnswer[index].innerHTML;
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
-        if (response[i].questionId === questionId) {
+        if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answer) {
               response[i].Answers[j].answer = text;

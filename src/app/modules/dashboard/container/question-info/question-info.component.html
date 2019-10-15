@@ -1,9 +1,9 @@
 <div *ngFor="let item of this.stockItems; let i = index">
     <div id="container" class="example z-depth-5">
         <div class="questionvotebox">
-            <span class="fa fa-arrow-up vote up" (click)="upvote(item.questionId)"></span>
+            <span class="fa fa-arrow-up vote up" (click)="upvote(item.id)"></span>
             <span class="vote-count">{{ item.votes }}</span>
-            <span class="fa fa-arrow-down vote down" (click)="downvote(item.questionId)"></span>
+            <span class="fa fa-arrow-down vote down" (click)="downvote(item.id)"></span>
         </div>
         <div id="right">
             <div fxLayout="row">
@@ -11,13 +11,13 @@
                     <h2>{{ item.questions }}</h2>
                 </div>
                 <div fxLayout="column">
-                    <button [routerLink]="[item.questionId, 'AskQuestions']" class="askQuestions">Ask Questions</button>
+                    <button [routerLink]="[item.id, 'AskQuestions']" class="askQuestions">Ask Questions</button>
                 </div>
             </div>
             <div class="fieldwrapper">
                 <div contenteditable="true" class="editable" data-placeholder="add answer"></div>
                 <br />
-                <button class="submit-button" (click)="addAnswer(item.questionId)">
+                <button class="submit-button" (click)="addAnswer(item.id)">
                     submit
                 </button>
             </div>
@@ -29,16 +29,16 @@
     <hr />
     <div id="container" class="example z-depth-5" *ngFor="let obj of item.Answers">
         <div class="votebox">
-            <span class="fa fa-arrow-up vote up" (click)="upvoteAnswers(item.questionId, obj.votes, obj.answer)">
+            <span class="fa fa-arrow-up vote up" (click)="upvoteAnswers(item.id, obj.votes, obj.answer)">
             </span>
             <span class="vote-count">{{ obj.votes }}</span>
-            <span class="fa fa-arrow-down vote down" (click)="downvoteAnswers(item.questionId, obj.votes, obj.answer)">
+            <span class="fa fa-arrow-down vote down" (click)="downvoteAnswers(item.id, obj.votes, obj.answer)">
             </span>
         </div>
         <div id="right">
             <h3 class="Answer">{{ obj.answer }}</h3>
             <div class="Edit">
-                <span (click)="EditAnswer(item.questionId, obj.answer)">Edit&nbsp;&nbsp;</span>
+                <span (click)="EditAnswer(item.id, obj.answer)">Edit&nbsp;&nbsp;</span>
                 <span>&nbsp;Flag</span>
             </div>
             <br />
@@ -54,7 +54,7 @@
             <div class="fieldwrapper">
                 <div contenteditable="true" class="commenteditable" data-placeholder="add a comment"></div>
                 <br />
-                <button class="submit-button" (click)="addComment(item.questionId, obj.answer)">
+                <button class="submit-button" (click)="addComment(item.id, obj.answer)">
                     submit
                 </button>
             </div>

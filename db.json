@@ -21,7 +21,7 @@
       "votes": 3,
       "Answers": [
         {
-          "answer": "It is used to show relations and to keep things updated.",
+          "answer": "It is used to show relations and to keep things updated and edit functionality",
           "votes": 2,
           "Comments": [
             {
@@ -35,7 +35,7 @@
           ]
         },
         {
-          "answer": "It can be no sql or sql",
+          "answer": "It can be no sql or sql and other things",
           "votes": 4,
           "Comments": [
             {
@@ -54,7 +54,7 @@
     {
       "questions": "what is stackOverflow ?",
       "questionId": "132",
-      "votes": 3,
+      "votes": 1,
       "Answers": [
         {
           "answer": "Q/A forum to test and answer and pull real time solutions with effective strategies oh wow.",
@@ -110,6 +110,45 @@
         }
       ],
       "id": 132
+    },
+    {
+      "questions": "Difference between Angular 7 and Angular JS ?",
+      "questionId": "133",
+      "votes": 2,
+      "Answers": [
+        {
+          "answer": "Angular 7 is new and Angular JS is old with archaic features and irrelevant technology.",
+          "votes": 2,
+          "Comments": [
+            {
+              "name": "Ashish",
+              "value": "We are heading into angular 9 which is going to make a lot of things obsolete."
+            },
+            {
+              "name": "Ashish",
+              "value": "Why am i not able to comment with a single push of submit button"
+            }
+          ]
+        }
+      ],
+      "id": 133
+    },
+    {
+      "questions": "Stack Overflow Questions",
+      "votes": 1,
+      "Answers": [
+        {
+          "answer": "This is a dummy answer to a dummy question and a silly one as well",
+          "votes": -2,
+          "Comments": [
+            {
+              "name": "Ashish",
+              "value": "What sort of Question is This !!! Its high time we get better questions and answers"
+            }
+          ]
+        }
+      ],
+      "id": 134
     }
   ]
 }

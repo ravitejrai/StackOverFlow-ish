@@ -11,6 +11,7 @@ export const routes: Routes = [
     component: DashboardlayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'dashboard/home/AskQuestions/dashboard', redirectTo: 'home', pathMatch: 'full' },
       {
         path: 'home',
         component: HomeComponent
@@ -32,13 +33,6 @@ export const routes: Routes = [
         loadChildren: () =>
           import('../portfolio/portfolio.module').then(
             m => m.PortfolioModule
-          )
-      },
-      {
-        path: 'buysell',
-        loadChildren: () =>
-          import('../buysell/buysell.module').then(
-            m => m.BuysellModule
           )
       }
     ]

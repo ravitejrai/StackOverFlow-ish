@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchstockService, Tag } from 'src/app/modules/buysell/container/searchstock/searchstock.service';
+import { SearchstockService, Tag } from 'src/app/modules/dashboard/container/searchstock.service';
 
 @Component({
   selector: 'app-home',
