@@ -29,13 +29,11 @@ export class DashboardlayoutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('***before**');
     const user = JSON.parse(localStorage.getItem('testObject'));
     if (user === undefined) {
       alert(' Access Denied, User not defined');
       this.onLogOut();
     } else {
-      console.log(user, '**after**');
       Object.entries(user).forEach(([key, value]) => {
         switch (key) {
           case 'email':
@@ -57,7 +55,6 @@ export class DashboardlayoutComponent implements OnInit {
 
   onLogOut() {
     localStorage.removeItem('testObject');
-    // console.log(JSON.parse(localStorage.getItem('testObject')))
     this.router.navigate(['/']);
   }
 }

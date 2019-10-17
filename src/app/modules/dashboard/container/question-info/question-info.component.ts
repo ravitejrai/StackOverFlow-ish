@@ -14,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
 export class QuestionInfoComponent implements OnInit {
   stockItems: Tag[] = [];
   comments: Comments[] = [];
-  AnswersArray = [];
   questionId: string;
   votes: number;
   answer = '';
@@ -36,42 +35,32 @@ export class QuestionInfoComponent implements OnInit {
     });
   }
 
-  updateUI(questionId: string) {
-    this.StockList.getQuestions().subscribe(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (response[i].id === parseInt(questionId, 10)) {
-          this.stockItems.push(response[i]);
-        }
-      }
-    });
-  }
-  upvote(questionId: string) {
-    this.StockList.upvoteQuestions(
-      questionId,
-      this.stockItems[0].votes
-    ).subscribe(response => {
-      console.log(response);
-    });
+  alterVote(questionId: string, votes: number) {
+    if (this.stockItems[0].votes === votes - 1) {
+      this.StockList.upvoteQuestions(
+        questionId,
+        this.stockItems[0].votes
+      ).subscribe(response => {
+        console.log(response);
+      });
+    } else {
+      this.StockList.downvoteQuestions(
+        questionId,
+        this.stockItems[0].votes
+      ).subscribe(response => {
+        console.log(response);
+      });
+    }
     this.showUpdatedQuestionsVotes(questionId);
   }
 
-  downvote(questionId: string) {
-    this.StockList.downvoteQuestions(
-      questionId,
-      this.stockItems[0].votes
-    ).subscribe(response => {
-      console.log(response);
-    });
-    this.showUpdatedQuestionsVotes(questionId);
-  }
-
-  upvoteAnswers(questionId: string, votes: number, answers: string) {
+  altervoteAnswers(questionId: string, votes: number, answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
         if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
-              response[i].Answers[j].votes = votes + 1;
+              response[i].Answers[j].votes = votes;
               this.StockList.postAnswers(
                 questionId,
                 response[i].Answers
@@ -83,28 +72,7 @@ export class QuestionInfoComponent implements OnInit {
         }
       }
     });
-    this.showUpdatedAnswersVotes(questionId, answers);
-  }
-
-  downvoteAnswers(questionId: string, votes: number, answers: string) {
-    this.StockList.getQuestions().subscribe(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (response[i].id === parseInt(questionId, 10)) {
-          for (let j = 0; j < response[i].Answers.length; j++) {
-            if (response[i].Answers[j].answer === answers) {
-              response[i].Answers[j].votes = votes - 1;
-              this.StockList.postAnswers(
-                questionId,
-                response[i].Answers
-              ).subscribe(newResponse => {
-                console.log(newResponse);
-              });
-            }
-          }
-        }
-      }
-    });
-    this.showDownvotedAnswersVotes(questionId, answers);
+    this.showUpdatedAnswersVotes(questionId, votes, answers);
   }
 
   showUpdatedQuestionsVotes(questionId: string) {
@@ -117,27 +85,19 @@ export class QuestionInfoComponent implements OnInit {
     });
   }
 
-  showUpdatedAnswersVotes(questionId: string , answers: string) {
+  showUpdatedAnswersVotes(questionId: string, votes: number, answers: string) {
     this.StockList.getQuestions().subscribe(response => {
       for (let i = 0; i < response.length; i++) {
         if (response[i].id === parseInt(questionId, 10)) {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answers) {
-              this.stockItems[0].Answers[j].votes = response[i].Answers[j].votes + 1;
-            }
-          }
-        }
-      }
-    });
-  }
-
-  showDownvotedAnswersVotes(questionId: string , answers: string) {
-    this.StockList.getQuestions().subscribe(response => {
-      for (let i = 0; i < response.length; i++) {
-        if (response[i].id === parseInt(questionId, 10)) {
-          for (let j = 0; j < response[i].Answers.length; j++) {
-            if (response[i].Answers[j].answer === answers) {
-              this.stockItems[0].Answers[j].votes = response[i].Answers[j].votes - 1;
+              if (this.stockItems[0].Answers[j].votes === votes - 1) {
+              this.stockItems[0].Answers[j].votes =
+                response[i].Answers[j].votes + 1;
+              } else {
+                this.stockItems[0].Answers[j].votes =
+                response[i].Answers[j].votes - 1;
+              }
             }
           }
         }
@@ -169,7 +129,6 @@ export class QuestionInfoComponent implements OnInit {
 
   addComment(questionId: string, answer: string) {
     const contenteditable = document.getElementsByClassName('commenteditable');
-    console.log(contenteditable);
     let text = '';
     for (let p = 0; p < contenteditable.length; p++) {
       if (contenteditable[p].innerHTML !== '') {
@@ -186,7 +145,10 @@ export class QuestionInfoComponent implements OnInit {
           for (let j = 0; j < response[i].Answers.length; j++) {
             if (response[i].Answers[j].answer === answer) {
               response[i].Answers[j].Comments.push(commentData);
-              this.StockList.postAnswers(questionId, response[i].Answers).subscribe(newResponse => {
+              this.StockList.postAnswers(
+                questionId,
+                response[i].Answers
+              ).subscribe(newResponse => {
                 console.log(newResponse);
               });
             }
@@ -198,7 +160,6 @@ export class QuestionInfoComponent implements OnInit {
 
   EditAnswer(questionId: string, answer: string) {
     const element = document.getElementsByClassName('Answer');
-    console.log(element);
     let index = 0;
     for (let i = 0; i < element.length; i++) {
       if (element[i].innerHTML === answer) {
