@@ -32,7 +32,7 @@ export class StockportfolioComponent implements OnInit {
     this.stocks$.subscribe((data) => {
       if(data.length ==0) {
         document.getElementById('header').className="disable";
-        alert("No Stocks available");
+        //alert("No Stocks available");
       } else {
         document.getElementById('header').className="enable";
       }

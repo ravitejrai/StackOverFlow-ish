@@ -5,7 +5,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 
-xdescribe('AuthService', () => {
+describe('AuthService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [AuthService],
@@ -17,13 +17,6 @@ xdescribe('AuthService', () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
-
-  it('authService in Registration for get details', inject(
-    [HttpTestingController, AuthService],
-    (service: AuthService) => {
-      expect(service.getDetails()).toBeTruthy();
-    }
-  ));
 
   it('testing http get for registration details', inject(
     [HttpTestingController, AuthService],
@@ -49,7 +42,7 @@ xdescribe('AuthService', () => {
       });
       // We set the expectations for the HttpClient mock
       const req = httpMock.expectOne('http://localhost:3000/users');
-      expect(req.request.method).toEqual('POST');
+      expect(req.request.method).toEqual('GET');
 
       // Then we set the fake data to be returned by the mock
       req.flush(mockData);

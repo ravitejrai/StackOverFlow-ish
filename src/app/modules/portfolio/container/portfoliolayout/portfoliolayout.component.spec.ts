@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PortfoliolayoutComponent } from './portfoliolayout.component';
 import {MatTabsModule} from '@angular/material/tabs';
 
-xdescribe('PortfoliolayoutComponent', () => {
+describe('PortfoliolayoutComponent', () => {
   let component: PortfoliolayoutComponent;
   let fixture: ComponentFixture<PortfoliolayoutComponent>;
 

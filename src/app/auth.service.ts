@@ -35,9 +35,9 @@ export class AuthService {
     return this.http.post(`http://localhost:3000/users`, postData)
   }
 
-getDetails(){
+getDetails() {
   const Headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-  return this.http.get(`http://localhost:3000/users`,{ headers: Headers });
+  return this.http.get(`http://localhost:3000/users`, { headers: Headers });
 }
 
 }

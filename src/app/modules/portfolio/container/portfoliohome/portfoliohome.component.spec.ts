@@ -10,15 +10,15 @@ import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const fakeUser = {
-  email: "tom@gmail.com",
-  password: "Password@12",
-  firstName: "tom",
-  lastName: "holleren",
-  phonenumber: "678-688-78798",
-  ssn: "678-67-8789789",
-  creditCardNumber: "6786-7869-8778",
-  date: "09-2018",
-  cvv: "123",
+  email: 'tom@gmail.com',
+  password: 'Password@12',
+  firstName: 'tom',
+  lastName: 'holleren',
+  phonenumber: '678-688-78798',
+  ssn: '678-67-8789789',
+  creditCardNumber: '6786-7869-8778',
+  date: '09-2018',
+  cvv: '123',
   amount: 100500,
   id: 1
 }
@@ -31,7 +31,7 @@ class fakePortfolioService {
   }
 }
 
-xdescribe('PortfoliohomeComponent', () => {
+describe('PortfoliohomeComponent', () => {
   let component: PortfoliohomeComponent;
   let fixture: ComponentFixture<PortfoliohomeComponent>;
 
@@ -39,17 +39,17 @@ xdescribe('PortfoliohomeComponent', () => {
 
     var store = {};
 
-    spyOn(localStorage, 'getItem').and.callFake( (key:string):string => {
+    spyOn(localStorage, 'getItem').and.callFake( (key: string): string => {
      return store[key] || null;
     });
 
-    spyOn(localStorage, 'setItem').and.callFake((key:string, value:string):string =>  {
-      return store[key] = <string>value;
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string =>  {
+      return store[key] = <string> value;
     });
 
     TestBed.configureTestingModule({
       declarations: [ PortfoliohomeComponent ],
-      imports:[ReactiveFormsModule,MyMaterialModule,HttpClientTestingModule,RouterTestingModule,AppModule],
+      imports: [ReactiveFormsModule, MyMaterialModule, HttpClientTestingModule, RouterTestingModule, AppModule],
       providers: [
         {
           provide: PortfolioAuthServiceService,
@@ -65,7 +65,7 @@ xdescribe('PortfoliohomeComponent', () => {
     fixture = TestBed.createComponent(PortfoliohomeComponent);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
-    localStorage.setItem('testObject',JSON.stringify(fakeUser));
+    localStorage.setItem('testObject', JSON.stringify(fakeUser));
     fixture.detectChanges();
   });
 
@@ -73,21 +73,21 @@ xdescribe('PortfoliohomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('edit method is called',() => {
-    spyOn(component,'edit').and.callThrough();
+  it('edit method is called', () => {
+    spyOn(component, 'edit').and.callThrough();
     component.edit();
     expect(component.edit).toHaveBeenCalled();
   });
 
-  it('onupdate navigate to same url',() => {
-    component.save();  
+  it('onupdate navigate to same url', () => {
+    component.save();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/dashboard/portfolio/userportfolio');
   });
 
-  it('update data through service',() => {
-    component.save();  
+  it('update data through service', () => {
+    component.save();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/dashboard/portfolio/userportfolio');
-    component.updateUser$.subscribe((data)=>{
+    component.updateUser$.subscribe((data) => {
         expect(data[0]).toEqual(fakeUser);
     });
   });

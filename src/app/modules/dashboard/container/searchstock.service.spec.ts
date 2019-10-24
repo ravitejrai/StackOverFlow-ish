@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { SearchstockService } from './searchstock.service';
+import { TestBed, inject } from "@angular/core/testing";
+import { SearchstockService } from "./searchstock.service";
 import {
   HttpClientTestingModule,
   HttpTestingController
-} from '@angular/common/http/testing';
+} from "@angular/common/http/testing";
 
 const mockUserData = [
   {
-    email: 'tom@gmail.com',
+    email: "tom@gmail.com",
     stockid: 1,
-    name: 'Apple',
+    name: "Apple",
     quantity: 5,
     price: 100,
     value: 500,
@@ -19,17 +19,17 @@ const mockUserData = [
 
 const mockQuestionData = [
   {
-    questions: 'What is Testing?',
-    questionsId: '100',
+    questions: "What is Testing?",
+    questionsId: "100",
     votes: 4,
     Answers: [
       {
-        answer: 'This is a mock Answer',
+        answer: "This is a mock Answer",
         votes: 1,
         Comments: [
           {
-            name: 'Ravi',
-            value: 'This is a mock Test'
+            name: "Ravi",
+            value: "This is a mock Test"
           }
         ]
       }
@@ -39,27 +39,27 @@ const mockQuestionData = [
 ];
 
 const mockpatchData = [
-    {
-      questions: 'What is Testing?',
-      questionsId: '100',
-      votes: 5,
-      Answers: [
-        {
-          answer: 'This is a mock Answer',
-          votes: 1,
-          Comments: [
-            {
-              name: 'Ravi',
-              value: 'This is a mock Test'
-            }
-          ]
-        }
-      ],
-      id: 100
-    }
-  ];
+  {
+    questions: "What is Testing?",
+    questionsId: "100",
+    votes: 5,
+    Answers: [
+      {
+        answer: "This is a mock Answer",
+        votes: 1,
+        Comments: [
+          {
+            name: "Ravi",
+            value: "This is a mock Test"
+          }
+        ]
+      }
+    ],
+    id: 100
+  }
+];
 
-describe('SearchstockService', () => {
+describe("SearchstockService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -67,7 +67,7 @@ describe('SearchstockService', () => {
     });
   });
 
-  it('testing http get for display questions', inject(
+  it("should call getQuestions() and return display questions", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
@@ -76,100 +76,105 @@ describe('SearchstockService', () => {
       SearchstockService.getQuestions().subscribe(mockData => {
         expect(Object.keys(mockData).length).toBe(1);
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag');
-      expect(req.request.method).toEqual('GET');
+      const req = httpMock.expectOne("http://localhost:3000/Tag");
+      expect(req.request.method).toEqual("GET");
       req.flush(mockQuestionData);
     }
   ));
 
-  it('Testing patch for upvote', inject(
+  it("Testing patch for upvote", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.upvoteQuestions('100', 4).subscribe(mockpatchData => {
+      SearchstockService.upvoteQuestions("100", 4).subscribe(mockpatchData => {
         expect(mockpatchData[0].votes).toBe(5);
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag/100');
-      expect(req.request.method).toEqual('PATCH');
+      const req = httpMock.expectOne("http://localhost:3000/Tag/100");
+      expect(req.request.method).toEqual("PATCH");
       req.flush(mockpatchData);
     }
   ));
 
-  it('Testing patch for downvote', inject(
+  it("Testing patch for downvote", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.downvoteQuestions('100', 4).subscribe(mockpatchData => {
-        expect(mockpatchData[0].votes).toBe(5);
-      });
-      const req = httpMock.expectOne('http://localhost:3000/Tag/100');
-      expect(req.request.method).toEqual('PATCH');
+      SearchstockService.downvoteQuestions("100", 4).subscribe(
+        mockpatchData => {
+          expect(mockpatchData[0].votes).toBe(5);
+        }
+      );
+      const req = httpMock.expectOne("http://localhost:3000/Tag/100");
+      expect(req.request.method).toEqual("PATCH");
       req.flush(mockpatchData);
     }
   ));
 
-  it('Testing patch for upvoteAnswers', inject(
+  it("Testing patch for upvoteAnswers", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.upvoteAnswers('100', 4).subscribe(mockpatchData => {
+      SearchstockService.upvoteAnswers("100", 4).subscribe(mockpatchData => {
         expect(mockpatchData[0].Answers.length).toBe(1);
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag/100');
-      expect(req.request.method).toEqual('PATCH');
+      const req = httpMock.expectOne("http://localhost:3000/Tag/100");
+      expect(req.request.method).toEqual("PATCH");
       req.flush(mockpatchData);
     }
   ));
 
-  it('Testing patch for downvoteAnswers', inject(
+  it("Testing patch for downvoteAnswers", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.downvoteAnswers('100', 4).subscribe(mockpatchData => {
+      SearchstockService.downvoteAnswers("100", 4).subscribe(mockpatchData => {
         expect(mockpatchData[0].Answers[0].votes).toBe(1);
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag/100');
-      expect(req.request.method).toEqual('PATCH');
+      const req = httpMock.expectOne("http://localhost:3000/Tag/100");
+      expect(req.request.method).toEqual("PATCH");
       req.flush(mockpatchData);
     }
   ));
 
-  it('Testing for postAnswers', inject(
+  it("Testing for postAnswers", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.postAnswers('100', []).subscribe(mockpatchData => {
+      SearchstockService.postAnswers("100", []).subscribe(mockpatchData => {
         expect(mockpatchData[0].Answers.length).toBe(1);
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag/100');
-      expect(req.request.method).toEqual('PATCH');
+      const req = httpMock.expectOne("http://localhost:3000/Tag/100");
+      expect(req.request.method).toEqual("PATCH");
       req.flush(mockpatchData);
     }
   ));
 
-  it('Testing for postQuestions', inject(
+  it("Testing for postQuestions", inject(
     [HttpTestingController, SearchstockService],
     (
       httpMock: HttpTestingController,
       SearchstockService: SearchstockService
     ) => {
-      SearchstockService.postQuestions('What is Testing?', 'This is a test', 'Jasmine').subscribe(mockpatchData => {
-        expect(mockpatchData[0].questions).toEqual('What is Testing?');
+      SearchstockService.postQuestions(
+        "What is Testing?",
+        "This is a test",
+        "Jasmine"
+      ).subscribe(mockpatchData => {
+        expect(mockpatchData[0].questions).toEqual("What is Testing?");
       });
-      const req = httpMock.expectOne('http://localhost:3000/Tag');
-      expect(req.request.method).toEqual('POST');
+      const req = httpMock.expectOne("http://localhost:3000/Tag");
+      expect(req.request.method).toEqual("POST");
       req.flush(mockpatchData);
     }
   ));
 });
-

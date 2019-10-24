@@ -89,7 +89,6 @@ describe('DashboardlayoutComponent', () => {
   });
 
   it('checking logout()', inject([Router], (router: Router) => {
-    fixture.detectChanges();
     spyOn(router, 'navigate').and.stub();
     component.onLogOut();
     expect(localStorage.removeItem('testObject')).toBe(undefined);
