@@ -8,14 +8,13 @@ import { RegistrationComponent } from './container/registration/registration.com
 import { LoginComponent } from './container/login/login.component';
 import { HomeComponent } from './container/home/home.component';
 import { MyMaterialModule } from 'src/app/material.module';
-import { LearnrxjsComponent } from './container/learnrxjs/learnrxjs.component';
 import { MatTooltipModule} from '@angular/material/tooltip';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
-  declarations: [LayoutComponent, RegistrationComponent, LoginComponent, HomeComponent, LearnrxjsComponent],
+  declarations: [LayoutComponent, RegistrationComponent, LoginComponent, HomeComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,

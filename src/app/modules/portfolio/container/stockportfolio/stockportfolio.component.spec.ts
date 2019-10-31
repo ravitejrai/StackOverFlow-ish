@@ -30,19 +30,19 @@ describe('StockportfolioComponent', () => {
   let fixture: ComponentFixture<StockportfolioComponent>;
 
   beforeEach(async(() => {
-    var store = {};
+    const store = {};
 
-    spyOn(localStorage, 'getItem').and.callFake( (key:string):string => {
+    spyOn(localStorage, 'getItem').and.callFake( (key: string): string => {
      return store[key] || null;
     });
 
-    spyOn(localStorage, 'setItem').and.callFake((key:string, value:string):string =>  {
-      return store[key] = <string>value;
+    spyOn(localStorage, 'setItem').and.callFake((key: string, value: string): string =>  {
+      return store[key] = <string> value;
     });
 
     TestBed.configureTestingModule({
       declarations: [ StockportfolioComponent ],
-      imports:[MatExpansionModule,RouterTestingModule,HttpClientTestingModule,AppModule],
+      imports: [MatExpansionModule, RouterTestingModule, HttpClientTestingModule, AppModule],
       providers: [
         {
           provide: PortfolioAuthServiceService,
@@ -71,7 +71,7 @@ describe('StockportfolioComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StockportfolioComponent);
     component = fixture.componentInstance;
-    localStorage.setItem('testObject',JSON.stringify(testObject));
+    localStorage.setItem('testObject', JSON.stringify(testObject));
   });
 
   it('should create', () => {

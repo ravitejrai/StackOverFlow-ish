@@ -25,13 +25,12 @@ describe('PortfoliolayoutComponent', () => {
   beforeEach(async () => {
     fixture = TestBed.createComponent(PortfoliolayoutComponent);
     component = fixture.componentInstance;
-    
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should call the constructor and initilize the navlinks property', () => {
     fixture = TestBed.createComponent(PortfoliolayoutComponent);
     component = fixture.componentInstance;
@@ -40,11 +39,7 @@ describe('PortfoliolayoutComponent', () => {
           label: 'User Account',
           link: 'userportfolio',
           index: 0
-      }, {
-          label: 'Stock List',
-          link: 'stockList',
-          index: 1
-      }, 
+      },
   ];
     expect(component.navLinks).toEqual(FakenavLinks);
   });

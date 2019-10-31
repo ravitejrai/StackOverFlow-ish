@@ -9,18 +9,13 @@ import { Router } from '@angular/router';
 export class PortfoliolayoutComponent implements OnInit {
 
   navLinks: any[];
-  //activeLinkIndex = -1; 
   constructor(private router: Router) {
     this.navLinks = [
         {
             label: 'User Account',
             link: 'userportfolio',
             index: 0
-        }, {
-            label: 'Stock List',
-            link: 'stockList',
-            index: 1
-        }, 
+        },
     ];
   }
 

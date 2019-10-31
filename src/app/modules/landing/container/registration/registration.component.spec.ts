@@ -17,7 +17,7 @@ import { HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { AppModule } from 'src/app/app.module';
-import { Observable, of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -40,9 +40,7 @@ describe('RegistrationComponent', () => {
     }
   ];
 
-  // const mockData1 = [];
-
-  class dummyService {
+  class DummyService {
     getDetails() {
       return of(mockData);
     }
@@ -67,8 +65,8 @@ describe('RegistrationComponent', () => {
         MyMaterialModule
       ],
       providers: [
-        { provide: AuthService, useClass: dummyService },
-        dummyService,
+        { provide: AuthService, useClass: DummyService },
+        DummyService,
         HttpClient,
         HttpHandler,
         HttpTestingController,
@@ -81,7 +79,7 @@ describe('RegistrationComponent', () => {
     fixture = TestBed.createComponent(RegistrationComponent);
     component = fixture.componentInstance;
     router = TestBed.get(Router);
-    dummyservice = TestBed.get(dummyService);
+    dummyservice = TestBed.get(DummyService);
     fixture.detectChanges();
   });
 
@@ -115,21 +113,9 @@ describe('RegistrationComponent', () => {
   });
 
   it('should check the post call data', () => {
-    var spy = spyOn(component, 'oncheck').and.callThrough();
+    const spy = spyOn(component, 'oncheck').and.callThrough();
     component.onRegitration();
     expect(spy).toHaveBeenCalled();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/home']);
   });
-
-  // it('should check the post call data', () => {
-  //   spyOn(component, 'handleError').and.callThrough();
-  //   const mockedservice = fixture.debugElement.injector.get(dummyService);
-  //   const usergetdetailsMockedcall = spyOn(
-  //     mockedservice,
-  //     'getUserDetails'
-  //   ).and.returnValue(throwError({ status: 'some error' }));
-  //   component.onRegitration();
-  //   component.oncheck();
-  //   expect(component.handleError).toHaveBeenCalled();
-  // });
 });
